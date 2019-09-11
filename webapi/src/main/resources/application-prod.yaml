@@ -1,0 +1,12 @@
+master:
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    password: root
+    url: jdbc:mysql://localhost:3306/phynos?useUnicode=true&characterEncoding=utf8
+    username: root
+slave:
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    password: root
+    url: jdbc:mysql://localhost:3306/phynos_slave?useUnicode=true&characterEncoding=utf8
+    username: root

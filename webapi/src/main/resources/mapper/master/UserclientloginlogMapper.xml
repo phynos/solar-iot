@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.phynos.springboot.webapi.dao.master.UserclientloginlogMapper">
+  <resultMap id="BaseResultMap" type="com.phynos.springboot.webapi.model.master.Userclientloginlog">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_client_id" jdbcType="INTEGER" property="userClientId" />
+    <result column="login_datetime" jdbcType="TIMESTAMP" property="loginDatetime" />
+    <result column="platform" jdbcType="INTEGER" property="platform" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, user_client_id, login_datetime, platform
+  </sql>
+  <select id="selectByExample" parameterType="com.phynos.springboot.webapi.model.master.UserclientloginlogExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sys_user_client_login_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user_client_login_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_user_client_login_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.phynos.springboot.webapi.model.master.UserclientloginlogExample">
+    delete from sys_user_client_login_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.phynos.springboot.webapi.model.master.Userclientloginlog">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sys_user_client_login_log (id, user_client_id, login_datetime, 
+      platform)
+    values (#{id,jdbcType=INTEGER}, #{userClientId,jdbcType=INTEGER}, #{loginDatetime,jdbcType=TIMESTAMP}, 
+      #{platform,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.phynos.springboot.webapi.model.master.Userclientloginlog">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sys_user_client_login_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      id,
+      <if test="userClientId != null">
+        user_client_id,
+      </if>
+      <if test="loginDatetime != null">
+        login_datetime,
+      </if>
+      <if test="platform != null">
+        platform,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{id,jdbcType=INTEGER},
+      <if test="userClientId != null">
+        #{userClientId,jdbcType=INTEGER},
+      </if>
+      <if test="loginDatetime != null">
+        #{loginDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="platform != null">
+        #{platform,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.phynos.springboot.webapi.model.master.UserclientloginlogExample" resultType="java.lang.Long">
+    select count(*) from sys_user_client_login_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sys_user_client_login_log
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.userClientId != null">
+        user_client_id = #{record.userClientId,jdbcType=INTEGER},
+      </if>
+      <if test="record.loginDatetime != null">
+        login_datetime = #{record.loginDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.platform != null">
+        platform = #{record.platform,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sys_user_client_login_log
+    set id = #{record.id,jdbcType=INTEGER},
+      user_client_id = #{record.userClientId,jdbcType=INTEGER},
+      login_datetime = #{record.loginDatetime,jdbcType=TIMESTAMP},
+      platform = #{record.platform,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.phynos.springboot.webapi.model.master.Userclientloginlog">
+    update sys_user_client_login_log
+    <set>
+      <if test="userClientId != null">
+        user_client_id = #{userClientId,jdbcType=INTEGER},
+      </if>
+      <if test="loginDatetime != null">
+        login_datetime = #{loginDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="platform != null">
+        platform = #{platform,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.phynos.springboot.webapi.model.master.Userclientloginlog">
+    update sys_user_client_login_log
+    set user_client_id = #{userClientId,jdbcType=INTEGER},
+      login_datetime = #{loginDatetime,jdbcType=TIMESTAMP},
+      platform = #{platform,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

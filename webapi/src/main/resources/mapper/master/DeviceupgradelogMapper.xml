@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.phynos.springboot.webapi.dao.master.DeviceupgradelogMapper">
+  <resultMap id="BaseResultMap" type="com.phynos.springboot.webapi.model.master.Deviceupgradelog">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="created_datetime" jdbcType="TIMESTAMP" property="createdDatetime" />
+    <result column="device_id" jdbcType="INTEGER" property="deviceId" />
+    <result column="stutus_0" jdbcType="INTEGER" property="stutus0" />
+    <result column="stutus_1" jdbcType="INTEGER" property="stutus1" />
+    <result column="stutus_2" jdbcType="INTEGER" property="stutus2" />
+    <result column="stutus_3" jdbcType="INTEGER" property="stutus3" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, created_datetime, device_id, stutus_0, stutus_1, stutus_2, stutus_3
+  </sql>
+  <select id="selectByExample" parameterType="com.phynos.springboot.webapi.model.master.DeviceupgradelogExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sys_device_upgrade_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_device_upgrade_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_device_upgrade_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.phynos.springboot.webapi.model.master.DeviceupgradelogExample">
+    delete from sys_device_upgrade_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.phynos.springboot.webapi.model.master.Deviceupgradelog">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sys_device_upgrade_log (id, created_datetime, device_id, 
+      stutus_0, stutus_1, stutus_2, 
+      stutus_3)
+    values (#{id,jdbcType=INTEGER}, #{createdDatetime,jdbcType=TIMESTAMP}, #{deviceId,jdbcType=INTEGER}, 
+      #{stutus0,jdbcType=INTEGER}, #{stutus1,jdbcType=INTEGER}, #{stutus2,jdbcType=INTEGER}, 
+      #{stutus3,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.phynos.springboot.webapi.model.master.Deviceupgradelog">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sys_device_upgrade_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      id,
+      <if test="createdDatetime != null">
+        created_datetime,
+      </if>
+      <if test="deviceId != null">
+        device_id,
+      </if>
+      <if test="stutus0 != null">
+        stutus_0,
+      </if>
+      <if test="stutus1 != null">
+        stutus_1,
+      </if>
+      <if test="stutus2 != null">
+        stutus_2,
+      </if>
+      <if test="stutus3 != null">
+        stutus_3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{id,jdbcType=INTEGER},
+      <if test="createdDatetime != null">
+        #{createdDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deviceId != null">
+        #{deviceId,jdbcType=INTEGER},
+      </if>
+      <if test="stutus0 != null">
+        #{stutus0,jdbcType=INTEGER},
+      </if>
+      <if test="stutus1 != null">
+        #{stutus1,jdbcType=INTEGER},
+      </if>
+      <if test="stutus2 != null">
+        #{stutus2,jdbcType=INTEGER},
+      </if>
+      <if test="stutus3 != null">
+        #{stutus3,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.phynos.springboot.webapi.model.master.DeviceupgradelogExample" resultType="java.lang.Long">
+    select count(*) from sys_device_upgrade_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sys_device_upgrade_log
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.createdDatetime != null">
+        created_datetime = #{record.createdDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.deviceId != null">
+        device_id = #{record.deviceId,jdbcType=INTEGER},
+      </if>
+      <if test="record.stutus0 != null">
+        stutus_0 = #{record.stutus0,jdbcType=INTEGER},
+      </if>
+      <if test="record.stutus1 != null">
+        stutus_1 = #{record.stutus1,jdbcType=INTEGER},
+      </if>
+      <if test="record.stutus2 != null">
+        stutus_2 = #{record.stutus2,jdbcType=INTEGER},
+      </if>
+      <if test="record.stutus3 != null">
+        stutus_3 = #{record.stutus3,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sys_device_upgrade_log
+    set id = #{record.id,jdbcType=INTEGER},
+      created_datetime = #{record.createdDatetime,jdbcType=TIMESTAMP},
+      device_id = #{record.deviceId,jdbcType=INTEGER},
+      stutus_0 = #{record.stutus0,jdbcType=INTEGER},
+      stutus_1 = #{record.stutus1,jdbcType=INTEGER},
+      stutus_2 = #{record.stutus2,jdbcType=INTEGER},
+      stutus_3 = #{record.stutus3,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.phynos.springboot.webapi.model.master.Deviceupgradelog">
+    update sys_device_upgrade_log
+    <set>
+      <if test="createdDatetime != null">
+        created_datetime = #{createdDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deviceId != null">
+        device_id = #{deviceId,jdbcType=INTEGER},
+      </if>
+      <if test="stutus0 != null">
+        stutus_0 = #{stutus0,jdbcType=INTEGER},
+      </if>
+      <if test="stutus1 != null">
+        stutus_1 = #{stutus1,jdbcType=INTEGER},
+      </if>
+      <if test="stutus2 != null">
+        stutus_2 = #{stutus2,jdbcType=INTEGER},
+      </if>
+      <if test="stutus3 != null">
+        stutus_3 = #{stutus3,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.phynos.springboot.webapi.model.master.Deviceupgradelog">
+    update sys_device_upgrade_log
+    set created_datetime = #{createdDatetime,jdbcType=TIMESTAMP},
+      device_id = #{deviceId,jdbcType=INTEGER},
+      stutus_0 = #{stutus0,jdbcType=INTEGER},
+      stutus_1 = #{stutus1,jdbcType=INTEGER},
+      stutus_2 = #{stutus2,jdbcType=INTEGER},
+      stutus_3 = #{stutus3,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

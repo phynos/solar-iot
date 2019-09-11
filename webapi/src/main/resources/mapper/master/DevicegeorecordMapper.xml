@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.phynos.springboot.webapi.dao.master.DevicegeorecordMapper">
+  <resultMap id="BaseResultMap" type="com.phynos.springboot.webapi.model.master.Devicegeorecord">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="created_datetime" jdbcType="TIMESTAMP" property="createdDatetime" />
+    <result column="device_id" jdbcType="INTEGER" property="deviceId" />
+    <result column="coordinate_type" jdbcType="INTEGER" property="coordinateType" />
+    <result column="lng" jdbcType="INTEGER" property="lng" />
+    <result column="lat" jdbcType="INTEGER" property="lat" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, created_datetime, device_id, coordinate_type, lng, lat
+  </sql>
+  <select id="selectByExample" parameterType="com.phynos.springboot.webapi.model.master.DevicegeorecordExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sys_device_geo_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_device_geo_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_device_geo_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.phynos.springboot.webapi.model.master.DevicegeorecordExample">
+    delete from sys_device_geo_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.phynos.springboot.webapi.model.master.Devicegeorecord">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sys_device_geo_record (id, created_datetime, device_id, 
+      coordinate_type, lng, lat
+      )
+    values (#{id,jdbcType=INTEGER}, #{createdDatetime,jdbcType=TIMESTAMP}, #{deviceId,jdbcType=INTEGER}, 
+      #{coordinateType,jdbcType=INTEGER}, #{lng,jdbcType=INTEGER}, #{lat,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.phynos.springboot.webapi.model.master.Devicegeorecord">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sys_device_geo_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      id,
+      <if test="createdDatetime != null">
+        created_datetime,
+      </if>
+      <if test="deviceId != null">
+        device_id,
+      </if>
+      <if test="coordinateType != null">
+        coordinate_type,
+      </if>
+      <if test="lng != null">
+        lng,
+      </if>
+      <if test="lat != null">
+        lat,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{id,jdbcType=INTEGER},
+      <if test="createdDatetime != null">
+        #{createdDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deviceId != null">
+        #{deviceId,jdbcType=INTEGER},
+      </if>
+      <if test="coordinateType != null">
+        #{coordinateType,jdbcType=INTEGER},
+      </if>
+      <if test="lng != null">
+        #{lng,jdbcType=INTEGER},
+      </if>
+      <if test="lat != null">
+        #{lat,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.phynos.springboot.webapi.model.master.DevicegeorecordExample" resultType="java.lang.Long">
+    select count(*) from sys_device_geo_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sys_device_geo_record
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.createdDatetime != null">
+        created_datetime = #{record.createdDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.deviceId != null">
+        device_id = #{record.deviceId,jdbcType=INTEGER},
+      </if>
+      <if test="record.coordinateType != null">
+        coordinate_type = #{record.coordinateType,jdbcType=INTEGER},
+      </if>
+      <if test="record.lng != null">
+        lng = #{record.lng,jdbcType=INTEGER},
+      </if>
+      <if test="record.lat != null">
+        lat = #{record.lat,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sys_device_geo_record
+    set id = #{record.id,jdbcType=INTEGER},
+      created_datetime = #{record.createdDatetime,jdbcType=TIMESTAMP},
+      device_id = #{record.deviceId,jdbcType=INTEGER},
+      coordinate_type = #{record.coordinateType,jdbcType=INTEGER},
+      lng = #{record.lng,jdbcType=INTEGER},
+      lat = #{record.lat,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.phynos.springboot.webapi.model.master.Devicegeorecord">
+    update sys_device_geo_record
+    <set>
+      <if test="createdDatetime != null">
+        created_datetime = #{createdDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deviceId != null">
+        device_id = #{deviceId,jdbcType=INTEGER},
+      </if>
+      <if test="coordinateType != null">
+        coordinate_type = #{coordinateType,jdbcType=INTEGER},
+      </if>
+      <if test="lng != null">
+        lng = #{lng,jdbcType=INTEGER},
+      </if>
+      <if test="lat != null">
+        lat = #{lat,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.phynos.springboot.webapi.model.master.Devicegeorecord">
+    update sys_device_geo_record
+    set created_datetime = #{createdDatetime,jdbcType=TIMESTAMP},
+      device_id = #{deviceId,jdbcType=INTEGER},
+      coordinate_type = #{coordinateType,jdbcType=INTEGER},
+      lng = #{lng,jdbcType=INTEGER},
+      lat = #{lat,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
