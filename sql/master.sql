@@ -56,12 +56,16 @@ create table `sys_user_admin` (
 	`password` varchar(20) not null comment '登录密码',
 	`email_validated` bit not null comment '邮箱验证是否通过',
 	`mobile_phone_validated` bit not null comment '手机验证是否通过',	
-	`nickname` varchar(20) not null comment '昵称',
-	`enabled` bit not null comment '启用状态',
-	primary key (`id`)
+	`nickname` varchar(20) default '' comment '昵称',
+	`realname` varchar(20) default '' comment '真实姓名',
+	`identity_card` varchar(50) default '' comment '身份证号',
+	`dept_id` int default null comment '机构ID',	
+	`enabled` bit not null comment '启用状态',	
+	primary key (`id`),
+	Constraint `fk_sys_user_admin_deptid` Foreign Key(`dept_id`) References `sys_dept`(`Id`)
 ) comment = '管理用户表格';
 
-insert into `sys_user_admin` values(1,'2018-07-16 16:30:00','admin','','phynos@126.com','1111111','admin',true,true,'admin',true);
+insert into `sys_user_admin` values(1,'2018-07-16 16:30:00','admin','','phynos@126.com','1111111','admin',true,true,'管理员',null,null,null,true);
 
 -- 表：登录日志
 drop table if exists `sys_user_admin_login_log`;
@@ -116,6 +120,30 @@ create table `sys_role_action` (
 	Constraint `fk_sys_role_action_rid` Foreign Key(`role_id`) References `sys_role`(`Id`),
 	Constraint `fk_sys_role_action_aid` Foreign Key(`action_id`) References `sys_action`(`Id`)
 ) comment = '角色权限绑定';
+
+-- 表：部门
+drop table if exists `sys_dept`;
+create table `sys_dept` (
+	`id` int not null auto_increment,
+	`name` varchar(20) not null comment '部门名称',	
+	`sort_number` int not null comment '排序编号',
+	`created_datetime` DateTime not null comment '数据创建时间',	
+	`update_datetime` DateTime not null comment '更新时间',
+	`del_flag` bit default 0 comment '删除标志',
+	`parent_id` int default 0 comment '父id',
+	primary key (`id`)
+) comment = '机构表';
+-- 表：角色部门关系
+drop table if exists `sys_role_dept`;
+create table `sys_role_dept` (
+	`id` int not null auto_increment,
+	`role_id` int not null comment '角色id',
+	`dept_id` int not null comment '机构id',
+	primary key (`id`),
+	Constraint `fk_sys_role_dept_rid` Foreign Key(`role_id`) References `sys_role`(`Id`),
+	Constraint `fk_sys_role_dept_did` Foreign Key(`dept_id`) References `sys_dept`(`Id`)
+) comment = '角色机构表';
+
 -- 表：区域
 drop table if exists `sys_area`;
 create table `sys_area` (
