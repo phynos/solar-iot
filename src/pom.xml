@@ -23,6 +23,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <spring-boot.version>2.1.8.RELEASE</spring-boot.version>
         <druid>1.1.20</druid>
+        <mybatis.version>3.5.2</mybatis.version>
     </properties>
 
 <!-- 不是所有模块公用，可以在这里声明版本号，这样子模块共同使用一个版 -->
@@ -110,6 +111,12 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>3.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>${mybatis.version}</version>
             </dependency>
 
         </dependencies>
