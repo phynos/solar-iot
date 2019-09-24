@@ -1,0 +1,18 @@
+
+spring:
+  application:
+    name: phynos-monitor
+
+server:
+  port: 7000
+
+management:
+  endpoints:
+    web:
+      base-path: '/actuator'
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+
