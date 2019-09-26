@@ -3,9 +3,8 @@ package com.phynos.framework.activiti.controller;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.tf.traffic.core.json.JsonResult;
-import com.tf.traffic.core.json.ResultCodeEnum;
-import com.tf.traffic.core.params.IdStringParam;
+import com.phynos.framework.core.json.JsonResult;
+import com.phynos.framework.core.json.ResultCodeEnum;
 import org.activiti.bpmn.converter.BpmnXMLConverter;
 import org.activiti.bpmn.model.BpmnModel;
 import org.activiti.editor.constants.ModelDataJsonConstants;
@@ -99,9 +98,9 @@ public class ActivitiModelController {
      * 发布模型为流程定义
      */
     @PostMapping("/deploy")
-    public JsonResult deploy(@RequestBody IdStringParam param) throws Exception {
+    public JsonResult deploy(String id) throws Exception {
         //获取模型
-        Model modelData = repositoryService.getModel(param.getId());
+        Model modelData = repositoryService.getModel(id);
         byte[] bytes = repositoryService.getModelEditorSource(modelData.getId());
         if (bytes == null) {
             //"模型数据为空，请先设计流程并成功保存，再进行发布。"

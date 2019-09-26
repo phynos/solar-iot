@@ -1,12 +1,6 @@
 package com.phynos.framework.activiti.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tf.traffic.activiti.entity.ActivitiTaskWrapper;
-import com.tf.traffic.activiti.params.request.BaseTaskVar;
-import com.tf.traffic.core.json.JsonResult;
-import com.tf.traffic.core.json.ResultCodeEnum;
-import com.tf.traffic.core.params.IdStringParam;
-import com.tf.traffic.dao.mapper.UserMapper;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;

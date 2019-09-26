@@ -1,11 +1,10 @@
 package com.phynos.framework.activiti.controller;
 
-import com.tf.traffic.activiti.entity.ProcessDefinitionWrapper;
-import com.tf.traffic.core.json.JsonList;
-import com.tf.traffic.core.json.JsonResult;
-import com.tf.traffic.core.json.ResultCodeEnum;
-import com.tf.traffic.core.params.BaseParam;
-import com.tf.traffic.core.params.IdStringParam;
+import com.phynos.framework.activiti.entity.ProcessDefinitionWrapper;
+import com.phynos.framework.core.json.JsonList;
+import com.phynos.framework.core.json.JsonResult;
+import com.phynos.framework.core.json.ResultCodeEnum;
+import com.phynos.framework.core.params.BaseParam;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.repository.ProcessDefinitionQuery;
@@ -64,12 +63,11 @@ public class ActivitiDeployController {
 
     /**
      * 删除已部署
-     * @param param 流程部署ID
+     * @param deploymentId 流程部署ID
      * @return
      */
     @RequestMapping("/del")
-    public JsonResult delDeploy(@RequestBody IdStringParam param) {
-        String deploymentId = param.getId();
+    public JsonResult delDeploy(String deploymentId) {
         repositoryService.deleteDeployment(deploymentId, true);
         return JsonResult.code(ResultCodeEnum.OK);
     }

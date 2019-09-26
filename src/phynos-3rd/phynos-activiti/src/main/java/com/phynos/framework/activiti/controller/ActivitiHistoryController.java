@@ -1,6 +1,6 @@
 package com.phynos.framework.activiti.controller;
 
-import com.tf.traffic.core.json.JsonResult;
+import com.phynos.framework.core.json.JsonResult;
 import org.activiti.engine.HistoryService;
 import org.activiti.engine.history.HistoricActivityInstance;
 import org.activiti.engine.history.HistoricTaskInstance;
