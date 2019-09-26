@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+ PUBLIC " -//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+ "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<!-- ${user.home} -->
+	<classPathEntry
+		location="${user.home}/.m2/repository/mysql/mysql-connector-java/5.1.48/mysql-connector-java-5.1.48.jar" />
+	<context id="my" targetRuntime="MyBatis3">
+
+		<!-- 生成的Java文件的编码 -->
+		<property name="javaFileEncoding" value="UTF-8" />
+
+		<!-- 格式化java代码 -->
+		<property name="javaFormatter"
+			value="org.mybatis.generator.api.dom.DefaultJavaFormatter" />
+		<!-- 格式化XML代码 -->
+		<property name="xmlFormatter"
+			value="org.mybatis.generator.api.dom.DefaultXmlFormatter" />
+
+		<property name="autoDelimitKeywords" value="true"/>
+		<!--beginningDelimiter和endingDelimiter：指明数据库的用于标记数据库对象名的符号，比如ORACLE就是双引号，MYSQL默认是`反引号； -->
+		<property name="beginningDelimiter" value="`" />
+		<property name="endingDelimiter" value="`" />
+
+		<commentGenerator>
+			<property name="suppressDate" value="false" />
+<!--			<property name="suppressAllComments" value="true" />-->
+		</commentGenerator>
+		<!-- mysql数据库连接 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://127.0.0.1:3306/phynos" userId="root"
+			password="root" />
+
+		<!-- 生成model实体类文件位置 -->
+		<javaModelGenerator targetPackage="com.phynos.framework.dao.model"
+			targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<!-- 生成mapper.xml配置文件位置 -->
+		<sqlMapGenerator targetPackage="mapper"
+						 targetProject="src\main\resources"/>
+
+		<!-- 生成mapper接口文件位置 -->
+		<javaClientGenerator targetPackage="com.phynos.framework.dao.mapper"
+			targetProject="src/main/java" type="XMLMAPPER">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+	
+		<table tableName="sys%">
+			<!-- 保持字段的原名
+			<property name="useActualColumnNames" value="true"/>
+			-->
+			<generatedKey column="id" sqlStatement="Mysql" />
+			<!-- 搜索字符串必须大写开头（因为类名是大写开头的） -->
+			<domainObjectRenamingRule searchString="^Sys"
+				replaceString="" />
+						 
+		</table>
+
+	</context>
+</generatorConfiguration>

@@ -2,6 +2,9 @@ package com.phynos.framework.activiti.manager;
 
 import com.phynos.framework.activiti.util.ActivitiUserUtils;
 import com.phynos.framework.dao.mapper.RoleMapper;
+import com.phynos.framework.dao.mapper.ext.UserMapperWrapper;
+import com.phynos.framework.dao.mapper.ext.UserRoleMapperWrapper;
+import com.phynos.framework.dao.model.Role;
 import com.phynos.framework.dao.model.UserRole;
 import org.activiti.engine.identity.Group;
 import org.activiti.engine.identity.User;
@@ -28,7 +31,7 @@ public class CustomUserEntityManager extends UserEntityManager {
 
     @Override
     public User findUserById(String userId) {
-        com.tf.traffic.dao.model.User rocIdUser = userMapperWrapper.getByName(userId);
+        com.phynos.framework.dao.model.User rocIdUser = userMapperWrapper.getByName(userId);
         //将自定义的user转化为activiti的类
         User userEntity = ActivitiUserUtils.toActivitiUser(rocIdUser);
         //返回activiti的实体类
@@ -41,14 +44,14 @@ public class CustomUserEntityManager extends UserEntityManager {
             return null;
         }
         List<Role> roleList = new ArrayList<>();
-        com.tf.traffic.dao.model.User userAdmin = userMapperWrapper.getByName(userId);
+        com.phynos.framework.dao.model.User userAdmin = userMapperWrapper.getByName(userId);
         if (userAdmin == null) {
             return null;
         }
         List<UserRole> userRoleList = userRoleMapperWrapper.getRolesByUserId(userAdmin.getId());
         for (UserRole userrole : userRoleList
         ) {
-            String roleId = userrole.getRoleId();
+            Long roleId = userrole.getRoleId();
             Role role = roleMapper.selectByPrimaryKey(roleId);
             roleList.add(role);
         }

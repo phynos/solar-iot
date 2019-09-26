@@ -1,11 +1,10 @@
 package com.phynos.framework.activiti.manager;
 
 import com.phynos.framework.dao.mapper.RoleMapper;
-import com.tf.traffic.dao.mapper.RoleMapper;
-import com.tf.traffic.dao.mapper.ext.UserMapperWrapper;
-import com.tf.traffic.dao.mapper.ext.UserRoleMapperWrapper;
-import com.tf.traffic.dao.model.Role;
-import com.tf.traffic.dao.model.UserRole;
+import com.phynos.framework.dao.mapper.ext.UserMapperWrapper;
+import com.phynos.framework.dao.mapper.ext.UserRoleMapperWrapper;
+import com.phynos.framework.dao.model.Role;
+import com.phynos.framework.dao.model.UserRole;
 import org.activiti.engine.identity.Group;
 import org.activiti.engine.impl.persistence.entity.GroupEntity;
 import org.activiti.engine.impl.persistence.entity.GroupEntityManager;
@@ -48,7 +47,7 @@ public class CustomGroupEntityManager extends GroupEntityManager {
             return null;
         }
         //这里的userId 实际对应用户名
-        com.tf.traffic.dao.model.User rocIdUser = userMapperWrapper.getByName(userId);
+        com.phynos.framework.dao.model.User rocIdUser = userMapperWrapper.getByName(userId);
         List<UserRole> userRoleList = userRoleMapperWrapper.getRolesByUserId(rocIdUser.getId());
         List<Group> gs = new ArrayList<>();
         GroupEntity groupEntity;
@@ -57,7 +56,7 @@ public class CustomGroupEntityManager extends GroupEntityManager {
             groupEntity = new GroupEntity();
             groupEntity.setRevision(1);
             groupEntity.setType("assignment");
-            String roleId = userRole.getRoleId();
+            Long roleId = userRole.getRoleId();
             Role role = roleMapper.selectByPrimaryKey(roleId);
             groupEntity.setId(role.getId() + "");
             groupEntity.setName(role.getRoleName());
