@@ -1,5 +1,6 @@
 package com.phynos.framework.activiti.manager;
 
+import com.phynos.framework.dao.mapper.RoleMapper;
 import com.tf.traffic.dao.mapper.RoleMapper;
 import com.tf.traffic.dao.mapper.ext.UserMapperWrapper;
 import com.tf.traffic.dao.mapper.ext.UserRoleMapperWrapper;

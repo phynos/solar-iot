@@ -17,7 +17,7 @@ import java.util.List;
  * @date 2019/9/22.
  */
 @RestController
-@RequestMapping("/api/activiti/traffic/history")
+@RequestMapping("/api/activiti/phynos/history")
 public class ActivitiHistoryController {
 
     @Autowired

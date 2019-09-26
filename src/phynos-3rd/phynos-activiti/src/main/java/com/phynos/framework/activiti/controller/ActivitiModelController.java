@@ -30,7 +30,7 @@ import java.util.UUID;
  * @date 2019/9/21.
  */
 @RestController
-@RequestMapping("/api/activiti/traffic/model")
+@RequestMapping("/api/activiti/phynos/model")
 public class ActivitiModelController {
 
     @Autowired

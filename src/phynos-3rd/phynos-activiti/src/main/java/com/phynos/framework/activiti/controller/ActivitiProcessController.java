@@ -1,6 +1,8 @@
 package com.phynos.framework.activiti.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.phynos.framework.activiti.params.request.BaseActivitiProcessRequest;
+import com.phynos.framework.activiti.util.Base64Utils;
 import com.phynos.framework.core.json.JsonResult;
 import org.activiti.bpmn.model.BpmnModel;
 import org.activiti.engine.HistoryService;
@@ -39,7 +41,7 @@ import java.util.*;
  * @date 2019/9/21.
  */
 @RestController
-@RequestMapping("/api/activiti/traffic/process")
+@RequestMapping("/api/activiti/phynos/process")
 public class ActivitiProcessController {
 
     Logger logger = LoggerFactory.getLogger(getClass());
@@ -101,10 +103,8 @@ public class ActivitiProcessController {
         }
     }
 
-    @PostMapping("/images/base64")
-    public String getProcessImageBase64(
-            @RequestBody IdStringParam param) throws IOException {
-        String processInstanceId = param.getId();
+    @GetMapping("/images/base64")
+    public String getProcessImageBase64(String processInstanceId) throws IOException {
         JSONObject result = new JSONObject();
         JSONArray shineProImages = new JSONArray();
         InputStream imageStream = generateStream(processInstanceId, true);

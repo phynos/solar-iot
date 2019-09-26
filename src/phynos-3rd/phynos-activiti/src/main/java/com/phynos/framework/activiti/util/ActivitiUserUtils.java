@@ -1,5 +1,6 @@
 package com.phynos.framework.activiti.util;
 
+import com.phynos.framework.dao.model.Role;
 import org.activiti.engine.identity.Group;
 import org.activiti.engine.identity.User;
 import org.activiti.engine.impl.persistence.entity.GroupEntity;
@@ -16,7 +17,7 @@ import java.util.List;
  */
 public class ActivitiUserUtils {
 
-    public static User toActivitiUser(com.tf.traffic.dao.model.User bUser) {
+    public static User toActivitiUser(com.phynos.framework.dao.model.User bUser) {
         User userEntity = new UserEntity();
         userEntity.setId(bUser.getUsername());
         userEntity.setFirstName(bUser.getNickname());

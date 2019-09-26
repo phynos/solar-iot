@@ -1,6 +1,11 @@
 package com.phynos.framework.activiti.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.phynos.framework.activiti.entity.ActivitiTaskWrapper;
+import com.phynos.framework.activiti.params.request.BaseTaskVar;
+import com.phynos.framework.core.json.JsonResult;
+import com.phynos.framework.core.json.ResultCodeEnum;
+import com.phynos.framework.dao.mapper.UserMapper;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
@@ -21,7 +26,7 @@ import java.util.*;
  * @date 2019/9/21.
  */
 @RestController
-@RequestMapping("/api/activiti/traffic/task")
+@RequestMapping("/api/activiti/phynos/task")
 public class ActivitiTaskController {
 
     Logger logger = LoggerFactory.getLogger(getClass());
@@ -52,12 +57,12 @@ public class ActivitiTaskController {
 
     /**
      * 查询某人任务列表
-     * @param param 用户ID
+     * @param _userId 用户ID
      * @return
      */
     @PostMapping("/findUserTask")
-    public JsonResult findUserTask(@RequestBody IdStringParam param) {
-        com.tf.traffic.dao.model.User userAdmin = userMapper.selectByPrimaryKey(param.getId());
+    public JsonResult findUserTask(long _userId) {
+        com.phynos.framework.dao.model.User userAdmin = userMapper.selectByPrimaryKey(_userId);
         String userId = userAdmin == null? "" : userAdmin.getUsername();
         List<Task> taskList = taskService
                 .createTaskQuery()

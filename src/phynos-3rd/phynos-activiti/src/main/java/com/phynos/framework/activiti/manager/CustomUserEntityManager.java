@@ -1,13 +1,8 @@
 package com.phynos.framework.activiti.manager;
 
-import com.tf.traffic.activiti.util.ActivitiUserUtils;
-import com.tf.traffic.dao.mapper.RoleMapper;
-import com.tf.traffic.dao.mapper.UserMapper;
-import com.tf.traffic.dao.mapper.UserRoleMapper;
-import com.tf.traffic.dao.mapper.ext.UserMapperWrapper;
-import com.tf.traffic.dao.mapper.ext.UserRoleMapperWrapper;
-import com.tf.traffic.dao.model.Role;
-import com.tf.traffic.dao.model.UserRole;
+import com.phynos.framework.activiti.util.ActivitiUserUtils;
+import com.phynos.framework.dao.mapper.RoleMapper;
+import com.phynos.framework.dao.model.UserRole;
 import org.activiti.engine.identity.Group;
 import org.activiti.engine.identity.User;
 import org.activiti.engine.impl.persistence.entity.UserEntityManager;

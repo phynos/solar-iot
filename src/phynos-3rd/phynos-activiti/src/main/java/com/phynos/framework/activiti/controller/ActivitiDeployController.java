@@ -26,7 +26,7 @@ import java.util.List;
  * @date 2019/9/21.
  */
 @RestController
-@RequestMapping("/api/activiti/traffic/deploy")
+@RequestMapping("/api/activiti/phynos/deploy")
 public class ActivitiDeployController {
 
     @Autowired
