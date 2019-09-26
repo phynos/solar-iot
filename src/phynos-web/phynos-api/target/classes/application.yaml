@@ -1,0 +1,43 @@
+server:
+  port: 7001
+  tomcat:
+    uri-encoding: 'UTF-8'
+
+spring:
+  application:
+    name: PhynosAPI
+  devtools:
+    restart:
+      enabled: false
+  profiles:
+    active: 'dev'
+  servlet:
+    multipart:
+      max-request-size: '10MB' # 上传文件总的最大值
+      max-file-size: '10MB' # 单个文件的最大值
+  activiti:
+    database-schema-update: true
+    check-process-definitions: false
+    process-definition-location-prefix: classpath:/processes/
+    # check-process-definitions: false  #这个比较重要，不配置的话会扫描类路径下的processes下的.xml文件
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml,classpath:mapper/ext/*.xml
+
+dataType: mysql
+
+# 运行监控相关的配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+logging:
+  file: logs/phynos-api.log
+  level:
+    com:
+      spring: trace
