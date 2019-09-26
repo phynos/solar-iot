@@ -27,7 +27,7 @@
         <phynos.version>1.0-SNAPSHOT</phynos.version>
     </properties>
 
-<!-- 不是所有模块公用，可以在这里声明版本号，这样子模块共同使用一个版 -->
+    <!-- 不是所有模块公用，可以在这里声明版本号，这样子模块共同使用一个版 -->
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -38,11 +38,22 @@
                 <scope>import</scope>
             </dependency>
 
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-client</artifactId>
+                <version>2.1.6</version>
+            </dependency>
+
             <!-- mysql驱动 -->
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>5.1.48</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>1.1.20</version>
             </dependency>
 
 

@@ -52,7 +52,7 @@ public class ActivitiConfig {
         //指定数据库
         processEngineConfiguration.setDatabaseType(dataType);
         processEngineConfiguration.setTransactionManager(transactionManager);
-        processEngineConfiguration.setDatabaseSchema(databaseSchema);
+        //processEngineConfiguration.setDatabaseSchema(databaseSchema);
         //历史变量
         processEngineConfiguration.setHistory("full");
         //指定字体
