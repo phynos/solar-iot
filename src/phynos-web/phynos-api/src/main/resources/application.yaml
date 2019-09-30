@@ -15,6 +15,9 @@ spring:
     multipart:
       max-request-size: '10MB' # 上传文件总的最大值
       max-file-size: '10MB' # 单个文件的最大值
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
   activiti:
     database-schema-update: true
     check-process-definitions: false
