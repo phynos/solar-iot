@@ -23,12 +23,6 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
-        <!-- dbcp连接池 -->
-        <dependency>
-            <groupId>commons-dbcp</groupId>
-            <artifactId>commons-dbcp</artifactId>
-            <version>1.4</version>
-        </dependency>
         <dependency>
             <groupId>org.mybatis.generator</groupId>
             <artifactId>mybatis-generator-core</artifactId>

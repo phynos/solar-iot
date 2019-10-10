@@ -1,5 +1,7 @@
 package com.phynos.framework.core.params;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.regex.Matcher;
@@ -38,10 +40,12 @@ public class BaseParam {
 	/**
 	 * 起始日期，忽略时分秒
 	 */
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date begin;
 	/**
 	 * 结束日期，实际值为后一天的零点
 	 */
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date end;
 	
 	protected static boolean checkReg(String val,String regEx){
