@@ -34,51 +34,26 @@ Activiti使用到的表都是ACT_开头的。
 - ACT_GE_*: 全局通用数据及设置(general)，各种情况都使用的数据。
 
 ## 所有表
-- act_ge_bytearray二进制数据表
-- act_ge_property属性数据表存储整个流程引擎级别的数据,初始化表结构时，会默认插入三条记录，
-- act_hi_actinst历史节点表
-- act_hi_attachment历史附件表
-- act_hi_comment历史意见表
-- act_hi_identitylink历史流程人员表
-- act_hi_detail历史详情表，提供历史变量的查询
-- act_hi_procinst历史流程实例表
-- act_hi_taskinst历史任务实例表
-- act_hi_varinst历史变量表
-- act_id_group用户组信息表
-- act_id_info用户扩展信息表
-- act_id_membership用户与用户组对应信息表
-- act_id_user用户信息表
-- act_re_deployment部署信息表
-- act_re_model流程设计模型部署表
-- act_re_procdef流程定义数据表
-- act_ru_event_subscr  throwEvent、catchEvent时间监听信息表
-- act_ru_execution运行时流程执行实例表
-- act_ru_identitylink运行时流程人员表，主要存储任务节点与参与者的相关信息
-- act_ru_job运行时定时任务数据表
-- act_ru_task运行时任务节点表
-- act_ru_variable运行时流程变量数据表
-
-## 本工程相关API接口
-（流程）模型相关
-/api/activiti/traffic/model/list：模型列表，返回所有模型
-/api/activiti/traffic/model/create：新建模型，返回模型id，用此id进入模型设计器
-/api/activiti/traffic/model/deploy：发布（部署）模型，post,json, 参数例子：{"id": "1213"}，参数意义：模型id
-/api/activiti/traffic/model/del：删除模型，int数组，json，post
-部署相关
-/api/activiti/traffic/deploy/list：部署列表 
-/api/activiti/traffic/deploy/del：删除部署 
-流程相关
-/api/activiti/traffic/process/start：发起流程，POST,JSON,参数例子：{"processDefinitionId": "1213"},参数意义：processDefinitionId 流程模型id
-/api/activiti/traffic/process/image：流程图片，GET，参数：processInstanceId，注意：接口直接返回图片字节流，注意缓存
-/api/activiti/traffic/process/image/base64：流程图片，POST，参数例子：{"id": "1213"},参数意义：processInstanceId流程实例id，结果包含多张图片
-任务相关
-/api/activiti/traffic/task/findUserTask：任务列表，POST,JSON,{"id": "1213"}
-/api/activiti/traffic/task/complete：完成任务
-历史信息
-/api/activiti/traffic/history/activity：历史流程，POST，暂无参数
-/api/activiti/traffic/history/task：历史任务，POST，暂无参数
-任务变量
-
-节点相关
-
-
+- act_ge_bytearray：二进制数据表
+- act_ge_property：属性数据表存储整个流程引擎级别的数据,初始化表结构时，会默认插入三条记录，
+- act_hi_actinst：历史节点表
+- act_hi_attachment：历史附件表
+- act_hi_comment：历史意见表
+- act_hi_identitylink：历史流程人员表
+- act_hi_detail：历史详情表，提供历史变量的查询
+- act_hi_procinst：历史流程实例表
+- act_hi_taskinst：历史任务实例表
+- act_hi_varinst：历史变量表
+- act_id_group：用户组信息表
+- act_id_info：用户扩展信息表
+- act_id_membership：用户与用户组对应信息表
+- act_id_user：用户信息表
+- act_re_deployment：部署信息表
+- act_re_model：流程设计模型部署表
+- act_re_procdef：流程定义数据表
+- act_ru_event_subscr ： throwEvent、catchEvent时间监听信息表
+- act_ru_execution：运行时流程执行实例表
+- act_ru_identitylink：运行时流程人员表，主要存储任务节点与参与者的相关信息
+- act_ru_job：运行时定时任务数据表
+- act_ru_task：运行时任务节点表
+- act_ru_variable：运行时流程变量数据表

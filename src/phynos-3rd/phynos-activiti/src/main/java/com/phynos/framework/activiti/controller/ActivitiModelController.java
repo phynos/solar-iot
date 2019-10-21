@@ -117,6 +117,7 @@ public class ActivitiModelController {
         String processName = modelData.getName() + ".bpmn20.xml";
         Deployment deployment = repositoryService.createDeployment()
                 .name(modelData.getName())
+                .category(modelData.getCategory())
                 .addString(processName, new String(bpmnBytes, "UTF-8"))
                 .deploy();
         modelData.setDeploymentId(deployment.getId());
