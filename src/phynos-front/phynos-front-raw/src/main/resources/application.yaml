@@ -1,0 +1,10 @@
+
+
+netty:
+  port: 9600
+
+logging:
+  file: logs/front-netty.log
+  level:
+    com:
+      spring: trace

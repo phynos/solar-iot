@@ -1,6 +1,6 @@
 package com.phynos.framework.front.raw.netty;
 
-import com.phynos.server.sampler.message.MyMessage;
+import com.phynos.framework.front.raw.message.MyMessage;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
