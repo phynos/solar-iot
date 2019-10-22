@@ -1,12 +1,17 @@
 package com.phynos.framework.front.raw;
 
+import com.phynos.framework.front.raw.netty.MyNettyServer;
 import org.apache.commons.jexl3.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class FrontNettyApplication implements CommandLineRunner {
+
+	@Autowired
+	MyNettyServer myNettyServer;
 
 	public static void main(String[] args) {
 		SpringApplication.run(FrontNettyApplication.class, args);
@@ -29,6 +34,8 @@ public class FrontNettyApplication implements CommandLineRunner {
 		Object o = e.evaluate(jc);
 
 		System.out.println(o);
+
+		myNettyServer.start();
 	}
 
 	public static class Foo {
