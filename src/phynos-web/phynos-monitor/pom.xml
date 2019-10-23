@@ -40,7 +40,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.phynos.framework.web.monitor.Application</mainClass>
+                    <mainClass>com.phynos.framework.web.monitor.MonitorApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>

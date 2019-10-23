@@ -68,7 +68,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.phynos.framework.web.api.Application</mainClass>
+                    <mainClass>com.phynos.framework.web.api.WebApiApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>
