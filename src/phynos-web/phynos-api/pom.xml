@@ -53,6 +53,12 @@
             <artifactId>phynos-core</artifactId>
         </dependency>
 
+        <!-- 连接池 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>

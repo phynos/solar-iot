@@ -57,12 +57,6 @@
             <version>2.6</version>
         </dependency>
 
-
-        <!-- 连接池 -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
-        </dependency>
         <dependency>
             <groupId>com.phynos.framework</groupId>
             <artifactId>phynos-dao</artifactId>

@@ -140,10 +140,6 @@
             <groupId>com.phynos.framework</groupId>
             <artifactId>phynos-core</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.phynos.framework</groupId>
-            <artifactId>phynos-dao</artifactId>
-        </dependency>
 
     </dependencies>
 
