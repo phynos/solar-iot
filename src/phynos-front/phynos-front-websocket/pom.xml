@@ -11,7 +11,7 @@
 
   <artifactId>phynos-front-websocket</artifactId>
   <version>0.0.1</version>
-  <packaging>war</packaging>
+  <packaging>jar</packaging>
 
   <name>phynos-front-websocket</name>
 
@@ -28,23 +28,5 @@
     </dependency>
   </dependencies>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-war-plugin</artifactId>
-        <configuration>
-          <!-- 跨域class目录的文件必须使用插件实现 -->
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
+
 </project>
