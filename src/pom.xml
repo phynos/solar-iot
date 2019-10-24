@@ -25,9 +25,10 @@
         <!-- 编译时的编码 -->
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
         <spring-boot.version>2.1.8.RELEASE</spring-boot.version>
-        <druid>1.1.20</druid>
         <mybatis.version>3.5.2</mybatis.version>
         <phynos.version>1.0-SNAPSHOT</phynos.version>
+        <druid>1.1.20</druid>
+        <shiro>1.4.1</shiro>
     </properties>
 
     <!-- 不是所有模块公用，可以在这里声明版本号，这样子模块共同使用一个版 -->
