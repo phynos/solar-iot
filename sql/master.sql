@@ -43,6 +43,7 @@ create table `sys_user_login_log` (
 	`id` bigint not null auto_increment,
 	`user_id` bigint not null comment '用户id',
 	`login_datetime` DateTime not null comment '登录时间',
+	`login_ip` varchar(30) default '' comment '登录IP',
 	`platform` int not null comment '登录平台',
 	Constraint `fk_sys_user_login_log_uid` Foreign Key(`user_id`) References `sys_user`(`Id`),
 	primary key (`id`)
