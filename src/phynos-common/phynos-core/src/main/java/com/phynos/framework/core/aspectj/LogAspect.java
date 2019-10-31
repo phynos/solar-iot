@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.phynos.framework.core.MySessionCache;
-import com.phynos.framework.core.aspectj.annotation.OperationRecord;
+import com.phynos.framework.core.annotation.OperationRecord;
 import com.phynos.framework.core.json.JsonResult;
 import com.phynos.framework.core.json.ResultCodeEnum;
 import com.phynos.framework.core.util.ServletUtil;
@@ -55,7 +55,7 @@ public class LogAspect {
 	OperationLogMapper operationLogMapper;
 
 	// 切点
-	@Pointcut("@annotation(com.phynos.framework.core.aspectj.annotation.OperationRecord)")
+	@Pointcut("@annotation(com.phynos.framework.core.annotation.OperationRecord)")
 	public void logPointCut()
 	{
 
