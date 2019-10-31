@@ -1,6 +1,9 @@
 package com.phynos.framework.core.service.impl;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.phynos.framework.core.MySessionCache;
+import com.phynos.framework.core.json.JsonResult;
 import com.phynos.framework.core.util.ShiroUtil;
 import com.phynos.framework.core.util.UuidUtil;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -20,6 +23,15 @@ import java.util.regex.Pattern;
  * @Date: 2019/9/30 10:33
  **/
 public class BaseServiceImpl {
+
+    protected static final ObjectMapper JSON_MAPPER = new ObjectMapper();
+    static {
+        //允许 json字符串有未知的属性
+        JSON_MAPPER.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
+                false);
+    }
+
+    public static final JsonResult OK = JsonResult.ok();
 
     public static boolean checkReg(String val,String regEx){
         return checkReg(val,regEx,false);

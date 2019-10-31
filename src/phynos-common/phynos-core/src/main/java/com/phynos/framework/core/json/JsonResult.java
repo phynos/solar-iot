@@ -35,6 +35,10 @@ public class JsonResult {
 		}
 	}
 
+	public static JsonResult ok(){
+		return code(ResultCodeEnum.OK);
+	}
+
 	public static JsonResult code(ResultCodeEnum error){		
         int code = error.getCode();
         String message = error.getMsg();
