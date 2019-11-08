@@ -17,7 +17,7 @@ phynos
      ├── phynos-front-mqtt -- mqtt前置机  
      ├── phynos-front-raw -- netty前置机  
      └── phynos-front-websocket -- websocket前置机  
-└── phynos-simulator -- 通讯模拟器 
+└── phynos-simulator -- 设备模拟器 
      ├── phynos-simulator-mqtt -- mqtt设备端模拟器  
      └── phynos-simulator-raw -- 原始TCP/IP协议通讯模拟器  
 └── phynos-web -- web层模块 
