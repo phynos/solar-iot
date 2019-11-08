@@ -5,7 +5,7 @@ Java物联网开发框架
 ```lua
 phynos-ui  -- https://github.com/phynos/Phynos-SpringCloud-Web
 
-pig
+phynos
 └── phynos-3rd -- 第三方模块  
      ├── phynos-activiti -- 工作流引擎  
      └── phynos-lucene -- 分词器  
