@@ -1,15 +1,40 @@
 # Phynos-SpringBoot
-预定大于配置，就得知道有哪些约定，以及如何翻看代码
+Java物联网开发框架
+
+## 模块说明（/src目录）
+```lua
+phynos-ui  -- https://github.com/phynos/Phynos-SpringCloud-Web
+
+pig
+└── phynos-3rd -- 第三方模块  
+     ├── phynos-activiti -- 工作流引擎  
+     └── phynos-lucene -- 分词器  
+└── phynos-common -- 系统公共模块  
+     ├── phynos-core -- 业务核心包  
+     ├── phynos-dao -- 数据连接层  
+     └── phynos-kalin -- 预留代码包  
+└── phynos-front -- 通讯前置机  
+     ├── phynos-front-mqtt -- mqtt前置机  
+     ├── phynos-front-raw -- netty前置机  
+     └── phynos-front-websocket -- websocket前置机  
+└── phynos-simulator -- 通讯模拟器 
+     ├── phynos-simulator-mqtt -- mqtt设备端模拟器  
+     └── phynos-simulator-raw -- 原始TCP/IP协议通讯模拟器  
+└── phynos-web -- web层模块 
+     ├── phynos-api -- WEB-API接口层  
+     └── phynos-monitor -- actuator监视器  
+
+```
 
 ## 功能
 - 支持集群
 - 支持数据库分库
 
-## 目录约定
-/static
-/public
-/resources
-/META-INF/resources
+## SpringBoot基础
+/static  
+/public  
+/resources  
+/META-INF/resources  
 
 ## 配置文件约定
 application或application-xxx命名的yml文件或者properties文件，且唯一
@@ -50,9 +75,3 @@ clean package -DskipTests -Pprod
 - 字典
 - 参数管理
 - 工作流
-
-## springboot各个启动类
-- mybatis-spring-boot-starter：
-- 
-
-
