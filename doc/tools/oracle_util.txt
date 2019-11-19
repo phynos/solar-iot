@@ -1,0 +1,46 @@
+-- 查看ORACLE版本
+select * from v$version;
+
+-- 查询所有用户
+select * from dba_users;
+
+-- 查看所有用户所在表空间
+select username,default_tablespace from dba_users; 
+
+--查询所有表空间路径
+select * from dba_data_files;
+
+-- 查询表空间的名称及大小（原样复制，不要改）
+SELECT t.tablespace_name, round(SUM(bytes / (1024 * 1024)), 0) ts_size
+FROM dba_tablespaces t, dba_data_files d
+WHERE t.tablespace_name = d.tablespace_name
+GROUP BY t.tablespace_name;
+
+-- 查看表空间物理文件的名称及大小（原样复制，不要改）
+SELECT tablespace_name,file_id,file_name,
+round(bytes / (1024 * 1024), 0) total_space
+FROM dba_data_files ORDER BY tablespace_name;
+
+-- 创建用户
+create user DW_TRAFFIC_01 identified by DW_TRAFFIC_01;
+
+-- 创建一个表空间
+create tablespace TRAFFIC_ONE datafile '/home/lukz/oracle11g/oradata/orcl/TRAFFIC_ONE_TBS01.dbf' 
+size 500m
+autoextend on
+next 32m maxsize 2048m
+extent management local; 
+
+-- 创建临时表空间
+create temporary tablespace TRAFFIC_ONE_TEMP tempfile '/home/lukz/oracle11g/oradata/orcl/TRAFFIC_ONE_TEMP.dbf' size 50M autoextend ON next 10M maxsize 100M; 
+
+-- 分配表空间和临时表空间
+alter user DW_TRAFFIC_01 default tablespace TRAFFIC_ONE temporary tablespace TRAFFIC_ONE_TEMP;
+
+-- 给用户分配权限
+grant create session,create table,create view,create sequence,unlimited tablespace to DW_TRAFFIC_01;
+
+-- 表空间重命名
+alter tablespace GPSPACE rename to GPMGT_DATA; 
+Tablespace altered
+
