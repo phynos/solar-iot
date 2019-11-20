@@ -29,6 +29,8 @@
         <phynos.version>1.0-SNAPSHOT</phynos.version>
         <druid>1.1.20</druid>
         <shiro>1.4.1</shiro>
+        <timestamp>${maven.build.timestamp}</timestamp>
+        <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
     </properties>
 
     <!-- 不是所有模块公用，可以在这里声明版本号，这样子模块共同使用一个版 -->
