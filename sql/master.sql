@@ -50,7 +50,24 @@ create table `sys_user_login_log` (
 ) comment = '管理用户登录日志表';
 create index idx_sys_user_login_log_1 on `sys_user_login_log` (`user_id`);
 
--- 权限系统  
+-- 表：区域
+drop table if exists `sys_area`;
+create table `sys_area` (
+	`id` bigint not null auto_increment,
+	`area_name` varchar(20) not null comment '区域名称',
+	`parentId` bigint default 0 comment '父区域id',
+	`sort` int not null comment '排序编号',
+	`area_code` varchar(50) null comment '区域编码',
+	`created_user_id` bigint not null comment '创建用户id',
+	`created_datetime` DateTime not null comment '数据创建时间',
+	`update_user_id` bigint not null comment '更新用户id',
+	`update_datetime` DateTime not null comment '更新时间',
+	`remark` varchar(200) null comment '描述信息',
+	`removed` bit not null comment '是否被移除',
+	primary key (`id`),
+	Constraint `fk_sys_area_cuid` Foreign Key(`created_user_id`) References `sys_user`(`Id`),
+	Constraint `fk_sys_area_uuid` Foreign Key(`update_user_id`) References `sys_user`(`Id`)
+) comment = '区域表格';
 
 -- 表：角色
 drop table if exists `sys_role`;
@@ -59,8 +76,10 @@ create table `sys_role` (
 	`role_name` varchar(20) not null comment '角色名称',
 	`role_key` varchar(100) not null comment '角色字符',
 	`role_type` int not null comment '角色类型', 
+	`area_id` bigint not null comment '区域id',
 	`remark` varchar(200) null comment '描述信息',
 	primary key (`id`),
+	Constraint `fk_sys_role_aid` Foreign Key(`area_id`) References `sys_area`(`Id`),
 	unique (role_key)
 ) comment = '角色';
 -- 表：用户角色绑定（多对多）
@@ -114,25 +133,6 @@ create table `sys_role_dept` (
 	Constraint `fk_sys_role_dept_rid` Foreign Key(`role_id`) References `sys_role`(`Id`),
 	Constraint `fk_sys_role_dept_did` Foreign Key(`dept_id`) References `sys_dept`(`Id`)
 ) comment = '角色机构表';
-
--- 表：区域
-drop table if exists `sys_area`;
-create table `sys_area` (
-	`id` bigint not null auto_increment,
-	`area_name` varchar(20) not null comment '区域名称',
-	`parentId` bigint default 0 comment '父区域id',
-	`sort` int not null comment '排序编号',
-	`area_code` varchar(50) null comment '区域编码',
-	`created_user_id` bigint not null comment '创建用户id',
-	`created_datetime` DateTime not null comment '数据创建时间',
-	`update_user_id` bigint not null comment '更新用户id',
-	`update_datetime` DateTime not null comment '更新时间',
-	`remark` varchar(200) null comment '描述信息',
-	`removed` bit not null comment '是否被移除',
-	primary key (`id`),
-	Constraint `fk_sys_area_cuid` Foreign Key(`created_user_id`) References `sys_user`(`Id`),
-	Constraint `fk_sys_area_uuid` Foreign Key(`update_user_id`) References `sys_user`(`Id`)
-) comment = '区域表格';
 
 -- 表：菜单
 drop table if exists `sys_menu`;
