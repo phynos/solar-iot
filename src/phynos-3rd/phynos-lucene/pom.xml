@@ -11,22 +11,26 @@
 
     <artifactId>phynos-lucene</artifactId>
 
+    <properties>
+        <lucene.version>7.1.0</lucene.version>
+    </properties>
+
     <dependencies>
         <!-- 全文检索lucene -->
         <dependency>
             <groupId>org.apache.lucene</groupId>
             <artifactId>lucene-core</artifactId>
-            <version>4.10.2</version>
+            <version>${lucene.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.lucene</groupId>
             <artifactId>lucene-analyzers-common</artifactId>
-            <version>4.10.2</version>
+            <version>${lucene.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.lucene</groupId>
             <artifactId>lucene-queryparser</artifactId>
-            <version>4.10.2</version>
+            <version>${lucene.version}</version>
         </dependency>
 
 

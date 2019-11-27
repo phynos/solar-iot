@@ -25,12 +25,16 @@
         <!-- 编译时的编码 -->
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
         <spring-boot.version>2.1.8.RELEASE</spring-boot.version>
+        <!-- 编译时间 -->
+        <timestamp>${maven.build.timestamp}</timestamp>
+        <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
+        <!-- 各种版本 -->
         <mybatis.version>3.5.2</mybatis.version>
         <phynos.version>1.0-SNAPSHOT</phynos.version>
         <druid>1.1.20</druid>
         <shiro>1.4.1</shiro>
-        <timestamp>${maven.build.timestamp}</timestamp>
-        <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
+        <netty.version>4.1.43.Final</netty.version>
+        <mqttv3.version>1.2.1</mqttv3.version>
     </properties>
 
     <dependencies>
@@ -121,7 +125,7 @@
             <dependency>
                 <groupId>org.eclipse.paho</groupId>
                 <artifactId>org.eclipse.paho.client.mqttv3</artifactId>
-                <version>1.2.0</version>
+                <version>${mqttv3.version}</version>
             </dependency>
 
             <!-- shiro -->
