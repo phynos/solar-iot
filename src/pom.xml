@@ -34,7 +34,7 @@
         <druid>1.1.20</druid>
         <shiro>1.4.1</shiro>
         <netty.version>4.1.43.Final</netty.version>
-        <mqttv3.version>1.2.1</mqttv3.version>
+        <mqttv3.version>1.2.2</mqttv3.version>
     </properties>
 
     <dependencies>
