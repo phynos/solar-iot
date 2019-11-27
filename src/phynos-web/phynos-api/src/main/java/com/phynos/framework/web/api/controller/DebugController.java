@@ -39,7 +39,7 @@ public class DebugController {
         return JsonResult.code(ResultCodeEnum.OK);
     }
 
-    @GetMapping("/spring/buildTime")
+    @GetMapping("/buildTime")
     public String buildTime() throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = sdf.parse(buildTime);

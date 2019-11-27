@@ -32,9 +32,27 @@ spring:
     check-process-definitions: false
     process-definition-location-prefix: classpath:/processes/
     # check-process-definitions: false  #这个比较重要，不配置的话会扫描类路径下的processes下的.xml文件
-
+  redis:
+    host: 172.16.22.161
+    port: 6379
+    password: traffic2019
+    timeout: 5000
+    database: 0
+    jedis:
+      pool:
+        max-idle: 10
+        max-wait: 1
+        max-active: 8
+        min-idle: 5
 mybatis:
   mapper-locations: classpath:mapper/*.xml,classpath:mapper/ext/*.xml
+# 分页配置
+pagehelper:
+  helperDialect: oracle
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
 
 dataType: mysql
 
@@ -48,6 +66,7 @@ management:
     health:
       show-details: ALWAYS
 
+# 日志配置
 logging:
   file: logs/phynos-api.log
   level:
