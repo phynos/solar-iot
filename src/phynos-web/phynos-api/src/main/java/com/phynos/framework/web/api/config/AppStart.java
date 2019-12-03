@@ -10,8 +10,8 @@ import javax.annotation.PostConstruct;
 /**
  * 加载一些启动后执行的任务
  */
-@Component
 @Order(2)
+@Component
 public class AppStart {
 
     Logger logger = LoggerFactory.getLogger(getClass());
