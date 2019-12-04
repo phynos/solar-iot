@@ -1,0 +1,18 @@
+1、下载源码--使用git或svn
+
+2、构建
+cd $WORKSPACE
+echo $WORKSPACE
+cd src-server
+mvn clean package -pl system/traffic-case -am -Dmaven.test.skip=true -Pprod
+
+rm -rf $WORKSPACE/target/*
+mv system/traffic-case/target/traffic-case.jar $WORKSPACE/target/
+cd $WORKSPACE/target
+tar czvf zhzf-server.tar.gz ./*
+
+3、构建后上传--使用ssh
+配置基本的服务器信息
+执行ssh命令
+cd /home/phynos
+/home/phynos/startup_zhzf.sh
