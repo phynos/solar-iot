@@ -8,10 +8,11 @@ phynos-ui  -- https://github.com/phynos/Phynos-SpringCloud-Web
 phynos
 └── phynos-3rd -- 第三方模块  
      ├── phynos-activiti -- 工作流引擎  
-     └── phynos-lucene -- 分词器  
+     └── phynos-lucene -- 分词器引擎  
 └── phynos-common -- 系统公共模块  
      ├── phynos-core -- 业务核心包  
      ├── phynos-dao -- 数据连接层  
+     ├── phynos-generator -- 代码生成器  
      └── phynos-kalin -- 预留代码包  
 └── phynos-front -- 通讯前置机  
      ├── phynos-front-mqtt -- mqtt前置机  
