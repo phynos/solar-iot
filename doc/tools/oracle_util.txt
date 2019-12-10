@@ -44,3 +44,16 @@ grant create session,create table,create view,create sequence,unlimited tablespa
 alter tablespace GPSPACE rename to GPMGT_DATA; 
 Tablespace altered
 
+-- 查询表格字段和注释
+SELECT
+	A.COLUMN_NAME,
+	A.DATA_TYPE,
+	B.comments 
+FROM
+	user_tab_columns A INNER JOIN user_col_comments B ON A.TABLE_NAME = B.table_name 
+	AND A.COLUMN_NAME = B.column_name 
+WHERE
+	A.TABLE_NAME = 'SYS_USER' 
+ORDER BY
+	A.column_id
+
