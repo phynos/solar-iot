@@ -27,6 +27,10 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
+  cache:
+    type: ehcache
+    ehcache:
+      config: classpath:ehcache.xml    #encache.xml文件位置
   activiti:
     database-schema-update: true
     check-process-definitions: false

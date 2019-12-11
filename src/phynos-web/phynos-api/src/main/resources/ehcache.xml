@@ -1,0 +1,29 @@
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd" maxBytesLocalHeap="500M">
+    <!--磁盘缓存-->
+    <diskStore path="java.io.tmpdir"/>
+
+    <!--强制默认缓存配置。这些设置将应用于缓存使用CacheManager以编程方式创建。添加(字符串cacheName) -->
+    <defaultCache
+            maxElementsInMemory="10000"
+            eternal="false"
+            timeToIdleSeconds="120"
+            timeToLiveSeconds="120"
+            maxElementsOnDisk="10000000"
+            diskExpiryThreadIntervalSeconds="120"
+            memoryStoreEvictionPolicy="LRU">
+        <persistence strategy="localTempSwap"/>
+    </defaultCache>
+
+    <!-- 自定义缓存策略 注意：定义多个自定义缓存策略，他们的name值不一样  在application.properties中配置该文件位置-->
+    <cache name="webAudit">   <!-- name：自定义缓存策略名   方上使用@Cacheable(value = "webAudit") -->
+        maxElementsInMemory="10000"
+        eternal="false"
+        timeToIdleSeconds="120"
+        timeToLiveSeconds="120"
+        maxElementsOnDisk="10000000"
+        diskExpiryThreadIntervalSeconds="120"
+        memoryStoreEvictionPolicy="LRU">
+        <persistence strategy="localTempSwap"/>
+    </cache>
+</ehcache>
