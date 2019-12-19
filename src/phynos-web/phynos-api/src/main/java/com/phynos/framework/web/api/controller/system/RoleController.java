@@ -24,10 +24,10 @@ import java.util.List;
 
 /**
 * @Author: Lupc
-* @Date: 2019-12-19 23:47:21
+* @Date: 2019-12-19 23:49:17
 **/
 @RestController
-@RequestMapping("/api/sys/role")
+@RequestMapping("/api/system/role")
 public class RoleController extends BaseController {
 
     @Autowired

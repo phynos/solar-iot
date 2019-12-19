@@ -27,7 +27,7 @@ import java.util.List;
 * @Date: ${date}
 **/
 @RestController
-@RequestMapping("/api/sys/${model?uncap_first}")
+@RequestMapping("/api/${module_group}/${model?uncap_first}")
 public class ${model}Controller extends BaseController {
 
     @Autowired
