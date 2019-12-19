@@ -19,7 +19,7 @@ public class GeneratorApplication {
     private static final String BASE_PACKAGE = "com.tf.traffic";
     private static final String CONTROLLER_PACKAGE = BASE_PACKAGE + ".casehanding.controller.sys";
     private static final String SERVICE_PACKAGE = BASE_PACKAGE + ".core.service";
-    private static final String MODEL = "Notice";
+    private static final String MODEL = "Role";
     private static final String diskPath = "D://";
 
 

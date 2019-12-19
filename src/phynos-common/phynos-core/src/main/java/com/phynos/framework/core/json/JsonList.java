@@ -8,32 +8,32 @@ public class JsonList {
 	/**
 	 * 总数量量
 	 */
-	private int total;
+	private long total;
 
 	/**
 	 * 当前页码，从1开始
 	 */
-	private int pageIndex;
+	private long pageIndex;
 
 	/**
-	 * 每页数据 
+	 * 每页数据
 	 */
-	private int pageSize;
+	private long pageSize;
 
 	/**
 	 * 总页数
 	 */
-	private int totalPages;
+	private long totalPages;
 
 	/**
 	 * 当前页第一条数据数据索引
 	 */
-	private int currentDataStartIndex;
+	private long currentDataStartIndex;
 
 	/**
 	 * 当前页最后一条数据索引
 	 */
-	private int currentDataEndIndex;
+	private long currentDataEndIndex;
 
 	@JsonProperty("rows")
 	private Object data;
@@ -43,62 +43,62 @@ public class JsonList {
 	}
 
 	public static JsonList create(
-			int total,
-			int pageIndex,
-			int pageSize,
+			long total,
+			long pageIndex,
+			long pageSize,
 			Object data
-			){
+	){
 		JsonList jl = new JsonList();
 		jl.setTotal(total);
 		jl.setPageIndex(pageIndex);
 		jl.setPageSize(pageSize);
 		jl.setData(data);
 		//计算总页数
-		int t1 = total % pageSize;
-		int t2 = total / pageSize;
-		int totalPages = t1 == 0? t2:(t2+1);
+		long t1 = total % pageSize;
+		long t2 = total / pageSize;
+		long totalPages = t1 == 0? t2:(t2+1);
 		jl.setTotalPages(totalPages);
 		//计算当前页第一条数据数据索引
-		int currentDataStartIndex = (pageIndex - 1) * pageSize + 1;
+		long currentDataStartIndex = (pageIndex - 1) * pageSize + 1;
 		jl.setCurrentDataStartIndex(currentDataStartIndex);
 		//判断是不是最后一页
 		if(pageIndex == totalPages) {
-			int t3 = total - (totalPages - 1) * pageSize;
-			int currentDataEndIndex = currentDataStartIndex + t3 - 1;
-			jl.setCurrentDataEndIndex(currentDataEndIndex);	
+			long t3 = total - (totalPages - 1) * pageSize;
+			long currentDataEndIndex = currentDataStartIndex + t3 - 1;
+			jl.setCurrentDataEndIndex(currentDataEndIndex);
 		} else {
-			int currentDataEndIndex = currentDataStartIndex + pageSize - 1;
-			jl.setCurrentDataEndIndex(currentDataEndIndex);	
-		}				
+			long currentDataEndIndex = currentDataStartIndex + pageSize - 1;
+			jl.setCurrentDataEndIndex(currentDataEndIndex);
+		}
 		return jl;
 	}
 
 	public static JsonList createEmpty(
-			int total,
+			long total,
 			int pageIndex,
 			int pageSize
-			){
+	){
 		JsonList jl = new JsonList();
 		jl.setTotal(total);
 		jl.setPageIndex(pageIndex);
 		jl.setPageSize(pageSize);
 		jl.setData(null);
 		//计算总页数
-		int t1 = total % pageSize;
-		int t2 = total / pageSize;
-		int totalPages = t1 == 0? t2:(t2+1);
+		long t1 = total % pageSize;
+		long t2 = total / pageSize;
+		long totalPages = t1 == 0? t2:(t2+1);
 		jl.setTotalPages(totalPages);
 		//计算当前页第一条数据数据索引
 		int currentDataStartIndex = (pageIndex - 1) * pageSize + 1;
 		jl.setCurrentDataStartIndex(currentDataStartIndex);
 		//判断是不是最后一页
 		if(pageIndex == totalPages) {
-			int t3 = total - (totalPages - 1) * pageSize;
-			int currentDataEndIndex = currentDataStartIndex + t3 - 1;
-			jl.setCurrentDataEndIndex(currentDataEndIndex);	
+			long t3 = total - (totalPages - 1) * pageSize;
+			long currentDataEndIndex = currentDataStartIndex + t3 - 1;
+			jl.setCurrentDataEndIndex(currentDataEndIndex);
 		} else {
-			int currentDataEndIndex = currentDataStartIndex + pageSize - 1;
-			jl.setCurrentDataEndIndex(currentDataEndIndex);	
+			long currentDataEndIndex = currentDataStartIndex + pageSize - 1;
+			jl.setCurrentDataEndIndex(currentDataEndIndex);
 		}
 		//如果请求页数超过最大页数，则将请求页数置为最大页
 		if(jl.getPageIndex() != 1 && jl.getPageIndex() > jl.getTotalPages()){
@@ -107,27 +107,27 @@ public class JsonList {
 		return jl;
 	}
 
-	public int getTotal() {
+	public long getTotal() {
 		return total;
 	}
 
-	public void setTotal(int total) {
+	public void setTotal(long total) {
 		this.total = total;
 	}
 
-	public int getPageIndex() {
+	public long getPageIndex() {
 		return pageIndex;
 	}
 
-	public void setPageIndex(int pageIndex) {
+	public void setPageIndex(long pageIndex) {
 		this.pageIndex = pageIndex;
 	}
 
-	public int getPageSize() {
+	public long getPageSize() {
 		return pageSize;
 	}
 
-	public void setPageSize(int pageSize) {
+	public void setPageSize(long pageSize) {
 		this.pageSize = pageSize;
 	}
 
@@ -139,29 +139,29 @@ public class JsonList {
 		this.data = data;
 	}
 
-	public int getTotalPages() {
+	public long getTotalPages() {
 		return totalPages;
 	}
 
-	public void setTotalPages(int totalPages) {
+	public void setTotalPages(long totalPages) {
 		this.totalPages = totalPages;
 	}
 
-	public int getCurrentDataStartIndex() {
+	public long getCurrentDataStartIndex() {
 		return currentDataStartIndex;
 	}
 
-	public void setCurrentDataStartIndex(int currentDataStartIndex) {
+	public void setCurrentDataStartIndex(long currentDataStartIndex) {
 		this.currentDataStartIndex = currentDataStartIndex;
 	}
 
-	public int getCurrentDataEndIndex() {
+	public long getCurrentDataEndIndex() {
 		return currentDataEndIndex;
 	}
 
-	public void setCurrentDataEndIndex(int currentDataEndIndex) {
+	public void setCurrentDataEndIndex(long currentDataEndIndex) {
 		this.currentDataEndIndex = currentDataEndIndex;
-	}	
+	}
 
 
 }

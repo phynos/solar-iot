@@ -1,12 +1,20 @@
 package ${base_package}.core.service.impl;
 
-import ${base_package}.core.service.DebugService;
-import org.apache.commons.lang3.StringUtils;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import ${base_package}.core.json.JsonList;
+import ${base_package}.core.json.JsonResult;
+import ${base_package}.core.params.BaseParam;
+import ${base_package}.core.service.${model}Service;
+import ${base_package}.dao.mapper.${model}Mapper;
+import ${base_package}.dao.model.${model};
+import ${base_package}.dao.model.${model}Example;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 /**
 * @Author: ${author}
@@ -17,15 +25,43 @@ public class ${model}ServiceImpl implements  ${model}Service {
 
     Logger logger = LoggerFactory.getLogger(getClass());
 
-    @Autowired
-    Environment env;
+    @Resource
+    ${model}Mapper ${model?uncap_first}Mapper;
 
     @Override
-    public String getActiveProfiles() {
-        String[] profiles = env.getActiveProfiles();
-        String profile = StringUtils.join(profiles, ",");
-        logger.debug(profile);
-        return profile;
+    public JsonResult list(BaseParam param) {
+        Page page = PageHelper.startPage(param.getPageIndex(), param.getPageSize());
+        ${model}Example ${model?uncap_first}Example = new ${model}Example();
+        ${model}Example.Criteria criteria = ${model?uncap_first}Example.createCriteria();
+        List<${model}> data = ${model?uncap_first}Mapper.selectByExample(${model?uncap_first}Example);
+        long total = page.getTotal();
+        PageHelper.clearPage();//一定要清理
+        JsonList jl = JsonList.create(total, param.getPageIndex(), param.getPageSize(), data);
+        return JsonResult.data(jl);
+    }
+
+    @Override
+    public JsonResult add(${model} param) {
+        ${model?uncap_first}Mapper.insertSelective(param);
+        return OK;
+    }
+
+    @Override
+    public JsonResult del(List<Long> ids) {
+        ids.forEach(id -> ${model?uncap_first}Mapper.deleteByPrimaryKey(id));
+        return OK;
+    }
+
+    @Override
+    public JsonResult mod(${model} param) {
+        ${model?uncap_first}Mapper.updateByPrimaryKey(param);
+        return OK;
+    }
+
+    @Override
+    public JsonResult info(Long id) {
+        ${model} ${model?uncap_first} = ${model?uncap_first}Mapper.selectByPrimaryKey(id);
+        return JsonResult.data(${model?uncap_first});
     }
 
 }
