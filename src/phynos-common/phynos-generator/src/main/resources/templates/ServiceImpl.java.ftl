@@ -21,7 +21,7 @@ import java.util.List;
 * @Date: ${date}
 **/
 @Service
-public class ${model}ServiceImpl implements  ${model}Service {
+public class ${model}ServiceImpl  extends BaseServiceImpl implements ${model}Service {
 
     Logger logger = LoggerFactory.getLogger(getClass());
 

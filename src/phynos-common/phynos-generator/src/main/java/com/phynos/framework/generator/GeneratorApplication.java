@@ -16,29 +16,37 @@ import java.util.Map;
  **/
 public class GeneratorApplication {
 
-    private static final String BASE_PACKAGE = "com.tf.traffic";
-    private static final String CONTROLLER_PACKAGE = BASE_PACKAGE + ".casehanding.controller.sys";
+    private static final String BASE_PACKAGE = "com.phynos.framework";
+    private static final String CONTROLLER_MODULE = "web.api.controller";
+    private static final String MODEL_GROUP = "system";
     private static final String SERVICE_PACKAGE = BASE_PACKAGE + ".core.service";
     private static final String MODEL = "Role";
     private static final String diskPath = "D://";
 
 
     public static void main(String[] args) throws Exception {
-        String path = diskPath + MODEL + "Controller.java";
-        File file = new File(path);
         Map<String, Object> dataMap = new HashMap<>();
-        generateFileByTemplate("Controller.java.ftl", file, dataMap);
+        prepare(dataMap);
+
+        generateFileByTemplate("Controller.java.ftl", diskPath + MODEL + "Controller.java", dataMap);
+        generateFileByTemplate("Service.java.ftl", diskPath + MODEL + "Service.java", dataMap);
+        generateFileByTemplate("ServiceImpl.java.ftl", diskPath + MODEL + "ServiceImpl.java", dataMap);
     }
 
-    private static void generateFileByTemplate(final String templateName, File file, Map<String, Object> dataMap) throws Exception {
-        Template template = FreeMarkerTemplateUtils.getTemplate(templateName);
-        FileOutputStream fos = new FileOutputStream(file);
+    private static void prepare(Map<String, Object> dataMap){
         dataMap.put("author", getCurrentUser());
         dataMap.put("date", getCurretnDate());
         dataMap.put("base_package", BASE_PACKAGE);
-        dataMap.put("controller_package", CONTROLLER_PACKAGE);
+        dataMap.put("controller_module", CONTROLLER_MODULE);
         dataMap.put("service_package", SERVICE_PACKAGE);
+        dataMap.put("module_group", MODEL_GROUP);
         dataMap.put("model", MODEL);
+    }
+
+    private static void generateFileByTemplate(final String templateName, String path, Map<String, Object> dataMap) throws Exception {
+        File file = new File(path);
+        Template template = FreeMarkerTemplateUtils.getTemplate(templateName);
+        FileOutputStream fos = new FileOutputStream(file);
         Writer out = new BufferedWriter(new OutputStreamWriter(fos, "utf-8"), 10240);
         template.process(dataMap, out);
     }
