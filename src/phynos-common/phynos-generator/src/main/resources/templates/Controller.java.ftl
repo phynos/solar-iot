@@ -1,10 +1,20 @@
-package ${package_name}.controller;
+package ${controller_package};
 
-import com.phynos.framework.core.json.JsonResult;
-import com.phynos.framework.web.api.controller.BaseController;
+import ${base_package}.core.annotation.OperationRecord;
+import ${base_package}.core.constant.BusinessType;
+import ${base_package}.core.json.JsonResult;
+import ${base_package}.core.params.IdStringParam;
+
+import ${controller_package}.BaseController;
+import ${service_package}.${model}Service;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 
 /**
 * @Author: ${author}
