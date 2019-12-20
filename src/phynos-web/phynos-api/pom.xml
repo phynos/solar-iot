@@ -56,11 +56,6 @@
         </dependency>
 
         <dependency>
-            <groupId>com.phynos.framework</groupId>
-            <artifactId>phynos-core</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
@@ -68,6 +63,16 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.phynos.framework</groupId>
+            <artifactId>phynos-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.phynos.framework</groupId>
+            <artifactId>phynos-push-rabbitmq</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
 
     </dependencies>

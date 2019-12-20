@@ -15,7 +15,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @EnableCaching
 @MapperScan({"com.phynos.framework.dao.mapper"})
-@ComponentScan({"com.phynos.framework.web.api","com.phynos.framework.core"})
+@ComponentScan({
+        "com.phynos.framework.web.api",
+        "com.phynos.framework.core",
+        "com.phynos.framework.push"})
 public class WebApiApplication {
 
     public static void main(String[] args) {
