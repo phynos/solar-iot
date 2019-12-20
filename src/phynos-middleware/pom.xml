@@ -9,13 +9,14 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>phynos-web</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>phynos-middleware</artifactId>
+    <description>中间件</description>
     <modules>
-        <module>phynos-api</module>
-        <module>phynos-monitor</module>
-        <module>phynos-push</module>
+        <module>phynos-redis</module>
+        <module>phynos-push-rabbitmq</module>
     </modules>
+    <packaging>pom</packaging>
+
 
 
 </project>

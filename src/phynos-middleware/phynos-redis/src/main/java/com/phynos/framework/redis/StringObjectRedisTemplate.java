@@ -1,4 +1,4 @@
-package com.phynos.framework.core.redis;
+package com.phynos.framework.redis;
 
 import org.springframework.data.redis.connection.DefaultStringRedisConnection;
 import org.springframework.data.redis.connection.RedisConnection;
