@@ -22,8 +22,9 @@ phynos
 └── phynos-simulator -- 设备模拟器 
      ├── phynos-simulator-mqtt -- mqtt设备端模拟器  
      └── phynos-simulator-raw -- 原始TCP/IP协议通讯模拟器  
-└── phynos-web -- web层模块 
+└── phynos-web -- web层应用 
      ├── phynos-api -- WEB-API接口层  
+     ├── phynos-push -- websocket推送       
      └── phynos-monitor -- actuator监视器  
 
 ```
