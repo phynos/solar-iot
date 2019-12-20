@@ -1,4 +1,4 @@
-package com.phynos.framework.web.api.controller;
+package com.phynos.framework.web.api.controller.system;
 
 import com.phynos.framework.core.json.JsonResult;
 import org.springframework.web.bind.annotation.GetMapping;

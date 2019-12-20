@@ -16,11 +16,20 @@ import java.util.Map;
  **/
 public class GeneratorApplication {
 
+    //基础包名
     private static final String BASE_PACKAGE = "com.phynos.framework";
+    //API业务
     private static final String CONTROLLER_MODULE = "web.api.controller";
-    private static final String MODEL_GROUP = "system";
     private static final String SERVICE_PACKAGE = BASE_PACKAGE + ".core.service";
+
+    //模块
     private static final String MODEL = "Role";
+    //模块中文名称
+    private static final String MODEL_CHS = "角色";
+    //模块分组
+    private static final String MODEL_GROUP = "system";
+
+
     private static final String diskPath = "D://";
 
 
@@ -41,6 +50,7 @@ public class GeneratorApplication {
         dataMap.put("service_package", SERVICE_PACKAGE);
         dataMap.put("module_group", MODEL_GROUP);
         dataMap.put("model", MODEL);
+        dataMap.put("model_chs", MODEL_CHS);
     }
 
     private static void generateFileByTemplate(final String templateName, String path, Map<String, Object> dataMap) throws Exception {

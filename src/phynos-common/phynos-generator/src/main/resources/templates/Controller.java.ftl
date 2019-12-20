@@ -28,6 +28,7 @@ import java.util.List;
 **/
 @RestController
 @RequestMapping("/api/${module_group}/${model?uncap_first}")
+@Api(value="${model_chs}管理",tags={"${model_chs}管理"})
 public class ${model}Controller extends BaseController {
 
     @Autowired
@@ -39,16 +40,22 @@ public class ${model}Controller extends BaseController {
     }
 
     @PostMapping("/add")
+    @OperationRecord(module = "${model_chs}管理",action = BusinessType.INSERT)
+    @ApiOperation(value = "${model_chs}新增",notes = "${model_chs}新增")
     public JsonResult add(@RequestBody ${model} param) {
         return ${model?uncap_first}Service.add(param);
     }
 
     @PostMapping("/del")
+    @OperationRecord(module = "${model_chs}管理",action = BusinessType.DELETE)
+    @ApiOperation(value = "${model_chs}删除",notes = "${model_chs}删除")
     public JsonResult del(@RequestBody List<Long> ids) {
         return ${model?uncap_first}Service.del(ids);
     }
 
     @PostMapping("/mod")
+    @OperationRecord(module = "${model_chs}管理",action = BusinessType.UPDATE)
+    @ApiOperation(value = "${model_chs}修改",notes = "${model_chs}修改")
     public JsonResult mod(@RequestBody ${model} param) {
         return ${model?uncap_first}Service.mod(param);
     }
