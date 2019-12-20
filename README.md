@@ -8,7 +8,8 @@ phynos-ui  -- https://github.com/phynos/Phynos-SpringCloud-Web
 phynos
 └── phynos-3rd -- 第三方模块  
      ├── phynos-activiti -- 工作流引擎  
-     └── phynos-lucene -- 分词器引擎  
+     ├── phynos-lucene -- 分词器引擎       
+     └── phynos-ruler -- 规则引擎  
 └── phynos-common -- 系统公共模块  
      ├── phynos-core -- 业务核心包  
      ├── phynos-dao -- 数据连接层  
@@ -50,6 +51,10 @@ phynos
 
 ```
 
+## 关于代码生成的说明
+
+1. 首先使用mybatis-generator生成基础的dao代码
+2. 使用本项目的phynos-generator生成controller、service、serviceimpl以及dao拓展代码
 
 
 ## SpringBoot基础
