@@ -22,22 +22,20 @@ public class GeneratorApplication {
     private static final String CONTROLLER_MODULE = "web.api.controller";
     private static final String SERVICE_PACKAGE = BASE_PACKAGE + ".core.service";
 
-    //模块
-    private static final String MODEL = "Role";
-    //模块中文名称
-    private static final String MODEL_CHS = "角色";
-    //模块分组
-    private static final String MODEL_GROUP = "system";
-
     //主键类型
     private static final String PRIMARY_ID_TYPE = "Long";//Long,String
-
+    //模块分组
+    private static final String MODEL_GROUP = "system";
+    //模块
+    private static final String MODEL = "Menu";
+    //模块中文名称
+    private static final String MODEL_CHS = "菜单";
 
     //当前工程基本目录
     private static final String PROJECT_BASE_PATH = "D:\\Workspace\\Phynos-SpringBoot\\src";
     private static final String PROJECT_API_PATH = PROJECT_BASE_PATH + "\\phynos-web\\phynos-api\\src\\main\\java\\com\\phynos\\framework\\web\\api\\controller\\" + MODEL_GROUP + "\\";
     private static final String PROJECT_CORE_PATH = PROJECT_BASE_PATH + "\\phynos-common\\phynos-core\\src\\main\\java\\com\\phynos\\framework\\core\\service\\" + MODEL_GROUP + "\\";
-    private static final String diskPath = "D://";
+
 
 
     public static void main(String[] args) throws Exception {
