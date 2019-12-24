@@ -29,6 +29,9 @@ public class GeneratorApplication {
     //模块分组
     private static final String MODEL_GROUP = "system";
 
+    //主键类型
+    private static final String PRIMARY_ID_TYPE = "Long";//Long,String
+
 
     private static final String diskPath = "D://";
 
@@ -51,6 +54,7 @@ public class GeneratorApplication {
         dataMap.put("module_group", MODEL_GROUP);
         dataMap.put("model", MODEL);
         dataMap.put("model_chs", MODEL_CHS);
+        dataMap.put("primary_id_type", PRIMARY_ID_TYPE);
     }
 
     private static void generateFileByTemplate(final String templateName, String path, Map<String, Object> dataMap) throws Exception {

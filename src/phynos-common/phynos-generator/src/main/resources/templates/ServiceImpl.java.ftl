@@ -47,7 +47,7 @@ public class ${model}ServiceImpl  extends BaseServiceImpl implements ${model}Ser
     }
 
     @Override
-    public JsonResult del(List<Long> ids) {
+    public JsonResult del(List<${primary_id_type}> ids) {
         ids.forEach(id -> ${model?uncap_first}Mapper.deleteByPrimaryKey(id));
         return OK;
     }
@@ -59,7 +59,7 @@ public class ${model}ServiceImpl  extends BaseServiceImpl implements ${model}Ser
     }
 
     @Override
-    public JsonResult info(Long id) {
+    public JsonResult info(${primary_id_type} id) {
         ${model} ${model?uncap_first} = ${model?uncap_first}Mapper.selectByPrimaryKey(id);
         return JsonResult.data(${model?uncap_first});
     }

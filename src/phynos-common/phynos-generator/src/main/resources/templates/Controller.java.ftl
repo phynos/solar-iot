@@ -49,7 +49,7 @@ public class ${model}Controller extends BaseController {
     @PostMapping("/del")
     @OperationRecord(module = "${model_chs}管理",action = BusinessType.DELETE)
     @ApiOperation(value = "${model_chs}删除",notes = "${model_chs}删除")
-    public JsonResult del(@RequestBody List<Long> ids) {
+    public JsonResult del(@RequestBody List<${primary_id_type}> ids) {
         return ${model?uncap_first}Service.del(ids);
     }
 

@@ -16,10 +16,10 @@ public interface ${model}Service {
 
     JsonResult add(${model} param);
 
-    JsonResult del(List<Long> ids);
+    JsonResult del(List<${primary_id_type}> ids);
 
     JsonResult mod(${model} param);
 
-    JsonResult info(Long id);
+    JsonResult info(${primary_id_type} id);
 
 }
