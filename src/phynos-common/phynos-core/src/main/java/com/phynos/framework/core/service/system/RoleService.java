@@ -1,4 +1,4 @@
-package com.phynos.framework.core.service;
+package com.phynos.framework.core.service.system;
 
 import com.phynos.framework.core.json.JsonResult;
 import com.phynos.framework.core.params.BaseParam;
@@ -7,8 +7,8 @@ import com.phynos.framework.dao.model.Role;
 import java.util.List;
 
 /**
-* @Author: Lupc
-* @Date: 2019-12-19 23:36:23
+* @Author: 1
+* @Date: 2019-12-24 10:23:41
 **/
 public interface RoleService {
 

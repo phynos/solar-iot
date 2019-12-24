@@ -33,6 +33,10 @@ public class GeneratorApplication {
     private static final String PRIMARY_ID_TYPE = "Long";//Long,String
 
 
+    //当前工程基本目录
+    private static final String PROJECT_BASE_PATH = "D:\\Workspace\\Phynos-SpringBoot\\src";
+    private static final String PROJECT_API_PATH = PROJECT_BASE_PATH + "\\phynos-web\\phynos-api\\src\\main\\java\\com\\phynos\\framework\\web\\api\\controller\\" + MODEL_GROUP + "\\";
+    private static final String PROJECT_CORE_PATH = PROJECT_BASE_PATH + "\\phynos-common\\phynos-core\\src\\main\\java\\com\\phynos\\framework\\core\\service\\" + MODEL_GROUP + "\\";
     private static final String diskPath = "D://";
 
 
@@ -40,9 +44,9 @@ public class GeneratorApplication {
         Map<String, Object> dataMap = new HashMap<>();
         prepare(dataMap);
 
-        generateFileByTemplate("Controller.java.ftl", diskPath + MODEL + "Controller.java", dataMap);
-        generateFileByTemplate("Service.java.ftl", diskPath + MODEL + "Service.java", dataMap);
-        generateFileByTemplate("ServiceImpl.java.ftl", diskPath + MODEL + "ServiceImpl.java", dataMap);
+        generateFileByTemplate("Controller.java.ftl", PROJECT_API_PATH + MODEL + "Controller.java", dataMap);
+        generateFileByTemplate("Service.java.ftl", PROJECT_CORE_PATH + MODEL + "Service.java", dataMap);
+        generateFileByTemplate("ServiceImpl.java.ftl", PROJECT_CORE_PATH + "impl\\" + MODEL + "ServiceImpl.java", dataMap);
     }
 
     private static void prepare(Map<String, Object> dataMap){

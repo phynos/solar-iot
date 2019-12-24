@@ -1,11 +1,12 @@
-package com.phynos.framework.core.service.impl;
+package com.phynos.framework.core.service.system.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.phynos.framework.core.json.JsonList;
 import com.phynos.framework.core.json.JsonResult;
 import com.phynos.framework.core.params.BaseParam;
-import com.phynos.framework.core.service.UserService;
+import com.phynos.framework.core.service.BaseServiceImpl;
+import com.phynos.framework.core.service.system.UserService;
 import com.phynos.framework.dao.mapper.UserMapper;
 import com.phynos.framework.dao.model.User;
 import com.phynos.framework.dao.model.UserExample;

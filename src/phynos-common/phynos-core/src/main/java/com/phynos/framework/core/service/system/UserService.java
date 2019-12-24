@@ -1,4 +1,4 @@
-package com.phynos.framework.core.service;
+package com.phynos.framework.core.service.system;
 
 import com.phynos.framework.core.json.JsonResult;
 import com.phynos.framework.core.params.BaseParam;

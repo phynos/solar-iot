@@ -1,4 +1,4 @@
-package com.phynos.framework.core.service.impl;
+package com.phynos.framework.core.service;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;

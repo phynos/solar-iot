@@ -1,6 +1,6 @@
 package com.phynos.framework.web.api.shiro;
 
-import com.phynos.framework.core.redis.StringObjectRedisTemplate;
+import com.phynos.framework.redis.StringObjectRedisTemplate;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.mgt.SimpleSession;
 import org.apache.shiro.session.mgt.ValidatingSession;

@@ -3,7 +3,7 @@ package com.phynos.framework.web.api.controller.system;
 import com.phynos.framework.core.json.JsonResult;
 import com.phynos.framework.core.params.BaseParam;
 import com.phynos.framework.core.params.IdParam;
-import com.phynos.framework.core.service.UserService;
+import com.phynos.framework.core.service.system.UserService;
 import com.phynos.framework.dao.model.User;
 import com.phynos.framework.web.api.controller.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +51,7 @@ public class UserController extends BaseController {
     }
 
     @PostMapping("/info")
-    public JsonResult info(@RequestBody IdParam param) {
+    public JsonResult info(@RequestBody IdParam<Long> param) {
         return userService.info(param.getId());
     }
 

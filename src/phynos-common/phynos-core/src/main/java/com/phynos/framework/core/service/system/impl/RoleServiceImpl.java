@@ -1,11 +1,12 @@
-package com.phynos.framework.core.service.impl;
+package com.phynos.framework.core.service.system.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.phynos.framework.core.json.JsonList;
 import com.phynos.framework.core.json.JsonResult;
 import com.phynos.framework.core.params.BaseParam;
-import com.phynos.framework.core.service.RoleService;
+import com.phynos.framework.core.service.BaseServiceImpl;
+import com.phynos.framework.core.service.system.RoleService;
 import com.phynos.framework.dao.mapper.RoleMapper;
 import com.phynos.framework.dao.model.Role;
 import com.phynos.framework.dao.model.RoleExample;
@@ -17,8 +18,8 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
-* @Author: Lupc
-* @Date: 2019-12-19 23:40:31
+* @Author: 1
+* @Date: 2019-12-24 10:23:41
 **/
 @Service
 public class RoleServiceImpl  extends BaseServiceImpl implements RoleService {

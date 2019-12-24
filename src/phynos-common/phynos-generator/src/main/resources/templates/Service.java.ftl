@@ -1,4 +1,4 @@
-package ${base_package}.core.core.service;
+package ${base_package}.core.service.${module_group};
 
 import ${base_package}.core.json.JsonResult;
 import ${base_package}.core.params.BaseParam;

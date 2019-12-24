@@ -1,11 +1,12 @@
-package ${base_package}.core.service.impl;
+package ${base_package}.core.service.${module_group}.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import ${base_package}.core.json.JsonList;
 import ${base_package}.core.json.JsonResult;
 import ${base_package}.core.params.BaseParam;
-import ${base_package}.core.service.${model}Service;
+import ${base_package}.core.service.BaseServiceImpl;
+import ${base_package}.core.service.${module_group}.${model}Service;
 import ${base_package}.dao.mapper.${model}Mapper;
 import ${base_package}.dao.model.${model};
 import ${base_package}.dao.model.${model}Example;

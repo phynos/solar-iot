@@ -4,15 +4,15 @@ package com.phynos.framework.core.params;
  * @author by Lupc
  * @date 2019/12/19.
  */
-public class IdParam {
+public class IdParam<T> {
 
-    private Long id;
+    private T id;
 
-    public Long getId() {
+    public T getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(T id) {
         this.id = id;
     }
 }

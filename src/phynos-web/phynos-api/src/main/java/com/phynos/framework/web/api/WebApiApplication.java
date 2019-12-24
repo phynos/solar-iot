@@ -18,7 +18,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ComponentScan({
         "com.phynos.framework.web.api",
         "com.phynos.framework.core",
-        "com.phynos.framework.push"})
+        "com.phynos.framework.push",
+        "com.phynos.framework.redis"})
 public class WebApiApplication {
 
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package com.phynos.framework.core.service.impl;
+package com.phynos.framework.core.service;
 
 import com.phynos.framework.core.service.DebugService;
 import org.apache.commons.lang3.StringUtils;

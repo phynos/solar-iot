@@ -8,7 +8,7 @@ import ${base_package}.${controller_module}.BaseController;
 import ${base_package}.core.json.JsonResult;
 import ${base_package}.core.params.BaseParam;
 import ${base_package}.core.params.IdParam;
-import ${base_package}.core.service.${model}Service;
+import ${base_package}.core.service.${module_group}.${model}Service;
 import ${base_package}.dao.model.${model};
 
 import io.swagger.annotations.Api;
@@ -61,7 +61,7 @@ public class ${model}Controller extends BaseController {
     }
 
     @PostMapping("/info")
-    public JsonResult info(@RequestBody IdParam param) {
+    public JsonResult info(@RequestBody IdParam<${primary_id_type}> param) {
         return ${model?uncap_first}Service.info(param.getId());
     }
 
