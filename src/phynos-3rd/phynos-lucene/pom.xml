@@ -12,7 +12,7 @@
     <artifactId>phynos-lucene</artifactId>
 
     <properties>
-        <lucene.version>7.1.0</lucene.version>
+        <lucene.version>8.3.1</lucene.version>
     </properties>
 
     <dependencies>
