@@ -1,0 +1,17 @@
+
+
+mvn clean package -am -Dmaven.test.skip=true -Pprod
+
+apps=(phynos-api phynos-center phynos-push phynos-actuator)
+
+for app in "${apps[@]}"
+do
+	echo 'build: '$app
+	# mvn clean package -pl system/${app} -am -Dmaven.test.skip=true -Pprod
+	cp phynos-web/${app}/target/${app}.jar  ./
+done
+
+tar -czvf phynos.tar.gz *.jar
+rm -rf *.jar
+
+exit 1

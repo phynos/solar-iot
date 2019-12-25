@@ -13,8 +13,7 @@ phynos
 └── phynos-common -- 系统公共模块  
      ├── phynos-core -- 业务核心包  
      ├── phynos-dao -- 数据连接层  
-     ├── phynos-generator -- 代码生成器  
-     └── phynos-kalin -- 预留代码包  
+     └── phynos-generator -- 代码生成器  
 └── phynos-front -- 通讯前置机  
      ├── phynos-front-mqtt -- mqtt前置机  
      ├── phynos-front-raw -- netty前置机  
@@ -22,6 +21,9 @@ phynos
 └── phynos-simulator -- 设备模拟器 
      ├── phynos-simulator-mqtt -- mqtt设备端模拟器  
      └── phynos-simulator-raw -- 原始TCP/IP协议通讯模拟器  
+└── phynos-middleware -- 中间件 
+     ├── phynos-redis -- redis代码  
+     └── phynos-push-rabbitmq -- 基于rabbitmq的push代码   
 └── phynos-web -- web层应用 
      ├── phynos-api -- WEB-API接口层  
      ├── phynos-push -- websocket推送       
