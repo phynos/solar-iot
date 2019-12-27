@@ -15,6 +15,7 @@
         <module>phynos-web</module>
         <module>phynos-3rd</module>
         <module>phynos-middleware</module>
+        <module>phynos-biz</module>
     </modules>
 
     <properties>
