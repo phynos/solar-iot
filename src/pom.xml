@@ -36,7 +36,7 @@
         <mysql.version>5.1.48</mysql.version>
         <pagehelper.version>1.2.12</pagehelper.version>
         <druid.version>1.1.20</druid.version>
-        <shiro.version>1.4.1</shiro.version>
+        <shiro.version>1.5.0</shiro.version>
         <netty.version>4.1.43.Final</netty.version>
         <mqttv3.version>1.2.2</mqttv3.version>
     </properties>
