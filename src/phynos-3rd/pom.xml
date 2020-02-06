@@ -13,7 +13,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>phynos-activiti</module>
-        <module>phynos-lucene</module>
         <module>phynos-ruler-engine</module>
     </modules>
 
