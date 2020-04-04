@@ -51,40 +51,13 @@ phynos
      ├── 流程引擎 --基于activiti5.22  
      ├── 文档管理 --使用word编辑模板并用freemaker替换占位符再生成pdf预览  
      └── 运行监控 -- 基于springboot  
+└── 应用示例  
+     ├── 前置机Netty --完美整合Netty和SpringCloud，组合zookeeper和Redis实现分布式集群  
+     └── 管理后台 -- 当前主流的管理后台实现  
 
 ```
 
-## 关于代码生成的说明
 
-1. 首先使用mybatis-generator生成基础的dao代码
-2. 使用本项目的phynos-generator生成controller、service、serviceimpl以及dao拓展代码
-
-
-## SpringBoot基础
-/static  
-/public  
-/resources  
-/META-INF/resources  
-
-## 配置文件约定
-application或application-xxx命名的yml文件或者properties文件，且唯一
-
-## 数据库约定
-<pre>
-spring: 
-  datasource:
-    driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://dev.yonyouccs.com:3001/icop-construct-busisubpack
-    username: root
-    password: root
-</pre>
-    
-## 多环境配置
-<pre>
-spring: 
-  profiles
-    active: dev
-</pre>
 ### 启动jar包时设置spring.profiles.active
 <pre>
 java -jar xxx.jar --spring.profiles.active=test
