@@ -32,6 +32,7 @@ public class IotNettyDecoder extends LengthFieldBasedFrameDecoder {
 		if(frame == null) {
 			return null;
 		}
+		logger.debug("消息全部到达！");
 		byte[] head = new byte[4];
 		frame.readBytes(head);
 		int messageType = frame.readInt();

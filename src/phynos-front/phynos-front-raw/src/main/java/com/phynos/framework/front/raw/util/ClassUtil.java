@@ -28,13 +28,13 @@ public class ClassUtil {
      * @throws ClassNotFoundException
      * @throws IOException
      */
-    public static void initTypeToMsgClassMap()
+    public static void initTypeToMsgClassMap(String pack)
             throws ClassNotFoundException, IOException {
 
         Map<Integer, Class<?>> tmpMap = new HashMap<>();
 
 
-        Set<Class<?>> classSet = ClassTools.getClasses("com.phynos.framework.front.raw.message.request");
+        Set<Class<?>> classSet = ClassTools.getClasses(pack);
         if (classSet != null) {
             for (Class<?> clazz : classSet) {
                 if (clazz.isAnnotationPresent(IotMsgType.class)) {

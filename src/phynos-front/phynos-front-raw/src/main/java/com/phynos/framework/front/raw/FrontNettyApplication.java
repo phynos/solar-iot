@@ -24,7 +24,7 @@ public class FrontNettyApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		ClassUtil.initTypeToMsgClassMap();
+		ClassUtil.initTypeToMsgClassMap("com.phynos.framework.front.raw.message");
 
 		JexlEngine jexl = new JexlBuilder().create();
 

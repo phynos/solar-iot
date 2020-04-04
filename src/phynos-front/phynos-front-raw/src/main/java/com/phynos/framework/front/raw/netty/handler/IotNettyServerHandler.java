@@ -1,6 +1,5 @@
 package com.phynos.framework.front.raw.netty.handler;
 
-import com.phynos.framework.front.raw.message.IotMessage;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
@@ -10,6 +9,10 @@ import org.springframework.stereotype.Service;
 
 import java.net.InetSocketAddress;
 
+/**
+ * 通用消息处理器
+ * @author Lupc
+ */
 @Service
 @ChannelHandler.Sharable
 public class IotNettyServerHandler extends ChannelInboundHandlerAdapter {
@@ -36,12 +39,7 @@ public class IotNettyServerHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg)
             throws Exception {
-        if(msg instanceof IotMessage) {
-            IotMessage iotMessage = (IotMessage) msg;
-            logger.debug("收到消息，消息码={}，消息类型={}",
-                    iotMessage.getMessageType(),
-                    iotMessage.getClass().getName());
-        }
+        logger.debug("收到消息----普通处理器");
         super.channelRead(ctx, msg);
     }
 

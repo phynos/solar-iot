@@ -63,11 +63,11 @@ public class IotNettyChannelInitializer extends ChannelInitializer<SocketChannel
         // encoded
         ch.pipeline().addLast(new IotNettyEncoder());
         // 处理器-空闲触发器
-        ch.pipeline().addLast(new IdleStateHandler(10, 10, 10, TimeUnit.SECONDS));
+        ch.pipeline().addLast(EXECUTOR_GROUOP, new IdleStateHandler(10, 10, 10, TimeUnit.SECONDS));
         //处理器-心跳
-        ch.pipeline().addLast(iotNettyHeartBeatHandler);
+        ch.pipeline().addLast(EXECUTOR_GROUOP, iotNettyHeartBeatHandler);
         //处理器-登录
-        ch.pipeline().addLast(iotNettyLoginHandler);
+        ch.pipeline().addLast(EXECUTOR_GROUOP, iotNettyLoginHandler);
         //处理器-基础
         ch.pipeline().addLast(EXECUTOR_GROUOP, "work-handler", iotNettyServerHandler);
     }
