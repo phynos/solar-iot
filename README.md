@@ -52,7 +52,7 @@ phynos
      ├── 文档管理 --使用word编辑模板并用freemaker替换占位符再生成pdf预览  
      └── 运行监控 -- 基于springboot  
 └── 应用示例  
-     ├── 前置机Netty --完美整合Netty和SpringCloud，组合zookeeper和Redis实现分布式集群  
+     ├── 前置机Netty --完美整合Netty和SpringBoot，组合zookeeper和Redis实现分布式集群  
      └── 管理后台 -- 当前主流的管理后台实现  
 
 ```
