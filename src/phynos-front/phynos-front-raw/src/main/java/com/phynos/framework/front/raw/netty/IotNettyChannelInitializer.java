@@ -1,6 +1,6 @@
 package com.phynos.framework.front.raw.netty;
 
-import com.phynos.framework.front.raw.netty.handler.MyNettyHeartBeatHandler;
+import com.phynos.framework.front.raw.netty.handler.IotNettyHeartBeatHandler;
 import com.phynos.framework.front.raw.netty.handler.MyNettyLoginHandler;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.SocketChannel;
@@ -12,7 +12,7 @@ import io.netty.util.concurrent.EventExecutorGroup;
 
 import java.util.concurrent.TimeUnit;
 
-public class MyNettyChannelInitializer extends ChannelInitializer<SocketChannel> {
+public class IotNettyChannelInitializer extends ChannelInitializer<SocketChannel> {
 
 	private static final EventExecutorGroup EXECUTOR_GROUOP = new DefaultEventExecutorGroup(Runtime.getRuntime().availableProcessors() * 2 + 1);
 	
@@ -44,16 +44,16 @@ public class MyNettyChannelInitializer extends ChannelInitializer<SocketChannel>
 		//增加流量监测
 		ch.pipeline().addLast(trafficHandler);
 		// decode
-        ch.pipeline().addLast(new MyNettyDecoder(1024, 8, 4, 0, 0));               
+        ch.pipeline().addLast(new IotNettyDecoder(1024, 8, 4, 0, 0));
         // encoded
-        ch.pipeline().addLast(new MyNettyEncoder());
+        ch.pipeline().addLast(new IotNettyEncoder());
         // 
         ch.pipeline().addLast(new IdleStateHandler(10, 10, 10));
         //
         ch.pipeline().addLast(new MyNettyLoginHandler());
-        ch.pipeline().addLast(new MyNettyHeartBeatHandler());
+        ch.pipeline().addLast(new IotNettyHeartBeatHandler());
         //
-		ch.pipeline().addLast(EXECUTOR_GROUOP,"work-handler",new MyNettyServerHandler());
+		ch.pipeline().addLast(EXECUTOR_GROUOP,"work-handler",new IotNettyServerHandler());
 	}
 
 }

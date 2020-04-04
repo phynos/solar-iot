@@ -20,7 +20,7 @@ import javax.annotation.PreDestroy;
  *
  */
 @Component
-public class MyNettyServer {
+public class IotNettyServer {
 
     Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -46,7 +46,7 @@ public class MyNettyServer {
         try {
             b.group(bossGroup, workerGroup)
              .channel(NioServerSocketChannel.class) // (3)
-             .childHandler(new MyNettyChannelInitializer())
+             .childHandler(new IotNettyChannelInitializer())
              .option(ChannelOption.SO_BACKLOG, 128)          // (5)
              .childOption(ChannelOption.SO_KEEPALIVE, true); // (6)
     

@@ -5,7 +5,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
 @ChannelHandler.Sharable
-public class MyNettyServerHandler extends ChannelInboundHandlerAdapter {
+public class IotNettyServerHandler extends ChannelInboundHandlerAdapter {
 
 	
 	@Override

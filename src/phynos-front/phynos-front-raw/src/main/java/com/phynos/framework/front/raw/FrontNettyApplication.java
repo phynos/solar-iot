@@ -1,6 +1,6 @@
 package com.phynos.framework.front.raw;
 
-import com.phynos.framework.front.raw.netty.MyNettyServer;
+import com.phynos.framework.front.raw.netty.IotNettyServer;
 import org.apache.commons.jexl3.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +15,7 @@ public class FrontNettyApplication implements CommandLineRunner {
 	Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Autowired
-	MyNettyServer myNettyServer;
+    IotNettyServer iotNettyServer;
 
 	public static void main(String[] args) {
 		SpringApplication.run(FrontNettyApplication.class, args);
@@ -39,7 +39,7 @@ public class FrontNettyApplication implements CommandLineRunner {
 
 		logger.debug(o.toString());
 
-		myNettyServer.start();
+		iotNettyServer.start();
 	}
 
 	public static class Foo {
