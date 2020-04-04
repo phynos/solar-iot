@@ -24,6 +24,8 @@ public class IotNettyHeartBeatHandler extends ChannelInboundHandlerAdapter {
 		if(evt instanceof IdleStateEvent) {
 			logger.debug("空闲事件触发...");
 			//发送心跳
+
+
 		} else {
 			ctx.fireUserEventTriggered(evt);
 		}

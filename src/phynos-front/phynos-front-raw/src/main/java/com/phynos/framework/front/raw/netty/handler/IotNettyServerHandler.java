@@ -1,5 +1,6 @@
 package com.phynos.framework.front.raw.netty.handler;
 
+import com.phynos.framework.front.raw.message.IotMessage;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
@@ -35,7 +36,12 @@ public class IotNettyServerHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg)
             throws Exception {
-        // TODO Auto-generated method stub
+        if(msg instanceof IotMessage) {
+            IotMessage iotMessage = (IotMessage) msg;
+            logger.debug("收到消息，消息码={}，消息类型={}",
+                    iotMessage.getMessageType(),
+                    iotMessage.getClass().getName());
+        }
         super.channelRead(ctx, msg);
     }
 

@@ -1,6 +1,7 @@
 package com.phynos.framework.front.raw;
 
 import com.phynos.framework.front.raw.netty.IotNettyServer;
+import com.phynos.framework.front.raw.util.ClassUtil;
 import org.apache.commons.jexl3.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +24,8 @@ public class FrontNettyApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		ClassUtil.initTypeToMsgClassMap();
+
 		JexlEngine jexl = new JexlBuilder().create();
 
 		// Create an expression
