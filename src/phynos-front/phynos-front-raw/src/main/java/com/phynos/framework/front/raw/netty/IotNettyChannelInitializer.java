@@ -10,6 +10,8 @@ import io.netty.handler.traffic.GlobalTrafficShapingHandler;
 import io.netty.handler.traffic.TrafficCounter;
 import io.netty.util.concurrent.DefaultEventExecutorGroup;
 import io.netty.util.concurrent.EventExecutorGroup;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,15 +20,18 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class IotNettyChannelInitializer extends ChannelInitializer<SocketChannel> {
 
-	private static final EventExecutorGroup EXECUTOR_GROUOP = new DefaultEventExecutorGroup(Runtime.getRuntime().availableProcessors() * 2 + 1);
-	
-	private static final GlobalTrafficShapingHandler trafficHandler = new GlobalTrafficShapingHandler(EXECUTOR_GROUOP, 30, 30);
+    private static final EventExecutorGroup EXECUTOR_GROUOP = new DefaultEventExecutorGroup(Runtime.getRuntime().availableProcessors() * 2 + 1);
 
+    private static final GlobalTrafficShapingHandler trafficHandler = new GlobalTrafficShapingHandler(EXECUTOR_GROUOP, 30, 30);
+
+    Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
     IotNettyLoginHandler iotNettyLoginHandler;
-	@Autowired
+    @Autowired
     IotNettyHeartBeatHandler iotNettyHeartBeatHandler;
+    @Autowired
+    IotNettyServerHandler iotNettyServerHandler;
 
     static {
         new Thread(new Runnable() {
@@ -41,30 +46,31 @@ public class IotNettyChannelInitializer extends ChannelInitializer<SocketChannel
                     }
                     final long totalRead = trafficCounter.cumulativeReadBytes();
                     final long totalWrite = trafficCounter.cumulativeWrittenBytes();
-                    System.out.println("total read: " + (totalRead >> 10) + " KB");
-                    System.out.println("total write: " + (totalWrite >> 10) + " KB");
-                    System.out.println("流量监控: " + System.lineSeparator() + trafficCounter);
+//                    System.out.println("total read: " + (totalRead >> 10) + " KB");
+//                    System.out.println("total write: " + (totalWrite >> 10) + " KB");
+//                    System.out.println("流量监控: " + System.lineSeparator() + trafficCounter);
                 }
             }
-        }).start();        
+        }).start();
     }
-    
-	@Override
-	protected void initChannel(SocketChannel ch) throws Exception {
-		//增加流量监测
-		ch.pipeline().addLast(trafficHandler);
-		// decode
+
+    @Override
+    protected void initChannel(SocketChannel ch) throws Exception {
+        //增加流量监测
+        //ch.pipeline().addLast(trafficHandler);
+        // decode
         ch.pipeline().addLast(new IotNettyDecoder(1024, 8, 4, 0, 0));
         // encoded
         ch.pipeline().addLast(new IotNettyEncoder());
-        // 
-        ch.pipeline().addLast(new IdleStateHandler(10, 10, 10));
-        //
-        ch.pipeline().addLast(iotNettyLoginHandler);
+        // 处理器-空闲触发器
+        ch.pipeline().addLast(new IdleStateHandler(10, 10, 10, TimeUnit.SECONDS));
+        //处理器-心跳
         ch.pipeline().addLast(iotNettyHeartBeatHandler);
-        //
-		ch.pipeline().addLast(EXECUTOR_GROUOP,"work-handler",new IotNettyServerHandler());
-	}
+        //处理器-登录
+        ch.pipeline().addLast(iotNettyLoginHandler);
+        //处理器-基础
+        ch.pipeline().addLast(EXECUTOR_GROUOP, "work-handler", iotNettyServerHandler);
+    }
 
 }
 

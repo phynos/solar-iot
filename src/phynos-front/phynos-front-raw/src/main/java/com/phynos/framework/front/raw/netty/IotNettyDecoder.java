@@ -4,8 +4,12 @@ import com.phynos.framework.front.raw.message.MyMessage;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class IotNettyDecoder extends LengthFieldBasedFrameDecoder {
+
+	Logger logger = LoggerFactory.getLogger(getClass());
 
 	public IotNettyDecoder(
 			int maxFrameLength, 
