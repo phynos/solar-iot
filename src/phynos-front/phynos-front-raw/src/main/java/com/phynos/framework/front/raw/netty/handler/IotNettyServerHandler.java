@@ -1,9 +1,11 @@
-package com.phynos.framework.front.raw.netty;
+package com.phynos.framework.front.raw.netty.handler;
 
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import org.springframework.stereotype.Service;
 
+@Service
 @ChannelHandler.Sharable
 public class IotNettyServerHandler extends ChannelInboundHandlerAdapter {
 

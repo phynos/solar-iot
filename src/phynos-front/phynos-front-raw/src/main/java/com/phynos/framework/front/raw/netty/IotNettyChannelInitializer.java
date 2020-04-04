@@ -1,7 +1,8 @@
 package com.phynos.framework.front.raw.netty;
 
 import com.phynos.framework.front.raw.netty.handler.IotNettyHeartBeatHandler;
-import com.phynos.framework.front.raw.netty.handler.MyNettyLoginHandler;
+import com.phynos.framework.front.raw.netty.handler.IotNettyServerHandler;
+import com.phynos.framework.front.raw.netty.handler.IotNettyLoginHandler;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.timeout.IdleStateHandler;
@@ -9,15 +10,24 @@ import io.netty.handler.traffic.GlobalTrafficShapingHandler;
 import io.netty.handler.traffic.TrafficCounter;
 import io.netty.util.concurrent.DefaultEventExecutorGroup;
 import io.netty.util.concurrent.EventExecutorGroup;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.concurrent.TimeUnit;
 
+@Component
 public class IotNettyChannelInitializer extends ChannelInitializer<SocketChannel> {
 
 	private static final EventExecutorGroup EXECUTOR_GROUOP = new DefaultEventExecutorGroup(Runtime.getRuntime().availableProcessors() * 2 + 1);
 	
 	private static final GlobalTrafficShapingHandler trafficHandler = new GlobalTrafficShapingHandler(EXECUTOR_GROUOP, 30, 30);
-	
+
+
+    @Autowired
+    IotNettyLoginHandler iotNettyLoginHandler;
+	@Autowired
+    IotNettyHeartBeatHandler iotNettyHeartBeatHandler;
+
     static {
         new Thread(new Runnable() {
             @Override
@@ -50,8 +60,8 @@ public class IotNettyChannelInitializer extends ChannelInitializer<SocketChannel
         // 
         ch.pipeline().addLast(new IdleStateHandler(10, 10, 10));
         //
-        ch.pipeline().addLast(new MyNettyLoginHandler());
-        ch.pipeline().addLast(new IotNettyHeartBeatHandler());
+        ch.pipeline().addLast(iotNettyLoginHandler);
+        ch.pipeline().addLast(iotNettyHeartBeatHandler);
         //
 		ch.pipeline().addLast(EXECUTOR_GROUOP,"work-handler",new IotNettyServerHandler());
 	}

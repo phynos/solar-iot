@@ -27,6 +27,9 @@ public class IotNettyServer {
     @Autowired
     NettyConfig nettyConfig;
 
+    @Autowired
+    IotNettyChannelInitializer iotNettyChannelInitializer;
+
     EventLoopGroup bossGroup = new NioEventLoopGroup();
     EventLoopGroup workerGroup = new NioEventLoopGroup();
 
@@ -46,7 +49,7 @@ public class IotNettyServer {
         try {
             b.group(bossGroup, workerGroup)
              .channel(NioServerSocketChannel.class) // (3)
-             .childHandler(new IotNettyChannelInitializer())
+             .childHandler(iotNettyChannelInitializer)
              .option(ChannelOption.SO_BACKLOG, 128)          // (5)
              .childOption(ChannelOption.SO_KEEPALIVE, true); // (6)
     
