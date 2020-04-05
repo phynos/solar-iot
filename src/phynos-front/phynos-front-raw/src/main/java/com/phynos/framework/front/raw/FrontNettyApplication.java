@@ -1,5 +1,7 @@
 package com.phynos.framework.front.raw;
 
+import com.phynos.framework.front.raw.distributed.IotNettyRemoteManager;
+import com.phynos.framework.front.raw.distributed.IotWorker;
 import com.phynos.framework.front.raw.netty.IotNettyServer;
 import com.phynos.framework.front.raw.util.ClassUtil;
 import org.apache.commons.jexl3.*;
@@ -42,6 +44,15 @@ public class FrontNettyApplication implements CommandLineRunner {
 
 		logger.debug(o.toString());
 
+		if(System.currentTimeMillis() < 1) {
+			logger.debug("初始化节点信息...");
+			IotWorker.getInst().setLocalNode("127.0.0.1", 9600);
+			logger.debug("启动节点...");
+			IotWorker.getInst().init();
+			logger.debug("启动节点的管理...");
+			IotNettyRemoteManager.getInst().init();
+		}
+		logger.debug("启动Netty...");
 		iotNettyServer.start();
 	}
 
