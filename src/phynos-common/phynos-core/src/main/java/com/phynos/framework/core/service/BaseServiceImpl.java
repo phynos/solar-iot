@@ -19,8 +19,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @Author: Lupc
- * @Date: 2019/9/30 10:33
+ * @author Lupc
+ * @date 2019/9/30 10:33
  **/
 public class BaseServiceImpl {
 
@@ -118,7 +118,7 @@ public class BaseServiceImpl {
         return ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
     }
 
-    protected String getUUID() {
+    protected String uid() {
         return UuidUtil.uid();
     }
 
