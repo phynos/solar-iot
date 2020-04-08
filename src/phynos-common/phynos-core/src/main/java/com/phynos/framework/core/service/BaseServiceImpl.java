@@ -2,7 +2,7 @@ package com.phynos.framework.core.service;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.phynos.framework.core.MySessionCache;
+import com.phynos.framework.core.IUserSession;
 import com.phynos.framework.core.json.JsonResult;
 import com.phynos.framework.core.util.ShiroUtil;
 import com.phynos.framework.core.util.UuidUtil;
@@ -97,7 +97,7 @@ public class BaseServiceImpl {
      * 注意：你必须确保你在web环境下调用此函数，在非web环境下（单元测试）会出错
      * @return
      */
-    protected MySessionCache getSessionInfo(){
+    protected IUserSession<Long> getSessionInfo(){
         return getSessionInfo(null);
     }
 
@@ -106,7 +106,7 @@ public class BaseServiceImpl {
      * @param req
      * @return
      */
-    protected MySessionCache getSessionInfo(HttpServletRequest req){
+    protected IUserSession<Long> getSessionInfo(HttpServletRequest req){
         return ShiroUtil.getLoginInfo(true, req);
     }
 
