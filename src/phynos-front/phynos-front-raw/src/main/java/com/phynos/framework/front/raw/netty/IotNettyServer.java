@@ -46,6 +46,7 @@ public class IotNettyServer {
 
     public void start() throws Exception {
         int port = nettyConfig.getPort();
+        logger.info("netty监听端口：{}", port);
         try {
             b.group(bossGroup, workerGroup)
              .channel(NioServerSocketChannel.class) // (3)
