@@ -8,6 +8,7 @@ phynos-ui  -- https://github.com/phynos/Phynos-SpringCloud-Web
 phynos
 └── phynos-3rd -- 第三方模块  
      ├── phynos-activiti -- 工作流引擎  
+     ├── phynos-report -- 报表引擎  
      ├── phynos-lucene -- 删除，改为使用ElasticSearch      
      └── phynos-ruler -- 规则引擎  
 └── phynos-common -- 系统公共模块  

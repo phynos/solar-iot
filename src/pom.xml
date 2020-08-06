@@ -181,7 +181,16 @@
                 <artifactId>phynos-dao</artifactId>
                 <version>${phynos.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>com.phynos.framework</groupId>
+                <artifactId>phynos-push-rabbitmq</artifactId>
+                <version>${phynos.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.phynos.framework</groupId>
+                <artifactId>phynos-redis</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
 
         </dependencies>
     </dependencyManagement>

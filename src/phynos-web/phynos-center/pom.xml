@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>phynos-center</artifactId>
-    <description>中下节点进程</description>
+    <description>中心节点进程</description>
     <packaging>jar</packaging>
 
 </project>
