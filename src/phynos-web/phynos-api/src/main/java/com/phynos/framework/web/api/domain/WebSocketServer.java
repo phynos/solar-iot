@@ -1,4 +1,4 @@
-package com.phynos.framework.push.domain;
+package com.phynos.framework.web.api.domain;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

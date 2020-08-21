@@ -1,8 +1,8 @@
-package com.phynos.framework.push.rabbit;
+package com.phynos.framework.web.api.rabbit;
 
-import com.phynos.framework.push.domain.WebSocketServer;
 import com.phynos.framework.push.rabbitmq.config.RabbitConfig;
 import com.phynos.framework.push.rabbitmq.model.NoticeMessage;
+import com.phynos.framework.web.api.domain.WebSocketServer;
 import com.rabbitmq.client.Channel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
