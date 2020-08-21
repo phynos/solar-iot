@@ -15,7 +15,6 @@
         <module>phynos-api</module>
         <module>phynos-monitor</module>
         <module>phynos-push</module>
-        <module>phynos-center</module>
     </modules>
 
 
