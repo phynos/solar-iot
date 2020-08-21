@@ -1,19 +1,19 @@
 # Phynos-SpringBoot
-Java物联网开发框架
+物联网快速开发框架，基于SpringBoot的单体应用，旨在快速开发，更完善的系统请使用微服务项目。
 
 ## 模块说明（/src目录）
 ```lua
-phynos-ui  -- https://github.com/phynos/Phynos-SpringCloud-Web
 
 phynos
 └── phynos-3rd -- 第三方模块  
      ├── phynos-activiti -- 工作流引擎  
-     ├── phynos-quartz -- 分布式定时器  
-     └── phynos-ruler -- 规则引擎  
+     └── phynos-quartz -- 分布式定时器  
 └── phynos-common -- 系统公共模块  
      ├── phynos-core -- 业务核心包  
      ├── phynos-dao -- 数据连接层  
-     └── phynos-generator -- 代码生成器  
+     ├── phynos-generator -- 代码生成器  
+     ├── phynos-redis -- redis代码  
+     └── phynos-push-rabbitmq -- 基于rabbitmq的push代码        
 └── phynos-front -- 通讯前置机  
      ├── phynos-front-mqtt -- mqtt前置机  
      ├── phynos-front-raw -- netty前置机  
@@ -21,9 +21,6 @@ phynos
 └── phynos-simulator -- 设备模拟器 
      ├── phynos-simulator-mqtt -- mqtt设备端模拟器  
      └── phynos-simulator-raw -- 原始TCP/IP协议通讯模拟器  
-└── phynos-middleware -- 中间件 
-     ├── phynos-redis -- redis代码  
-     └── phynos-push-rabbitmq -- 基于rabbitmq的push代码   
 └── phynos-web -- WEB应用层 
      ├── phynos-api -- WEB-API接口层  
      ├── phynos-push -- websocket推送       
