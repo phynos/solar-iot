@@ -24,7 +24,7 @@ phynos
 └── phynos-middleware -- 中间件 
      ├── phynos-redis -- redis代码  
      └── phynos-push-rabbitmq -- 基于rabbitmq的push代码   
-└── phynos-web -- web层应用 
+└── phynos-web -- WEB应用层 
      ├── phynos-api -- WEB-API接口层  
      ├── phynos-push -- websocket推送       
      └── phynos-monitor -- actuator监视器  

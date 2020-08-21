@@ -1,7 +1,0 @@
-/target
-logs/
-CaseUpload/
-
-*.class
-*.iml
-*.idea
