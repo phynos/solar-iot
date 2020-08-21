@@ -14,7 +14,6 @@
     <modules>
         <module>phynos-activiti</module>
         <module>phynos-ruler-engine</module>
-        <module>phynos-report</module>
         <module>phynos-quartz</module>
     </modules>
 
