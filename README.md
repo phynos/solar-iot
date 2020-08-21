@@ -23,7 +23,6 @@ phynos
      └── phynos-simulator-raw -- 原始TCP/IP协议通讯模拟器  
 └── phynos-web -- WEB应用层 
      ├── phynos-api -- WEB-API接口层  
-     ├── phynos-push -- websocket推送       
      └── phynos-monitor -- actuator监视器  
 
 ```
