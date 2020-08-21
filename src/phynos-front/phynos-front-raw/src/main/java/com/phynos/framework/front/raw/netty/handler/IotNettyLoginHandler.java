@@ -2,14 +2,12 @@ package com.phynos.framework.front.raw.netty.handler;
 
 import com.phynos.framework.front.raw.message.request.IotLoginMessage;
 import com.phynos.framework.front.raw.netty.IoSession;
-import com.phynos.framework.front.raw.service.RmiClientService;
 import com.phynos.framework.front.raw.util.ChannelUtils;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,9 +15,6 @@ import org.springframework.stereotype.Service;
 public class IotNettyLoginHandler extends ChannelInboundHandlerAdapter {
 
     Logger logger = LoggerFactory.getLogger(getClass());
-
-    @Autowired
-    RmiClientService rmiClientService;
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
@@ -44,8 +39,6 @@ public class IotNettyLoginHandler extends ChannelInboundHandlerAdapter {
 
             //记录登录状态
             ioSession.isLogin = true;
-            String response = rmiClientService.sayHello("i am client");
-            logger.debug(response);
         } else if (!ioSession.isLogin) {
             logger.warn("没有登录，直接关闭连接");
             ctx.channel().close();
