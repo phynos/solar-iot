@@ -13,7 +13,6 @@
         <module>phynos-simulator</module>
         <module>phynos-common</module>
         <module>phynos-web</module>
-        <module>phynos-3rd</module>
     </modules>
 
     <properties>
