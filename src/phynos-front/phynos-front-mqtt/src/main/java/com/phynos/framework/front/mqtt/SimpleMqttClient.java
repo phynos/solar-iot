@@ -1,9 +1,13 @@
 package com.phynos.framework.front.mqtt;
 
 import org.eclipse.paho.client.mqttv3.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class SimpleMqttClient implements MqttCallback {
+
+    Logger logger = LoggerFactory.getLogger(getClass());
 
     MqttClient myClient;
     MqttConnectOptions connOpt;
@@ -25,7 +29,7 @@ public class SimpleMqttClient implements MqttCallback {
      */
     @Override
     public void connectionLost(Throwable t) {
-        System.out.println("Connection lost!");
+        logger.debug("Connection lost!");
         // code to reconnect to the broker would go here if desired
     }
 
@@ -37,10 +41,10 @@ public class SimpleMqttClient implements MqttCallback {
 
     @Override
     public void messageArrived(String topic, MqttMessage message) throws Exception {
-        System.out.println("-------------------------------------------------");
-        System.out.println("| Topic:" + topic);
-        System.out.println("| Message: " + new String(message.getPayload()));
-        System.out.println("-------------------------------------------------");
+        logger.debug("-------------------------------------------------");
+        logger.debug("| Topic:" + topic);
+        logger.debug("| Message: " + new String(message.getPayload()));
+        logger.debug("-------------------------------------------------");
     }
 
     /**
@@ -76,7 +80,7 @@ public class SimpleMqttClient implements MqttCallback {
             System.exit(-1);
         }
 
-        System.out.println("Connected to " + BROKER_URL);
+        logger.debug("Connected to " + BROKER_URL);
 
         // setup topic
         // topics on m2m.io are in the form <domain>/<stuff>/<thing>
@@ -103,7 +107,7 @@ public class SimpleMqttClient implements MqttCallback {
                 message.setRetained(false);
 
                 // Publish the message
-                System.out.println("Publishing to topic \"" + topic + "\" qos " + pubQoS);
+                logger.debug("Publishing to topic \"" + topic + "\" qos " + pubQoS);
                 MqttDeliveryToken token = null;
                 try {
                     // publish message to broker
