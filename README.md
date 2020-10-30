@@ -41,7 +41,7 @@ phynos
      ├── 分页插件 --基于pagehelper  
      └── 统一登录  
 └── 应用示例  
-     ├── 前置机Netty --完美整合Netty和SpringBoot，组合zookeeper和Redis实现分布式集群  
+     ├── 前置机Netty --整合Netty和SpringBoot，组合zookeeper和Redis实现分布式集群  
      └── 管理后台 -- 当前主流的管理后台实现  
 
 ```

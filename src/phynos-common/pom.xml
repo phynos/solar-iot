@@ -11,12 +11,14 @@
 
     <artifactId>phynos-common</artifactId>
     <packaging>pom</packaging>
+    
     <modules>
         <module>phynos-core</module>
         <module>phynos-dao</module>
         <module>phynos-generator</module>
         <module>phynos-push-rabbitmq</module>
         <module>phynos-redis</module>
+        <module>phynos-swagger</module>
     </modules>
 
 
