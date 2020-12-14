@@ -1,0 +1,46 @@
+
+
+# tomcat配置
+server:
+  port: 7600
+  tomcat:
+    uri-encoding: 'UTF-8'
+
+spring:
+  application:
+    name: PhynosFrontWs
+  boot:
+    admin:
+      client:
+        url: http://172.16.22.161:9000
+
+
+# 运行监控相关的配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+# 日志
+logging:
+  file: logs/phynos-front-ws.log
+  file.max-size: 300MB #日志文件大小
+  file.max-history: 15 #最大保留天数
+  level:
+    com.phynos.framework: DEBUG
+    com:
+      spring: trace
+    org:
+      activiti:
+        spring: DEBUG
+        engine:
+          impl:
+            persistence:
+              entity: DEBUG
+  pattern:
+    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%t]){faint} %clr(%-40.40logger{39}){cyan}[lineno:%line]    %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --- [%t] %-40.40logger{39}[lineno:%line]: %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"

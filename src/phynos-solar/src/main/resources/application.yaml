@@ -1,0 +1,39 @@
+
+server:
+  port: 7001
+  tomcat:
+    uri-encoding: 'UTF-8'
+
+spring:
+  application:
+    name: PhynosAPI
+  devtools:
+    restart:
+      enabled: false
+  profiles:
+    active: 'dev'
+  servlet:
+    multipart:
+      max-request-size: '10MB' # 上传文件总的最大值
+      max-file-size: '10MB' # 单个文件的最大值
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  cache:
+    type: ehcache
+    ehcache:
+      config: classpath:ehcache.xml    #encache.xml文件位置
+
+
+# 日志配置
+logging:
+  file:
+    name: logs/phynos-api.log
+  file.max-size: 300MB #日志文件大小
+  file.max-history: 15 #最大保留天数
+  level:
+    com:
+      spring: trace
+  pattern:
+    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%t]){faint} %clr(%-40.40logger{39}){cyan}[lineno:%line]    %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --- [%t] %-40.40logger{39}[lineno:%line]: %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"

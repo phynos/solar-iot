@@ -1,0 +1,35 @@
+package com.phynos.solar.controller;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
+/**
+ * @Author: Lupc
+ * @Date: 2019/10/10 20:24
+ **/
+@RestController
+@RequestMapping("/api/debug")
+public class DebugController {
+
+    @Value("${com.phynos.solar.time}")
+    String buildTime;
+
+    @GetMapping("/buildTime")
+    public String buildTime() throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = sdf.parse(buildTime);
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.HOUR, 8);
+        date = cal.getTime();
+        return sdf.format(date);
+    }
+
+}
