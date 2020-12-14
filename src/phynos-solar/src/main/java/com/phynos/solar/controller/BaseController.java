@@ -18,14 +18,6 @@ public class BaseController {
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
     @ResponseBody
-    @ExceptionHandler(org.apache.shiro.authz.UnauthorizedException.class)
-    public JsonResult handlerUnauthorizedException(
-            org.apache.shiro.authz.UnauthorizedException ex){
-        logger.warn("无权限的访问：" + ex.getMessage());
-        return JsonResult.code(ResultCodeEnum.NOT_HAVE_PERMISSION);
-    }
-
-    @ResponseBody
     @ExceptionHandler(RuntimeException.class)
     public JsonResult handlerException(RuntimeException ex){
         logger.error(ex.getMessage(), ex);

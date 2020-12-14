@@ -1,4 +1,9 @@
 
+com:
+  phynos:
+    solar:
+      time: @timestamp@
+
 server:
   port: 7001
   tomcat:
@@ -23,7 +28,13 @@ spring:
     type: ehcache
     ehcache:
       config: classpath:ehcache.xml    #encache.xml文件位置
-
+  datasource:
+    driver-class-name: org.h2.Driver
+    schema: classpath:db/schema-h2.sql
+    data: classpath:db/data-h2.sql
+    url: jdbc:h2:mem:test
+    username: root
+    password: test
 
 # 日志配置
 logging:
