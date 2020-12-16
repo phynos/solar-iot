@@ -10,7 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>phynos-front</module>
-        <module>phynos-common</module>
+        <module>phynos-generator</module>
         <module>phynos-solar</module>
     </modules>
 
