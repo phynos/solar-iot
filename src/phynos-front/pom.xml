@@ -14,7 +14,6 @@
     <modules>
         <module>phynos-front-mqtt</module>
         <module>phynos-front-raw</module>
-        <module>phynos-front-websocket</module>
     </modules>
 
 

@@ -14,10 +14,10 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @EnableCaching
 @EnableAsync
 @MapperScan({"com.phynos.solar.mapper"})
-public class WebApiApplication {
+public class SolarApiApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(WebApiApplication.class, args);
+        SpringApplication.run(SolarApiApplication.class, args);
     }
 
 }

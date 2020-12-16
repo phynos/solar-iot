@@ -89,7 +89,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
                 <configuration>
-                    <mainClass>com.phynos.solar.WebApiApplication</mainClass>
+                    <mainClass>com.phynos.solar.SolarApiApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>
