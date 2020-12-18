@@ -29,7 +29,7 @@ public class DebugController {
         cal.setTime(date);
         cal.add(Calendar.HOUR, 8);
         date = cal.getTime();
-        return sdf.format(date);
+        return "" + sdf.format(date);
     }
 
 }
