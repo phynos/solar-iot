@@ -1,5 +1,7 @@
 package com.phynos.solar.controller;
 
+import com.phynos.solar.service.DebugService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +23,9 @@ public class DebugController {
     @Value("${com.phynos.solar.time}")
     String buildTime;
 
+    @Autowired
+    DebugService debugService;
+
     @GetMapping("/buildTime")
     public String buildTime() throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -30,6 +35,12 @@ public class DebugController {
         cal.add(Calendar.HOUR, 8);
         date = cal.getTime();
         return "" + sdf.format(date);
+    }
+
+    @GetMapping("/testThread")
+    public String testThread() {
+        debugService.testThread();
+        return "ok";
     }
 
 }
