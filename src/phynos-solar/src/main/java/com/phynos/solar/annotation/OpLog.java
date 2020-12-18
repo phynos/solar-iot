@@ -5,7 +5,7 @@ import java.lang.annotation.*;
 @Target({ ElementType.PARAMETER, ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface OperationRecord {
+public @interface OpLog {
 	
 	/** 模块 */
 	String module() default "";

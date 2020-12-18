@@ -1,11 +1,9 @@
 package com.phynos.solar.aspectj;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.phynos.solar.annotation.OperationRecord;
+import com.phynos.solar.annotation.OpLog;
 import com.phynos.solar.json.JsonResult;
 import com.phynos.solar.json.ResultCodeEnum;
+import com.phynos.solar.util.JsonUtil;
 import com.phynos.solar.util.ServletUtil;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
@@ -34,20 +32,12 @@ import java.util.Map;
 @Aspect
 @Component
 @EnableAsync
-public class LogAspect {
+public class OpLogAspect {
 
     Logger logger = LoggerFactory.getLogger(getClass());
 
-    private static final ObjectMapper JSON_MAPPER = new ObjectMapper();
-
-    static {
-        //允许 json字符串有未知的属性
-        JSON_MAPPER.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
-                false);
-    }
-
     // 切点
-    @Pointcut("@annotation(com.phynos.solar.annotation.OperationRecord)")
+    @Pointcut("@annotation(com.phynos.solar.annotation.OpLog)")
     public void logPointCut() {
 
     }
@@ -82,7 +72,7 @@ public class LogAspect {
         try {
             logger.debug("当前系统日志处理线程名称：" + Thread.currentThread().getName());
             // 获得注解
-            OperationRecord controllerLog = getAnnotationLog(joinPoint);
+            OpLog controllerLog = getAnnotationLog(joinPoint);
             if (controllerLog == null) {
                 return;
             }
@@ -140,16 +130,12 @@ public class LogAspect {
     private String getHttpRequestParamString(HttpServletRequest request) {
         Map<String, String[]> map = request.getParameterMap();
         String result = "";
-        try {
-            String params = JSON_MAPPER.writeValueAsString(map);
-            if (params != null) {
-                if (params.length() > 250)
-                    result = params.substring(0, 250);
-                else
-                    return params;
-            }
-        } catch (JsonProcessingException e) {
-            logger.error(e.getMessage(), e);
+        String params = JsonUtil.objectToString(map);
+        if (params != null) {
+            if (params.length() > 250)
+                result = params.substring(0, 250);
+            else
+                return params;
         }
         return result;
     }
@@ -161,7 +147,7 @@ public class LogAspect {
      * @throws Exception
      */
     public void getControllerMethodDescription(
-            OperationRecord log) throws Exception {
+            OpLog log) throws Exception {
         //设置模块
         log.module();
         //设置功能
@@ -175,13 +161,13 @@ public class LogAspect {
     /**
      * 是否存在注解，如果存在就获取
      */
-    private OperationRecord getAnnotationLog(JoinPoint joinPoint) throws Exception {
+    private OpLog getAnnotationLog(JoinPoint joinPoint) throws Exception {
         Signature signature = joinPoint.getSignature();
         MethodSignature methodSignature = (MethodSignature) signature;
         Method method = methodSignature.getMethod();
 
         if (method != null) {
-            return method.getAnnotation(OperationRecord.class);
+            return method.getAnnotation(OpLog.class);
         }
         return null;
     }
