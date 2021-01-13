@@ -1,15 +1,15 @@
 /*
 * 
 *      数据库初始化脚本
-*	数据库：mysql5.6
+*	数据库：mysql-8.0.22
 *   脚本版本：V1.0
 *
 */
 
-DROP DATABASE IF EXISTS `phynos`;
-CREATE DATABASE IF NOT EXISTS `phynos` DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+DROP DATABASE IF EXISTS `charger`;
+CREATE DATABASE IF NOT EXISTS `charger` DEFAULT CHARSET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
 
-USE `phynos`;
+USE `charger`;
 
 SET FOREIGN_KEY_CHECKS = 0;
 
