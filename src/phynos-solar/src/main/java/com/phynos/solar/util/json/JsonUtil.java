@@ -1,4 +1,4 @@
-package com.phynos.solar.util;
+package com.phynos.solar.util.json;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;

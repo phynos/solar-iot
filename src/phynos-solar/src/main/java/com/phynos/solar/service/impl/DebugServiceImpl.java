@@ -1,6 +1,7 @@
 package com.phynos.solar.service.impl;
 
 import com.phynos.solar.service.DebugService;
+import com.phynos.solar.util.json.R;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +29,9 @@ public class DebugServiceImpl implements DebugService {
     }
 
     @Override
-    public String test() {
+    public R<?> test() {
         ac.getBean(DebugService.class).testThread();
-        return null;
+        return R.ok();
     }
 
     @Async("asyncTaskExecutor")

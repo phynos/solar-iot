@@ -1,6 +1,7 @@
 package com.phynos.solar.controller;
 
 import com.phynos.solar.service.DebugService;
+import com.phynos.solar.util.json.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,6 +42,11 @@ public class DebugController {
     public String testThread() {
         debugService.testThread();
         return "ok";
+    }
+
+    @GetMapping("/test")
+    public R<?> test() {
+        return debugService.test();
     }
 
 }

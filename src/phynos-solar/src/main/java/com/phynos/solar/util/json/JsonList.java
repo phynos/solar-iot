@@ -1,4 +1,4 @@
-package com.phynos.solar.json;
+package com.phynos.solar.util.json;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;

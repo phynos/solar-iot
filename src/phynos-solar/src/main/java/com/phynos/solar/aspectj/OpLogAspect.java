@@ -1,9 +1,9 @@
 package com.phynos.solar.aspectj;
 
 import com.phynos.solar.annotation.OpLog;
-import com.phynos.solar.json.JsonResult;
-import com.phynos.solar.json.ResultCodeEnum;
-import com.phynos.solar.util.JsonUtil;
+import com.phynos.solar.util.json.R;
+import com.phynos.solar.util.json.ResultCodeEnum;
+import com.phynos.solar.util.json.JsonUtil;
 import com.phynos.solar.util.ServletUtil;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
@@ -81,11 +81,10 @@ public class OpLogAspect {
                 //异常信息
                 String errorMsg = e.getMessage();
             } else {
-                if (rvt != null && rvt instanceof JsonResult) {
-                    JsonResult jr = (JsonResult) rvt;
-                    String msg = jr.getMsg();
-                    boolean result = jr.getStatus() == ResultCodeEnum.OK.getCode();
-
+                if (rvt != null && rvt instanceof R) {
+                    R r = (R) rvt;
+                    String msg = r.getMsg();
+                    boolean result = r.getStatus() == ResultCodeEnum.OK.getCode();
                 } else {
                     //进入这里，表示返回结果不是json数据
                     logger.warn("暂时无法处理 返回结果不是json的情况");

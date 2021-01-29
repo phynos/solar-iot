@@ -1,7 +1,7 @@
 package com.phynos.solar.controller;
 
-import com.phynos.solar.json.JsonResult;
-import com.phynos.solar.json.ResultCodeEnum;
+import com.phynos.solar.util.json.R;
+import com.phynos.solar.util.json.ResultCodeEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.TypeMismatchException;
@@ -19,25 +19,25 @@ public class BaseController {
 
     @ResponseBody
     @ExceptionHandler(RuntimeException.class)
-    public JsonResult handlerException(RuntimeException ex){
+    public R<?> handlerException(RuntimeException ex) {
         logger.error(ex.getMessage(), ex);
-        return JsonResult.code(ResultCodeEnum.SYSTEM_UNKNOWN_ERROR,ex.getMessage());
+        return R.codeMsg(ResultCodeEnum.SYSTEM_UNKNOWN_ERROR, ex.getMessage());
     }
 
     //参数类型不匹配
     @ExceptionHandler({TypeMismatchException.class})
     @ResponseBody
-    public JsonResult requestTypeMismatch(TypeMismatchException ex){
+    public R<?> requestTypeMismatch(TypeMismatchException ex) {
         logger.error(ex.getMessage(), ex);
-        return JsonResult.code(ResultCodeEnum.PARAMETER_ERROR,"参数类型不匹配,参数" + ex.getPropertyName() + "类型应该为" + ex.getRequiredType());
+        return R.codeMsg(ResultCodeEnum.PARAMETER_ERROR, "参数类型不匹配,参数" + ex.getPropertyName() + "类型应该为" + ex.getRequiredType());
     }
 
     //缺少参数异常
     @ExceptionHandler({MissingServletRequestParameterException.class})
     @ResponseBody
-    public JsonResult requestMissingServletRequest(MissingServletRequestParameterException ex){
+    public R<?> requestMissingServletRequest(MissingServletRequestParameterException ex) {
         logger.error(ex.getMessage(), ex);
-        return JsonResult.code(ResultCodeEnum.PARAMETER_ERROR,"缺少必要参数,参数名称为" + ex.getParameterName());
+        return R.codeMsg(ResultCodeEnum.PARAMETER_ERROR, "缺少必要参数,参数名称为" + ex.getParameterName());
     }
 
 }
