@@ -17,6 +17,10 @@ public class R<T> {
 
     private String msg;
 
+    //这个字段用来开发阶段传递一些错误信息给前端，方便调试（不必定义过多的错误码）
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String tip;
+
     @JsonProperty("data")
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private T data;
@@ -35,13 +39,19 @@ public class R<T> {
         return r;
     }
 
-    public static R<?> codeMsg(int code, String msg) {
-        R<?> r = new R<>(code, msg);
+    public static R<?> msg(ResultCodeEnum error, String msg) {
+        return msg(error, msg, null);
+    }
+
+    public static R<?> msg(ResultCodeEnum error, String msg, String tip) {
+        R<?> r = new R<>(error.getCode(), msg);
+        r.setTip(tip);
         return r;
     }
 
-    public static R<?> codeMsg(ResultCodeEnum error, String msg) {
-        R<?> r = new R<>(error.getCode(), msg);
+    public static R<?> tip(ResultCodeEnum error, String tip) {
+        R<?> r = code(error);
+        r.setTip(tip);
         return r;
     }
 

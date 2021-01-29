@@ -1,5 +1,6 @@
 package com.phynos.solar.controller;
 
+import com.phynos.solar.dto.sys.PhyLoginDto;
 import com.phynos.solar.service.DebugService;
 import com.phynos.solar.util.json.R;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -46,6 +48,11 @@ public class DebugController {
 
     @GetMapping("/test")
     public R<?> test() {
+        return debugService.test();
+    }
+
+    @GetMapping("/test/dto")
+    public R<?> test(@Valid PhyLoginDto dto) {
         return debugService.test();
     }
 
