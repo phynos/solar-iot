@@ -66,7 +66,6 @@ public class SimpleMqttClient implements MqttCallback {
     @Override
     public void connectionLost(Throwable t) {
         logger.debug("Connection lost!");
-        // code to reconnect to the broker would go here if desired
     }
 
     @Override
@@ -81,14 +80,6 @@ public class SimpleMqttClient implements MqttCallback {
         logger.debug("| Topic:" + topic);
         logger.debug("| Message: " + new String(message.getPayload()));
         logger.debug("-------------------------------------------------");
-    }
-
-    /**
-     * messageArrived
-     * This callback is invoked when a message is received on a subscribed topic.
-     */
-    public void messageArrived(MqttTopic topic, MqttMessage message) throws Exception {
-
     }
 
     private void subscriber() {
