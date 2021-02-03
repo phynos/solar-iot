@@ -1,4 +1,8 @@
 
+mqtt:
+  url: tcp://42.192.126.212:7607
+  username: admin
+  password: "启动传入"
 
 logging:
   file.max-size: 300MB #日志文件大小

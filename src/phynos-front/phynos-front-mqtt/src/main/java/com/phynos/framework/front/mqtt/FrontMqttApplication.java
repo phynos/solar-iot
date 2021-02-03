@@ -17,8 +17,7 @@ public class FrontMqttApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        SimpleMqttClient smc = new SimpleMqttClient();
-        smc.runClient();
+        System.in.read();
     }
 
 }
