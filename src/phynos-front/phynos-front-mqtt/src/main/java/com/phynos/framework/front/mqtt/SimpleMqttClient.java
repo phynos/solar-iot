@@ -82,7 +82,7 @@ public class SimpleMqttClient implements MqttCallback {
         logger.debug("-------------------------------------------------");
     }
 
-    private void subscriber() {
+    public void subscriber() {
         // setup topic
         // topics on m2m.io are in the form <domain>/<stuff>/<thing>
         String myTopic = M2MIO_DOMAIN + "/" + M2MIO_STUFF + "/" + M2MIO_THING;
@@ -97,7 +97,7 @@ public class SimpleMqttClient implements MqttCallback {
         }
     }
 
-    private void publisher() {
+    public void publisher() {
         String myTopic = M2MIO_DOMAIN + "/" + M2MIO_STUFF + "/" + M2MIO_THING;
         MqttTopic topic = myClient.getTopic(myTopic);
         for (int i = 1; i <= 10; i++) {
