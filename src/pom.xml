@@ -12,6 +12,7 @@
         <module>solar-front-mqtt</module>
         <module>solar-front-raw</module>
         <module>solar-api</module>
+        <module>solar-module</module>
     </modules>
 
     <properties>
