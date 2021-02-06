@@ -1,4 +1,4 @@
-package com.phynos.solar.rule.easyrules;
+package com.phynos.solar.rule.easyrules.rule;
 
 import org.jeasy.rules.annotation.Action;
 import org.jeasy.rules.annotation.Condition;
