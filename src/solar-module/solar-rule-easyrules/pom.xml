@@ -12,6 +12,15 @@
     <artifactId>solar-rule-easyrules</artifactId>
 
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+        </dependency>
         <!--easy rules核心库-->
         <dependency>
             <groupId>org.jeasy</groupId>

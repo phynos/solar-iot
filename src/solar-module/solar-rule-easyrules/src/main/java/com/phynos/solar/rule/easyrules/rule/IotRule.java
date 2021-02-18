@@ -4,12 +4,15 @@ import com.phynos.solar.rule.easyrules.RuleFireType;
 import com.phynos.solar.rule.easyrules.action.DeviceAction;
 import com.phynos.solar.rule.easyrules.condition.ConditionType;
 import com.phynos.solar.rule.easyrules.condition.DeviceConditon;
+import com.phynos.solar.rule.easyrules.condition.OperType;
+import com.phynos.solar.rule.easyrules.device.IotDevice;
 import lombok.Getter;
 import lombok.Setter;
 import org.jeasy.rules.api.Facts;
 import org.jeasy.rules.api.Rule;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author by lupc
@@ -51,12 +54,33 @@ public class IotRule implements Rule {
 
     @Override
     public boolean evaluate(Facts facts) {
-        return false;
+        Map<String, IotDevice> deviceMap = facts.get("deviceMap");
+        if (conditionType == ConditionType.或) {
+            for (DeviceConditon condition : deviceConditons) {
+                boolean result = condition.evaluate(deviceMap);
+                if (result) {
+                    return true;
+                }
+            }
+            return false;
+        } else {
+            boolean result = false;
+            for (DeviceConditon condition : deviceConditons) {
+                result = condition.evaluate(deviceMap);
+                if (!result) {
+                    return false;
+                }
+            }
+            return result;
+        }
     }
 
     @Override
     public void execute(Facts facts) throws Exception {
-
+        final Map<String, IotDevice> deviceMap = facts.get("deviceMap");
+        for (DeviceAction action : actions) {
+            action.execute(deviceMap);
+        }
     }
 
     @Override

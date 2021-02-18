@@ -3,7 +3,9 @@ package com.phynos.solar.rule.easyrules;
 import com.phynos.solar.rule.easyrules.action.DeviceAction;
 import com.phynos.solar.rule.easyrules.condition.ConditionType;
 import com.phynos.solar.rule.easyrules.condition.DeviceConditon;
+import com.phynos.solar.rule.easyrules.condition.OperType;
 import com.phynos.solar.rule.easyrules.device.IotDevice;
+import com.phynos.solar.rule.easyrules.device.IotSignal;
 import com.phynos.solar.rule.easyrules.rule.HelloWorldRule;
 import com.phynos.solar.rule.easyrules.rule.IotRule;
 import org.jeasy.rules.api.Facts;
@@ -55,11 +57,23 @@ public class EasyRulesTest {
         openRule.setDescription("温度传感器数据大于28且小于40自动开启空调");
         openRule.setConditionType(ConditionType.或);
         //条件
-        List<DeviceConditon> conditons1 = new ArrayList<>(2);
-        openRule.setDeviceConditons(conditons1);
+        List<DeviceConditon> conditonList = new ArrayList<>(2);
+        DeviceConditon deviceConditon = new DeviceConditon();
+        deviceConditon.setOperType(OperType.大于);
+        deviceConditon.setDeviceSn("0101");
+        deviceConditon.setSignalKey("temp");
+        deviceConditon.setLimit("26");
+        conditonList.add(deviceConditon);
+        openRule.setDeviceConditons(conditonList);
+
         //行为
-        List<DeviceAction> actions1 = new ArrayList<>();
-        openRule.setActions(actions1);
+        List<DeviceAction> actionList = new ArrayList<>();
+        DeviceAction action = new DeviceAction();
+        action.setDeviceSn("0201");
+        action.setParameter("");
+        action.setCommand("开启空调");
+        actionList.add(action);
+        openRule.setActions(actionList);
 
         IotRule closeRule = new IotRule();
         closeRule.setName("空气自动关闭");
@@ -78,8 +92,10 @@ public class EasyRulesTest {
 
         Facts facts = new Facts();
         final Map<String, IotDevice> deviceMap = new HashMap<>();
-        deviceMap.put("0101", new IotDevice());
-        deviceMap.put("0201", new IotDevice());
+        IotDevice device1 = createDevice1("0101");
+        deviceMap.put(device1.getSn(), device1);
+        IotDevice device2 = createDevice2("0201");
+        deviceMap.put(device2.getSn(), device2);
         facts.put("deviceMap", deviceMap);
         Random random = new Random(System.currentTimeMillis());
         RulesEngine rulesEngine = new DefaultRulesEngine();
@@ -89,6 +105,19 @@ public class EasyRulesTest {
             rulesEngine.fire(rules, facts);
             Thread.sleep(300);
         }
+    }
+
+    private static IotDevice createDevice1(String sn) {
+        IotDevice device = new IotDevice();
+        device.setSn(sn);
+        device.getSignals().put("temp", new IotSignal());
+        return device;
+    }
+
+    private static IotDevice createDevice2(String sn) {
+        IotDevice device = new IotDevice();
+        device.setSn(sn);
+        return device;
     }
 
 
