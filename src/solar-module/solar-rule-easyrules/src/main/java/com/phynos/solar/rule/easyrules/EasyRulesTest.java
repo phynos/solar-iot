@@ -8,6 +8,7 @@ import com.phynos.solar.rule.easyrules.device.IotDevice;
 import com.phynos.solar.rule.easyrules.device.IotSignal;
 import com.phynos.solar.rule.easyrules.rule.HelloWorldRule;
 import com.phynos.solar.rule.easyrules.rule.IotRule;
+import org.apache.commons.lang3.RandomUtils;
 import org.jeasy.rules.api.Facts;
 import org.jeasy.rules.api.Rule;
 import org.jeasy.rules.api.Rules;
@@ -15,7 +16,10 @@ import org.jeasy.rules.api.RulesEngine;
 import org.jeasy.rules.core.DefaultRulesEngine;
 import org.jeasy.rules.jexl.JexlRule;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author by lupc
@@ -24,10 +28,17 @@ import java.util.*;
 public class EasyRulesTest {
 
     public static void main(String[] args) throws Exception {
+        //
+        testJexl();
+        //
+        //testIot();
+    }
 
+    private static void testJexl() {
         // create facts
         Facts facts = new Facts();
         facts.put("age", 1);
+        facts.put("pat", new Pat());
 
         // create rules
         Rules rules = new Rules();
@@ -37,21 +48,18 @@ public class EasyRulesTest {
                 .name("jexlRuler")
                 .description("")
                 .when("age > 18")
-                .then("System.out.println(\"jexl rule action\");");
+                .then("pat.test()");
         rules.register(jexlRule);
 
         // create a rules engine and fire rules on known facts
         RulesEngine rulesEngine = new DefaultRulesEngine();
         for (int i = 0; i < 100; i++) {
-            facts.clear();
-            facts.put("age", i);
+            facts.put("age", RandomUtils.nextInt(1, 99));
             rulesEngine.fire(rules, facts);
         }
-
-        test();
     }
 
-    private static void test() throws InterruptedException {
+    private static void testIot() throws InterruptedException {
         IotRule openRule = new IotRule();
         openRule.setName("空气自动开启");
         openRule.setDescription("温度传感器数据大于28且小于40自动开启空调");
@@ -97,10 +105,9 @@ public class EasyRulesTest {
         IotDevice device2 = createDevice2("0201");
         deviceMap.put(device2.getSn(), device2);
         facts.put("deviceMap", deviceMap);
-        Random random = new Random(System.currentTimeMillis());
         RulesEngine rulesEngine = new DefaultRulesEngine();
         for (int i = 0; i < 100; i++) {
-            int t = random.nextInt();
+            int t = RandomUtils.nextInt(0, 50);
             deviceMap.get("0101").getSignals().get("temp").setVal(t);
             rulesEngine.fire(rules, facts);
             Thread.sleep(300);
@@ -118,6 +125,12 @@ public class EasyRulesTest {
         IotDevice device = new IotDevice();
         device.setSn(sn);
         return device;
+    }
+
+    public static class Pat {
+        public void test() {
+            System.out.println("执行了MMMMMM");
+        }
     }
 
 

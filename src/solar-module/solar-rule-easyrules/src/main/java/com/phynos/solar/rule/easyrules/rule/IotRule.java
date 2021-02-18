@@ -4,7 +4,6 @@ import com.phynos.solar.rule.easyrules.RuleFireType;
 import com.phynos.solar.rule.easyrules.action.DeviceAction;
 import com.phynos.solar.rule.easyrules.condition.ConditionType;
 import com.phynos.solar.rule.easyrules.condition.DeviceConditon;
-import com.phynos.solar.rule.easyrules.condition.OperType;
 import com.phynos.solar.rule.easyrules.device.IotDevice;
 import lombok.Getter;
 import lombok.Setter;
