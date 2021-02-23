@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
  * @date 2021-01-22 9:41
  */
 @Configuration
-@MapperScan({"com.phynos.solar.mapper"})
+@MapperScan({"com.phynos.solar.module.*.mapper"})
 public class MybatisPlusConfig {
 
     /**
@@ -22,7 +22,7 @@ public class MybatisPlusConfig {
     @Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor() {
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
-        interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.POSTGRE_SQL));
+        interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));
         return interceptor;
     }
 
