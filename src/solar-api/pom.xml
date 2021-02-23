@@ -11,6 +11,10 @@
 
     <artifactId>solar-api</artifactId>
 
+    <properties>
+        <mbpp.version>3.4.2</mbpp.version>
+    </properties>
+
     <dependencies>
         <!-- spring-boot-devtools -->
         <dependency>
@@ -49,6 +53,11 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.4.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-generator</artifactId>
             <version>3.4.1</version>
         </dependency>
         <!-- mysql数据库 -->
@@ -67,12 +76,6 @@
             <optional>true</optional>
         </dependency>
 
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>2.6</version>
-        </dependency>
-
     </dependencies>
 
     <build>
@@ -84,6 +87,12 @@
                 <version>${spring-boot.version}</version>
                 <configuration>
                     <mainClass>com.phynos.solar.SolarApiApplication</mainClass>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
                 </configuration>
                 <executions>
                     <execution>

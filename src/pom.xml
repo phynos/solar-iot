@@ -28,11 +28,9 @@
         <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
         <!-- 各种版本 -->
         <phynos.version>1.0-SNAPSHOT</phynos.version>
-        <spring-boot.version>2.3.2.RELEASE</spring-boot.version>
+        <spring-boot.version>2.4.2</spring-boot.version>
         <mybatis.version>3.5.2</mybatis.version>
         <mysql.version>5.1.48</mysql.version>
-        <pagehelper.version>1.2.12</pagehelper.version>
-        <druid.version>1.1.20</druid.version>
         <shiro.version>1.4.1</shiro.version>
         <netty.version>4.1.51.Final</netty.version>
         <mqttv3.version>1.2.2</mqttv3.version>
@@ -45,6 +43,11 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>${common.lang3.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
