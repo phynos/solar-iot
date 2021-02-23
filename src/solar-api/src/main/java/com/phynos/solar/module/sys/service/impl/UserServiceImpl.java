@@ -1,5 +1,6 @@
 package com.phynos.solar.module.sys.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.phynos.solar.module.sys.entity.User;
 import com.phynos.solar.module.sys.mapper.UserMapper;
@@ -22,7 +23,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
     @PostConstruct
     public void test() {
-        List<User> users = getBaseMapper().selectList(null);
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("username", "admin");
+        List<User> users = getBaseMapper().selectList(queryWrapper);
+        users.forEach(user -> log.debug(user.getPassword()));
     }
 
 }
