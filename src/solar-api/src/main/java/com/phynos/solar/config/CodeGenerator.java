@@ -86,8 +86,9 @@ public class CodeGenerator {
         // 配置自定义输出模板
         //指定自定义模板路径，注意不要带上.ftl/.vm, 会根据使用的模板引擎自动识别
         // templateConfig.setEntity("templates/entity2.java");
-        // templateConfig.setService();
-        // templateConfig.setController();
+        templateConfig.setService("templates/service2.java");
+        templateConfig.setServiceImpl("templates/serviceImpl2.java");
+        templateConfig.setController("templates/controller2.java");
         templateConfig.setXml(null);
         // 模板引擎（如果更改了模板，则需要修改模板引擎）
         //mpg.setTemplateEngine(new FreemarkerTemplateEngine());

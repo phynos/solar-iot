@@ -26,7 +26,7 @@ spring:
     time-zone: GMT+8
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://42.192.126.212:7605/charger
+    url: jdbc:mysql://42.192.126.212:7605/charger?useSSL=false
     username: root
     password: 命令行输入
 
