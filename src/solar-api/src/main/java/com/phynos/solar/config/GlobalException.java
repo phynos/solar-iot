@@ -1,5 +1,6 @@
 package com.phynos.solar.config;
 
+import com.phynos.solar.util.exception.BizException;
 import com.phynos.solar.util.json.R;
 import com.phynos.solar.util.json.ResultCodeEnum;
 import org.slf4j.Logger;
@@ -30,6 +31,12 @@ public class GlobalException {
     public R<?> runtimeException(RuntimeException ex) {
         logger.error(ex.getMessage(), ex);
         return R.tip(ResultCodeEnum.SYSTEM_UNKNOWN_ERROR, ex.getMessage());
+    }
+
+    @ExceptionHandler(value = BizException.class)
+    public R<?> runtimeException(BizException ex) {
+        logger.error(ex.getMessage(), ex);
+        return ex.getR();
     }
 
     @ResponseBody

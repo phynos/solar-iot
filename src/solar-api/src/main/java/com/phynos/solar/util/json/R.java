@@ -4,9 +4,13 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.text.FormattableUtils;
+
+import java.text.Format;
 
 /**
  * ajax返回结果包装类
+ *
  * @author by lupc
  * @date 2021-01-29 10:55
  */
@@ -50,6 +54,7 @@ public class R<T> {
 
     /**
      * 自定义返回msg
+     *
      * @param error
      * @param msg
      * @return
@@ -60,21 +65,23 @@ public class R<T> {
 
     /**
      * 自定义返回msg，并附带tip
+     *
      * @param error
-     * @param msg
-     * @param tip
+     * @param format    msg的format
+     * @param arguments
      * @return
      */
-    public static R<?> msg(ResultCodeEnum error, String msg, String tip) {
+    public static R<?> msg(ResultCodeEnum error, String format, Object... arguments) {
+        String msg = String.format(format, arguments);
         R<?> r = new R<>(error.getCode(), msg);
-        r.setTip(tip);
         return r;
     }
 
     /**
      * 附带调试信息
+     *
      * @param error
-     * @param tip 调试信息
+     * @param tip   调试信息
      * @return
      */
     public static R<?> tip(ResultCodeEnum error, String tip) {
