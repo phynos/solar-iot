@@ -13,6 +13,7 @@
         <module>solar-front-raw</module>
         <module>solar-api</module>
         <module>solar-module</module>
+        <module>solar-codec</module>
     </modules>
 
     <properties>
@@ -174,6 +175,11 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-text</artifactId>
                 <version>1.9</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-jexl3</artifactId>
+                <version>3.1</version>
             </dependency>
 
             <dependency>

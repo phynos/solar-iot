@@ -13,6 +13,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>solar-rule-easyrules</module>
+        <module>solar-codec</module>
+        <module>solar-codec</module>
     </modules>
 
 

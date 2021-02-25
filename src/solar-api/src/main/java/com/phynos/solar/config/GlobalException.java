@@ -34,7 +34,7 @@ public class GlobalException {
     }
 
     @ExceptionHandler(value = BizException.class)
-    public R<?> runtimeException(BizException ex) {
+    public R<?> bizException(BizException ex) {
         logger.error(ex.getMessage(), ex);
         return ex.getR();
     }

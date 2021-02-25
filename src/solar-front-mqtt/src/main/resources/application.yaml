@@ -5,8 +5,6 @@ mqtt:
   password: "启动传入"
 
 logging:
-  file.max-size: 300MB #日志文件大小
-  file.max-history: 15 #最大保留天数
   level:
     com:
       phynos:
@@ -19,3 +17,7 @@ logging:
     file: "%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --- [%t] %-40.40logger{39}[lineno:%line]: %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"
   file:
     name: logs/front-mqtt.log
+  logback:
+    rollingpolicy:
+      max-history: 15
+      max-file-size: 300MB
