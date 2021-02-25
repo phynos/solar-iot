@@ -60,11 +60,12 @@ public class R<T> {
      * @return
      */
     public static R<?> msg(ResultCodeEnum error, String msg) {
-        return msg(error, msg, null);
+        R<?> r = new R<>(error.getCode(), msg);
+        return r;
     }
 
     /**
-     * 自定义返回msg，并附带tip
+     * 自定义返回msg，支持格式化
      *
      * @param error
      * @param format    msg的format
@@ -73,8 +74,7 @@ public class R<T> {
      */
     public static R<?> msg(ResultCodeEnum error, String format, Object... arguments) {
         String msg = String.format(format, arguments);
-        R<?> r = new R<>(error.getCode(), msg);
-        return r;
+        return msg(error, msg);
     }
 
     /**
@@ -88,6 +88,18 @@ public class R<T> {
         R<?> r = code(error);
         r.setTip(tip);
         return r;
+    }
+
+    /**
+     * 附带调试信息，支持格式化
+     * @param error
+     * @param format
+     * @param arguments
+     * @return
+     */
+    public static R<?> tip(ResultCodeEnum error, String format, Object... arguments) {
+        String tip = String.format(format, arguments);
+        return tip(error, tip);
     }
 
     public static <K> R<K> data(K data) {

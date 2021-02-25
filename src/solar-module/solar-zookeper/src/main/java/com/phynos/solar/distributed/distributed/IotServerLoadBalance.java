@@ -1,4 +1,4 @@
-package com.phynos.framework.front.raw.distributed;
+package com.phynos.solar.distributed.distributed;
 
 /**
  * 负载均衡

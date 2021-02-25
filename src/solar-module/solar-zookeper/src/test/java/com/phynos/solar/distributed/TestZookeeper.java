@@ -1,4 +1,4 @@
-package com.phynos.framework.front.raw;
+package com.phynos.solar.distributed;
 
 
 import org.apache.zookeeper.*;

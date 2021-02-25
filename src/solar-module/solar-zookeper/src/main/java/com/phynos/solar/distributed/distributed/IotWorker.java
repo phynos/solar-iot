@@ -1,8 +1,8 @@
-package com.phynos.framework.front.raw.distributed;
+package com.phynos.solar.distributed.distributed;
 
-import com.phynos.framework.front.raw.config.ServerConstants;
-import com.phynos.framework.front.raw.util.JsonUtil;
-import com.phynos.framework.front.raw.zk.ZKclient;
+import com.phynos.solar.distributed.config.ServerConstants;
+import com.phynos.solar.distributed.util.Converter;
+import com.phynos.solar.distributed.zk.ZKclient;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.data.Stat;
@@ -46,7 +46,7 @@ public class IotWorker {
         // 节点的 payload 为当前worker 实例
 
         try {
-            byte[] payload = JsonUtil.objectToByte(localNode);
+            byte[] payload = Converter.objectToByte(localNode);
 
             pathRegistered = client.create()
                     .creatingParentsIfNeeded()
@@ -112,7 +112,7 @@ public class IotWorker {
         while (true) {
             try {
                 localNode.incrementBalance();
-                byte[] payload = JsonUtil.objectToByte(localNode);
+                byte[] payload = Converter.objectToByte(localNode);
                 client.setData().forPath(pathRegistered, payload);
                 return true;
             } catch (Exception e) {
@@ -136,7 +136,7 @@ public class IotWorker {
 
                 localNode.decrementBalance();
 
-                byte[] payload = JsonUtil.objectToByte(localNode);
+                byte[] payload = Converter.objectToByte(localNode);
                 client.setData().forPath(pathRegistered, payload);
                 return true;
             } catch (Exception e) {

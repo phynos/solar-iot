@@ -1,4 +1,4 @@
-package com.phynos.framework.front.raw.distributed;
+package com.phynos.solar.distributed.distributed;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

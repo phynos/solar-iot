@@ -1,8 +1,8 @@
-package com.phynos.framework.front.raw.distributed;
+package com.phynos.solar.distributed.distributed;
 
 
-import com.phynos.framework.front.raw.config.ServerConstants;
-import com.phynos.framework.front.raw.zk.ZKclient;
+import com.phynos.solar.distributed.config.ServerConstants;
+import com.phynos.solar.distributed.zk.ZKclient;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.recipes.atomic.AtomicValue;
 import org.apache.curator.framework.recipes.atomic.DistributedAtomicLong;
@@ -10,6 +10,7 @@ import org.apache.curator.retry.RetryNTimes;
 
 /**
  * 分布式计数器
+ *
  * @author by Lupc
  * @date 2020/4/5.
  */

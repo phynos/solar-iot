@@ -15,6 +15,7 @@
         <module>solar-rule-easyrules</module>
         <module>solar-codec</module>
         <module>solar-codec</module>
+        <module>solar-zookeper</module>
     </modules>
 
 

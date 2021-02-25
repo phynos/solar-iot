@@ -1,4 +1,4 @@
-package com.phynos.framework.front.raw.zk;
+package com.phynos.solar.distributed.zk;
 
 import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;

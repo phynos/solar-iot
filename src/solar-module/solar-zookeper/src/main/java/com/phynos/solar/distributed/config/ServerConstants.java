@@ -1,4 +1,4 @@
-package com.phynos.framework.front.raw.config;
+package com.phynos.solar.distributed.config;
 
 /**
  * @author by Lupc
