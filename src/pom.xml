@@ -13,7 +13,6 @@
         <module>solar-front-raw</module>
         <module>solar-api</module>
         <module>solar-module</module>
-        <module>solar-codec</module>
     </modules>
 
     <properties>
