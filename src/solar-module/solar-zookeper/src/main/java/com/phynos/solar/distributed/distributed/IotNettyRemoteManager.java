@@ -1,8 +1,7 @@
 package com.phynos.solar.distributed.distributed;
 
-import com.phynos.framework.front.raw.config.ServerConstants;
-import com.phynos.framework.front.raw.message.IotMessage;
-import com.phynos.framework.front.raw.util.JsonUtil;
+import com.phynos.solar.distributed.config.ServerConstants;
+import com.phynos.solar.distributed.util.JsonUtil;
 import com.phynos.solar.distributed.zk.ZKclient;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.recipes.cache.ChildData;
@@ -133,12 +132,12 @@ public class IotNettyRemoteManager {
         return null;
     }
 
-    public void sendNotification(IotMessage message) {
+    public void sendNotification() {
         remoteMap.keySet().stream().forEach(
                 key -> {
                     if (!key.equals(getLocalNode().getId())) {
                         IotNettyRemote peerSender = remoteMap.get(key);
-                        peerSender.writeAndFlush(message);
+                        //peerSender.writeAndFlush(message);
                     }
                 }
         );

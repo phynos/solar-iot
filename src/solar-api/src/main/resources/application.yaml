@@ -11,7 +11,7 @@ server:
 
 spring:
   application:
-    name: PhynosAPI
+    name: SolarApi
   devtools:
     restart:
       enabled: false
@@ -24,11 +24,26 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://42.192.126.212:7605/charger?useSSL=false
-    username: root
-    password: 命令行输入
+  shardingsphere:
+    datasource:
+      names: ds0
+      common:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+      ds0:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        # url: jdbc:mysql://42.192.126.212:7605/charger?useSSL=false
+        jdbc-url: jdbc:mysql://42.192.126.212:7605/charger?useSSL=false
+        username: root
+        password: 命令行输入
+    sharding:
+      default-data-source-name: ds0
+    #  打印SQL，不配置   打印的都是逻辑表
+    props:
+      sql:
+        show: true
+
 
 mybatis-plus:
   mapper-locations: classpath*:/mapper/*Mapper.xml
