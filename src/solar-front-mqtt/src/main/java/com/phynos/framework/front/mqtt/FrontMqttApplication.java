@@ -1,5 +1,6 @@
 package com.phynos.framework.front.mqtt;
 
+import com.phynos.framework.front.mqtt.autoconfig.MqttV3Template;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -12,8 +13,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class FrontMqttApplication implements CommandLineRunner {
 
+
     @Autowired
-    SimpleMqttClient simpleMqttClient;
+    MqttV3Template mqttV3Template;
 
     public static void main(String[] args) {
         SpringApplication.run(FrontMqttApplication.class, args);
@@ -21,7 +23,7 @@ public class FrontMqttApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        simpleMqttClient.subscriber();
+        mqttV3Template.sendToMqtt("/test", "server 222");
         System.in.read();
     }
 

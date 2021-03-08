@@ -13,10 +13,14 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "mqtt")
 public class MqttProperties {
 
+    private String clientId;
+
     private String url;
 
     private String username;
 
     private String password;
+
+    private String defaultTopic;
 
 }

@@ -1,8 +1,10 @@
 
 mqtt:
+  clientId: server_001
   url: tcp://42.192.126.212:7607
   username: admin
   password: "启动传入"
+  defaultTopic: m2m.phynos.com/things/007
 
 logging:
   level:

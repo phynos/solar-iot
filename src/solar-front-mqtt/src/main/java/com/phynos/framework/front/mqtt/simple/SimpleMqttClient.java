@@ -1,4 +1,4 @@
-package com.phynos.framework.front.mqtt;
+package com.phynos.framework.front.mqtt.simple;
 
 import com.phynos.framework.front.mqtt.autoconfig.MqttProperties;
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +15,8 @@ public class SimpleMqttClient implements MqttCallback {
     MqttClient myClient;
     MqttConnectOptions connOpt;
 
+    static final String CLIENT_ID = "server_001";
+
     static final String M2MIO_DOMAIN = "m2m.phynos.com";
     static final String M2MIO_STUFF = "things";
     static final String M2MIO_THING = "007";
@@ -26,7 +28,7 @@ public class SimpleMqttClient implements MqttCallback {
     @PostConstruct
     public void connect() {
         // setup MQTT Client
-        String clientID = M2MIO_THING;
+        String clientID = CLIENT_ID;
         connOpt = new MqttConnectOptions();
 
         connOpt.setCleanSession(true);
