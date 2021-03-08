@@ -1,16 +1,14 @@
 package com.phynos.framework.front.mqtt;
 
+import com.phynos.framework.front.mqtt.autoconfig.MqttProperties;
+import lombok.extern.slf4j.Slf4j;
 import org.eclipse.paho.client.mqttv3.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
-
+@Slf4j
 public class SimpleMqttClient implements MqttCallback {
-
-    Logger logger = LoggerFactory.getLogger(getClass());
 
     private MqttProperties mqttProperties;
 
@@ -46,7 +44,7 @@ public class SimpleMqttClient implements MqttCallback {
             System.exit(-1);
         }
 
-        logger.debug("Connected to {}", mqttProperties.getUrl());
+        log.debug("Connected to {}", mqttProperties.getUrl());
     }
 
     @PreDestroy
@@ -65,7 +63,7 @@ public class SimpleMqttClient implements MqttCallback {
      */
     @Override
     public void connectionLost(Throwable t) {
-        logger.debug("Connection lost!");
+        log.debug("Connection lost!");
     }
 
     @Override
@@ -76,10 +74,10 @@ public class SimpleMqttClient implements MqttCallback {
 
     @Override
     public void messageArrived(String topic, MqttMessage message) throws Exception {
-        logger.debug("-------------------------------------------------");
-        logger.debug("| Topic:" + topic);
-        logger.debug("| Message: " + new String(message.getPayload()));
-        logger.debug("-------------------------------------------------");
+        log.debug("-------------------------------------------------");
+        log.debug("| Topic:" + topic);
+        log.debug("| Message: " + new String(message.getPayload()));
+        log.debug("-------------------------------------------------");
     }
 
     public void subscriber() {
@@ -108,7 +106,7 @@ public class SimpleMqttClient implements MqttCallback {
             message.setRetained(false);
 
             // Publish the message
-            logger.debug("Publishing to topic \"" + topic + "\" qos " + pubQoS);
+            log.debug("Publishing to topic \"" + topic + "\" qos " + pubQoS);
             MqttDeliveryToken token = null;
             try {
                 // publish message to broker

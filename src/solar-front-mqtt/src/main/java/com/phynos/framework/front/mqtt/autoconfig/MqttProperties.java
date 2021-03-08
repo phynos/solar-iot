@@ -1,4 +1,4 @@
-package com.phynos.framework.front.mqtt;
+package com.phynos.framework.front.mqtt.autoconfig;
 
 import lombok.Getter;
 import lombok.Setter;

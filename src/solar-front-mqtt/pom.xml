@@ -39,11 +39,6 @@
             <groupId>org.eclipse.paho</groupId>
             <artifactId>org.eclipse.paho.client.mqttv3</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-jexl3</artifactId>
-            <version>3.1</version>
-        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -53,6 +48,12 @@
                 <version>${spring-boot.version}</version>
                 <configuration>
                     <mainClass>com.phynos.framework.front.mqtt.FrontMqttApplication</mainClass>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
                 </configuration>
                 <executions>
                     <execution>
