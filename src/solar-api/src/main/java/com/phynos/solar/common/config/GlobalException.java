@@ -1,6 +1,6 @@
 package com.phynos.solar.common.config;
 
-import com.phynos.solar.common.util.exception.BizException;
+import com.phynos.solar.common.exception.BizException;
 import com.phynos.solar.common.util.json.R;
 import com.phynos.solar.common.util.json.ResultCodeEnum;
 import org.slf4j.Logger;

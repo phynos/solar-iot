@@ -1,4 +1,4 @@
-package com.phynos.solar.common.util.exception;
+package com.phynos.solar.common.exception;
 
 import com.phynos.solar.common.util.json.R;
 import lombok.Getter;
