@@ -26,16 +26,15 @@ import ${superControllerClassPackage};
 @Controller
 #end
 @RequestMapping("#if(${package.ModuleName})/${package.ModuleName}#end/#if(${controllerMappingHyphenStyle})${controllerMappingHyphen}#else${table.entityPath}#end")
-#if(${kotlin})
-class ${table.controllerName}#if(${superControllerClass}) : ${superControllerClass}()#end
-
+#if(${superControllerClass})
+public class ${table.controllerName} extends ${superControllerClass} {
 #else
-    #if(${superControllerClass})
-    public class ${table.controllerName} extends ${superControllerClass} {
-    #else
-    public class ${table.controllerName} {
-    #end
-
-        }
-
+public class ${table.controllerName} {
 #end
+
+
+
+
+
+
+}
