@@ -1,4 +1,4 @@
-package com.phynos.solar.codec;
+package com.phynos.solar.codec.device;
 
 /**
  * @author by lupc
