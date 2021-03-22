@@ -1,4 +1,4 @@
-package com.phynos.framework.front.mqtt.autoconfig;
+package com.phynos.solar.data.autoconfig;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,6 +1,6 @@
-package com.phynos.framework.front.mqtt.simple;
+package com.phynos.solar.data.simple;
 
-import com.phynos.framework.front.mqtt.autoconfig.MqttProperties;
+import com.phynos.solar.data.autoconfig.MqttProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.paho.client.mqttv3.*;
 

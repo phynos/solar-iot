@@ -1,4 +1,4 @@
-package com.phynos.framework.front.mqtt.autoconfig;
+package com.phynos.solar.data.autoconfig;
 
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
