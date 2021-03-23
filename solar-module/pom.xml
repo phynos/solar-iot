@@ -13,8 +13,9 @@
     <packaging>pom</packaging>
     <modules>
         <module>solar-rule-easyrules</module>
-        <module>solar-codec</module>
+        <module>solar-device</module>
         <module>solar-zookeper</module>
+        <module>solar-util-json</module>
     </modules>
 
 

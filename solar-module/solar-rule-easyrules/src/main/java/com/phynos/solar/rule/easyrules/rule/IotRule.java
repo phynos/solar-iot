@@ -1,10 +1,10 @@
 package com.phynos.solar.rule.easyrules.rule;
 
+import com.phynos.solar.codec.device.IotDevice;
 import com.phynos.solar.rule.easyrules.RuleFireType;
 import com.phynos.solar.rule.easyrules.action.DeviceAction;
 import com.phynos.solar.rule.easyrules.condition.ConditionType;
 import com.phynos.solar.rule.easyrules.condition.DeviceConditon;
-import com.phynos.solar.rule.easyrules.device.IotDevice;
 import lombok.Getter;
 import lombok.Setter;
 import org.jeasy.rules.api.Facts;

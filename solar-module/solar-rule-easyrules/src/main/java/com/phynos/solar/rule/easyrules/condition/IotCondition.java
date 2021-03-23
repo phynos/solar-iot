@@ -1,6 +1,6 @@
 package com.phynos.solar.rule.easyrules.condition;
 
-import com.phynos.solar.rule.easyrules.device.IotDevice;
+import com.phynos.solar.codec.device.IotDevice;
 
 import java.util.Map;
 

@@ -1,7 +1,7 @@
 package com.phynos.solar.rule.easyrules.condition;
 
-import com.phynos.solar.rule.easyrules.device.IotDevice;
-import com.phynos.solar.rule.easyrules.device.IotSignal;
+import com.phynos.solar.codec.device.IotAtrribute;
+import com.phynos.solar.codec.device.IotDevice;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.lang3.math.NumberUtils;
@@ -27,14 +27,15 @@ public class DeviceConditon implements IotCondition {
     @Override
     public boolean evaluate(Map<String, IotDevice> deviceMap) {
         IotDevice device = deviceMap.get(deviceSn);
-        final IotSignal signal = device.getSignals().get(signalKey);
+        final IotAtrribute signal = device.getAttrs().get(signalKey);
+        double value = NumberUtils.toDouble(signal.getValue());
         switch (operType) {
             case 大于:
-                return signal.getVal() > NumberUtils.toDouble(limit, 0);
+                return value > NumberUtils.toDouble(limit, 0);
             case 等于:
-                return signal.getVal() == NumberUtils.toDouble(limit, 0);
+                return value == NumberUtils.toDouble(limit, 0);
             case 小于:
-                return signal.getVal() < NumberUtils.toDouble(limit, 0);
+                return value < NumberUtils.toDouble(limit, 0);
         }
         return false;
     }

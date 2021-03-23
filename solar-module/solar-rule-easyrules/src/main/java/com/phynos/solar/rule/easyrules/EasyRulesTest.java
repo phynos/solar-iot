@@ -1,11 +1,13 @@
 package com.phynos.solar.rule.easyrules;
 
+import com.phynos.solar.codec.device.DefaultIotDevice;
+import com.phynos.solar.codec.device.IotAtrribute;
+import com.phynos.solar.codec.device.IotDevice;
+import com.phynos.solar.codec.device.file.JsonDeviceBuild;
 import com.phynos.solar.rule.easyrules.action.DeviceAction;
 import com.phynos.solar.rule.easyrules.condition.ConditionType;
 import com.phynos.solar.rule.easyrules.condition.DeviceConditon;
 import com.phynos.solar.rule.easyrules.condition.OperType;
-import com.phynos.solar.rule.easyrules.device.IotDevice;
-import com.phynos.solar.rule.easyrules.device.IotSignal;
 import com.phynos.solar.rule.easyrules.rule.HelloWorldRule;
 import com.phynos.solar.rule.easyrules.rule.IotRule;
 import org.apache.commons.lang3.RandomUtils;
@@ -29,9 +31,9 @@ public class EasyRulesTest {
 
     public static void main(String[] args) throws Exception {
         //
-        testJexl();
+        //testJexl();
         //
-        //testIot();
+        testIot();
     }
 
     private static void testJexl() {
@@ -108,22 +110,19 @@ public class EasyRulesTest {
         RulesEngine rulesEngine = new DefaultRulesEngine();
         for (int i = 0; i < 100; i++) {
             int t = RandomUtils.nextInt(0, 50);
-            deviceMap.get("0101").getSignals().get("temp").setVal(t);
+            deviceMap.get("0101").getAttrs().get("temp").setValue(t + "");
             rulesEngine.fire(rules, facts);
             Thread.sleep(300);
         }
     }
 
     private static IotDevice createDevice1(String sn) {
-        IotDevice device = new IotDevice();
-        device.setSn(sn);
-        device.getSignals().put("temp", new IotSignal());
+        IotDevice device = new JsonDeviceBuild(sn).fromResource("/product/temp.json").build();
         return device;
     }
 
     private static IotDevice createDevice2(String sn) {
-        IotDevice device = new IotDevice();
-        device.setSn(sn);
+        IotDevice device = new JsonDeviceBuild(sn).fromResource("/product/box.json").build();
         return device;
     }
 

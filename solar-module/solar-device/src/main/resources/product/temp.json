@@ -1,0 +1,16 @@
+{
+  "version": "1",
+  "attrs": {
+    "temp": {
+      "name": "温度",
+      "type": "string",
+      "format": null,
+      "unit": "℃",
+      "expr": null
+    }
+  },
+  "events": {
+  },
+  "services": {
+  }
+}

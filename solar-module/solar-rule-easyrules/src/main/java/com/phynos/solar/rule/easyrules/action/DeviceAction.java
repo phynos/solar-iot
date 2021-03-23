@@ -1,9 +1,8 @@
 package com.phynos.solar.rule.easyrules.action;
 
-import com.phynos.solar.rule.easyrules.device.IotDevice;
+import com.phynos.solar.codec.device.IotDevice;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;
