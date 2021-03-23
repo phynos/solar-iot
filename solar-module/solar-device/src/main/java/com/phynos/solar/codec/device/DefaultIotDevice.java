@@ -52,6 +52,20 @@ public class DefaultIotDevice implements IotDevice {
         atrribute.setValue(value);
     }
 
+    public void calcExpr() {
+
+    }
+
+    @Override
+    public String getVendor() {
+        return product.getVendor();
+    }
+
+    @Override
+    public String getVersion() {
+        return product.getVersion();
+    }
+
     @Override
     public Map<String, IotAtrribute> getAttrs() {
         return product.getAttrs();

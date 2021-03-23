@@ -8,6 +8,10 @@ import java.util.Map;
 
 public interface IotProduct {
 
+    String getVendor();
+
+    String getVersion();
+
     Map<String, IotAtrribute> getAttrs();
 
     Map<String, IotEvent> getEvents();

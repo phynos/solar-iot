@@ -1,67 +1,34 @@
-package com.phynos.solar.rule.easyrules;
+package com.phynos.solar.rule.easyrules.rule;
 
-import com.phynos.solar.codec.device.DefaultIotDevice;
-import com.phynos.solar.codec.device.IotAtrribute;
 import com.phynos.solar.codec.device.IotDevice;
 import com.phynos.solar.codec.device.file.JsonDeviceBuild;
 import com.phynos.solar.rule.easyrules.action.DeviceAction;
 import com.phynos.solar.rule.easyrules.condition.ConditionType;
 import com.phynos.solar.rule.easyrules.condition.DeviceConditon;
 import com.phynos.solar.rule.easyrules.condition.OperType;
-import com.phynos.solar.rule.easyrules.rule.HelloWorldRule;
-import com.phynos.solar.rule.easyrules.rule.IotRule;
 import org.apache.commons.lang3.RandomUtils;
 import org.jeasy.rules.api.Facts;
-import org.jeasy.rules.api.Rule;
 import org.jeasy.rules.api.Rules;
 import org.jeasy.rules.api.RulesEngine;
 import org.jeasy.rules.core.DefaultRulesEngine;
-import org.jeasy.rules.jexl.JexlRule;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * @author by lupc
- * @date 2021-02-06 10:53
- */
-public class EasyRulesTest {
+import static org.junit.jupiter.api.Assertions.*;
 
-    public static void main(String[] args) throws Exception {
-        //
-        //testJexl();
-        //
-        testIot();
-    }
+@DisplayName("规则引擎-IOT测试")
+@SpringBootTest(classes = IotRuleTest.class)
+class IotRuleTest {
 
-    private static void testJexl() {
-        // create facts
-        Facts facts = new Facts();
-        facts.put("age", 1);
-        facts.put("pat", new Pat());
-
-        // create rules
-        Rules rules = new Rules();
-        rules.register(new HelloWorldRule());
-
-        Rule jexlRule = new JexlRule()
-                .name("jexlRuler")
-                .description("")
-                .when("age > 18")
-                .then("pat.test()");
-        rules.register(jexlRule);
-
-        // create a rules engine and fire rules on known facts
-        RulesEngine rulesEngine = new DefaultRulesEngine();
-        for (int i = 0; i < 100; i++) {
-            facts.put("age", RandomUtils.nextInt(1, 99));
-            rulesEngine.fire(rules, facts);
-        }
-    }
-
-    private static void testIot() throws InterruptedException {
+    @DisplayName("")
+    @Test
+    public void testIot() throws InterruptedException {
         IotRule openRule = new IotRule();
         openRule.setName("空气自动开启");
         openRule.setDescription("温度传感器数据大于28且小于40自动开启空调");
@@ -125,12 +92,5 @@ public class EasyRulesTest {
         IotDevice device = new JsonDeviceBuild(sn).fromResource("/product/box.json").build();
         return device;
     }
-
-    public static class Pat {
-        public void test() {
-            System.out.println("执行了MMMMMM");
-        }
-    }
-
 
 }

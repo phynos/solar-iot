@@ -9,7 +9,6 @@ import lombok.Setter;
 import java.util.Map;
 
 @Setter
-@Getter
 public class DefaultIotProduct implements IotProduct {
 
     private String version;
@@ -21,6 +20,16 @@ public class DefaultIotProduct implements IotProduct {
     private Map<String, IotEvent> events;
 
     private Map<String, IotService> services;
+
+    @Override
+    public String getVendor() {
+        return vendor;
+    }
+
+    @Override
+    public String getVersion() {
+        return version;
+    }
 
     @Override
     public Map<String, IotAtrribute> getAttrs() {
