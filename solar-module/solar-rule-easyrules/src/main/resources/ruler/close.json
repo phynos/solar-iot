@@ -4,13 +4,13 @@
   "ruleFireType": "数据驱动",
   "deviceConditons": [
     {
-      "deviceSn": "0101",
+      "deviceSn": "22R201512DB21188",
       "signalKey": "temp",
       "operType": "大于",
       "limit": "15"
     },
     {
-      "deviceSn": "0101",
+      "deviceSn": "22R201512DB21188",
       "signalKey": "temp",
       "operType": "小于",
       "limit": "25"

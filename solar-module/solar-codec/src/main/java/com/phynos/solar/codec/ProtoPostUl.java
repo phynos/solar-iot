@@ -12,7 +12,7 @@ import lombok.Data;
 public class ProtoPostUl<T> {
 
     @JsonProperty("POST")
-    private T post;
+    private T data;
 
     /**
      *

@@ -1,5 +1,6 @@
 package com.phynos.solar.front.autoconfig;
 
+import com.phynos.solar.front.module.device.DeviceService;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -72,11 +73,11 @@ public class MqttAutoConfiguration {
     //配置client,监听的topic
     @Bean
     public MessageProducer inbound() {
-        if(adapter == null){
+        if (adapter == null) {
             adapter = new MqttPahoMessageDrivenChannelAdapter(
                     mqttProperties.getClientId() + "_inbound1",
                     mqttClientFactory(),
-                    mqttProperties.getDefaultTopic());
+                    "/UL/*/property/POST", "/UL/*/event/*", "/UL/22R201512DB21188/property/POST");
         }
         adapter.setCompletionTimeout(3000);
         adapter.setConverter(new DefaultPahoMessageConverter());
@@ -87,15 +88,8 @@ public class MqttAutoConfiguration {
 
     @Bean
     @ServiceActivator(inputChannel = "mqttInputChannel")
-    public MessageHandler handler() {
-        return new MessageHandler() {
-
-            @Override
-            public void handleMessage(Message<?> message) throws MessagingException {
-                System.out.println(message.getPayload());
-            }
-
-        };
+    public MessageHandler handler(final DeviceService deviceService) {
+        return message -> deviceService.data(message);
     }
 
 }

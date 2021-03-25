@@ -10,6 +10,8 @@ import org.apache.commons.lang3.math.NumberUtils;
 import java.util.Map;
 
 /**
+ * IOT规则-条件判断
+ *
  * @author by lupc
  * @date 2021-02-06 11:51
  */
@@ -29,6 +31,10 @@ public class DeviceConditon implements IotCondition {
     @Override
     public boolean evaluate(Map<String, IotDevice> deviceMap) {
         IotDevice device = deviceMap.get(deviceSn);
+        if (device == null) {
+            log.warn("IOT规则-条件判断无法找到设备，sn={}", deviceSn);
+            return false;
+        }
         final IotAtrribute signal = device.getAttrs().get(signalKey);
         double value = NumberUtils.toDouble(signal.getValue());
         double limitValue = NumberUtils.toDouble(limit, 0);

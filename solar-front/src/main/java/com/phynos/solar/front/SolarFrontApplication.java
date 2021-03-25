@@ -6,21 +6,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * @author by lupc
  * @date 2020-09-29 15:12
  */
+@EnableAsync
 @EnableScheduling
 @SpringBootApplication
-public class SolarDataApplication implements CommandLineRunner {
+public class SolarFrontApplication implements CommandLineRunner {
 
     @Autowired
     MqttV3Template mqttV3Template;
 
     public static void main(String[] args) {
-        SpringApplication.run(SolarDataApplication.class, args);
+        SpringApplication.run(SolarFrontApplication.class, args);
     }
 
     @Override
