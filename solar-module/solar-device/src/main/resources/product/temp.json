@@ -7,6 +7,13 @@
       "format": null,
       "unit": "℃",
       "expr": null
+    },
+    "hstemp": {
+      "name": "测试温度",
+      "type": "string",
+      "format": null,
+      "unit": "℃",
+      "expr": "temp.value * 2"
     }
   },
   "events": {

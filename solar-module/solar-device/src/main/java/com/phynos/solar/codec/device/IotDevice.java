@@ -15,4 +15,9 @@ public interface IotDevice extends IotProduct {
 
     void refresh(String key, String value);
 
+    /**
+     * 完成设备相关初始化
+     */
+    void finishInit();
+
 }

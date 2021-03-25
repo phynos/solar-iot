@@ -30,6 +30,7 @@ public class JsonDeviceBuild {
     }
 
     public IotDevice build() {
+        device.finishInit();
         return device;
     }
 
