@@ -52,20 +52,22 @@ public class DeviceService {
     }
 
     public void initDevice() {
-        log.debug("初始化设备上下文...");
-        IotDevice device = createDevice("22R201512DB21188", "/product/temp.json");
+        log.debug("初始化设备列表...");
+        //从json文件初始化-正式环境从数据库初始化
+        IotDevice device = new JsonDeviceBuild("22R201512DB21188").fromResource("/product/temp.json").build();
         deviceMap.put(device.getSn(), device);
-        device = createDevice("0102", "/product/box.json");
+        device = new JsonDeviceBuild("0102").fromResource("/product/box.json").build();
         deviceMap.put(device.getSn(), device);
     }
 
     public void initRule() {
         log.debug("初始化规则引擎...");
-        //注册规则
+        //从json文件初始化-正式环境从数据库初始化
         IotRule openRule = new IotRuleBuild().fronJson("/ruler/open.json").build();
-        rules.register(openRule);
-        //rules.register(closeRule);
-        //
+        IotRule closeRule = new IotRuleBuild().fronJson("/ruler/open.json").build();
+        //注册规则
+        rules.register(openRule, closeRule);
+        //准备facts
         facts.put("deviceMap", deviceMap);
     }
 
