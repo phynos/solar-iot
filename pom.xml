@@ -12,7 +12,7 @@
         <module>solar-front-raw</module>
         <module>solar-api</module>
         <module>solar-module</module>
-        <module>solar-data</module>
+        <module>solar-front</module>
     </modules>
 
     <properties>

@@ -1,0 +1,37 @@
+{
+  "groups": [
+    {
+      "name": "mqtt",
+      "type": "com.phynos.solar.front.autoconfig.MqttProperties",
+      "sourceType": "com.phynos.solar.front.autoconfig.MqttProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "mqtt.client-id",
+      "type": "java.lang.String",
+      "sourceType": "com.phynos.solar.front.autoconfig.MqttProperties"
+    },
+    {
+      "name": "mqtt.default-topic",
+      "type": "java.lang.String",
+      "sourceType": "com.phynos.solar.front.autoconfig.MqttProperties"
+    },
+    {
+      "name": "mqtt.password",
+      "type": "java.lang.String",
+      "sourceType": "com.phynos.solar.front.autoconfig.MqttProperties"
+    },
+    {
+      "name": "mqtt.url",
+      "type": "java.lang.String",
+      "sourceType": "com.phynos.solar.front.autoconfig.MqttProperties"
+    },
+    {
+      "name": "mqtt.username",
+      "type": "java.lang.String",
+      "sourceType": "com.phynos.solar.front.autoconfig.MqttProperties"
+    }
+  ],
+  "hints": []
+}

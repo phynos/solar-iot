@@ -1,0 +1,10 @@
+{
+  "POST":{
+    "sn":"22R201512DB21188",
+    "temp":"22R201512DB21188",
+    "CPU":{
+      "manufacture":"intel",
+      "rate":"50%"
+    }
+  }
+}
