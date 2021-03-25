@@ -6,6 +6,8 @@ import com.phynos.solar.rule.easyrules.action.DeviceAction;
 import com.phynos.solar.rule.easyrules.condition.ConditionType;
 import com.phynos.solar.rule.easyrules.condition.DeviceConditon;
 import com.phynos.solar.rule.easyrules.condition.OperType;
+import com.phynos.solar.util.json.JsonUtil;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.RandomUtils;
 import org.jeasy.rules.api.Facts;
 import org.jeasy.rules.api.Rules;
@@ -15,6 +17,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,43 +30,16 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest(classes = IotRuleTest.class)
 class IotRuleTest {
 
-    @DisplayName("")
+    @DisplayName("规则测试")
     @Test
-    public void testIot() throws InterruptedException {
-        IotRule openRule = new IotRule();
-        openRule.setName("空气自动开启");
-        openRule.setDescription("温度传感器数据大于28且小于40自动开启空调");
-        openRule.setConditionType(ConditionType.或);
-        //条件
-        List<DeviceConditon> conditonList = new ArrayList<>(2);
-        DeviceConditon deviceConditon = new DeviceConditon();
-        deviceConditon.setOperType(OperType.大于);
-        deviceConditon.setDeviceSn("0101");
-        deviceConditon.setSignalKey("temp");
-        deviceConditon.setLimit("26");
-        conditonList.add(deviceConditon);
-        openRule.setDeviceConditons(conditonList);
-
-        //行为
-        List<DeviceAction> actionList = new ArrayList<>();
-        DeviceAction action = new DeviceAction();
-        action.setDeviceSn("0201");
-        action.setParameter("");
-        action.setCommand("开启空调");
-        actionList.add(action);
-        openRule.setActions(actionList);
-
-        IotRule closeRule = new IotRule();
-        closeRule.setName("空气自动关闭");
-        closeRule.setDescription("温度传感器数据小于16或大于40自动开启空调");
-        closeRule.setConditionType(ConditionType.与);
-        //条件
-        List<DeviceConditon> conditons2 = new ArrayList<>(2);
-        closeRule.setDeviceConditons(conditons2);
-        //行为
-        List<DeviceAction> actions2 = new ArrayList<>();
-        closeRule.setActions(actions2);
-
+    public void testIot() throws Exception {
+        String json = getJson("/ruler/open.json");
+        IotRule openRule = JsonUtil.stringToObject(json, IotRule.class);
+        assertNotNull(openRule);
+        json = getJson("/ruler/close.json");
+        IotRule closeRule = JsonUtil.stringToObject(json, IotRule.class);
+        assertNotNull(closeRule);
+        //注册规则
         Rules rules = new Rules();
         rules.register(openRule);
         rules.register(closeRule);
@@ -79,8 +56,16 @@ class IotRuleTest {
             int t = RandomUtils.nextInt(0, 50);
             deviceMap.get("0101").getAttrs().get("temp").setValue(t + "");
             rulesEngine.fire(rules, facts);
-            Thread.sleep(300);
+            Thread.sleep(100);
         }
+    }
+
+    private String getJson(String file) throws Exception {
+        String json;
+        try (InputStream is = getClass().getResourceAsStream(file)) {
+            json = IOUtils.toString(is, StandardCharsets.UTF_8);
+        }
+        return json;
     }
 
     private static IotDevice createDevice1(String sn) {

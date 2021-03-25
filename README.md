@@ -4,12 +4,13 @@ web单体式应用、Netty应用、Mqtt应用的代码总结
 ## 模块说明（/src目录）
 ```lua
 
-phynos
-└── phynos-front -- 通讯前置机  
-     ├── phynos-front-mqtt -- mqtt前置机  
-     ├── phynos-front-raw -- netty前置机  
-     └── phynos-front-websocket -- websocket前置机  
-└── phynos-solar -- 应用层 
+solar
+├── solar-api -- web-api管理接口
+├── solar-data -- 数据解析服务  
+└── solar-module -- 模块  
+     ├── solar-device -- 设备模型  
+     ├── solar-ruler-* -- 规则引擎  
+     └── solar-* -- 预留   
 
 ```
 

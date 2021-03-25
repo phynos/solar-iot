@@ -7,6 +7,7 @@ import com.phynos.solar.rule.easyrules.condition.ConditionType;
 import com.phynos.solar.rule.easyrules.condition.DeviceConditon;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import org.jeasy.rules.api.Facts;
 import org.jeasy.rules.api.Rule;
 
@@ -17,6 +18,7 @@ import java.util.Map;
  * @author by lupc
  * @date 2021-02-06 13:45
  */
+@Slf4j
 @Setter
 @Getter
 public class IotRule implements Rule {
@@ -76,6 +78,7 @@ public class IotRule implements Rule {
 
     @Override
     public void execute(Facts facts) throws Exception {
+        log.debug("规则触发：{}", name);
         final Map<String, IotDevice> deviceMap = facts.get("deviceMap");
         for (DeviceAction action : actions) {
             action.execute(deviceMap);

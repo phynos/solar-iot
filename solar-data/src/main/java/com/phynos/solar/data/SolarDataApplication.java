@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * @author by lupc
  * @date 2020-09-29 15:12
  */
+@EnableScheduling
 @SpringBootApplication
 public class SolarDataApplication implements CommandLineRunner {
 
