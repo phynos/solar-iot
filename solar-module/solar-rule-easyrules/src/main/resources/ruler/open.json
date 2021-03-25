@@ -19,7 +19,7 @@
   "conditionType": "或",
   "actions": [
     {
-      "deviceSn": "0201",
+      "deviceSn": "0102",
       "command": "open",
       "parameter": ""
     }
