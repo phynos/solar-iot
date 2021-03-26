@@ -2,21 +2,34 @@ package com.phynos.solar.common.annotation;
 
 import java.lang.annotation.*;
 
-@Target({ ElementType.PARAMETER, ElementType.METHOD })
+/**
+ * 操作日志注解
+ *
+ * @author phynos
+ */
+@Target({ElementType.PARAMETER, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface OpLog {
-	
-	/** 模块 */
-	String module() default "";
 
-	/** 功能 */
-	String action() default "";
+    /**
+     * 模块
+     */
+    String module() default "";
 
-	/** 渠道 */
-	String channel() default "OperatorType.MANAGE";
+    /**
+     * 功能
+     */
+    String action() default "";
 
-	/** 是否保存请求的参数 */
-	boolean isSaveRequestData() default true;
-	
+    /**
+     * 渠道
+     */
+    String channel() default "OperatorType.MANAGE";
+
+    /**
+     * 是否保存请求的参数
+     */
+    boolean isSaveRequestData() default true;
+
 }

@@ -5,6 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * ajax返回结果包装类
  *
@@ -103,6 +106,28 @@ public class R<T> {
         R<K> r = new R<>(ResultCodeEnum.OK.getCode(), ResultCodeEnum.OK.getMsg());
         r.setData(data);
         return r;
+    }
+
+    /**
+     * 生成简易键值对数据返回结果
+     */
+    public static class Build {
+
+        private final Map<String,Object> data = new HashMap<>();
+
+        public Build() {
+
+        }
+
+        public Build put(String key,Object value) {
+            data.put(key, value);
+            return this;
+        }
+
+        public R<?> build() {
+            return R.data(data);
+        }
+
     }
 
 }

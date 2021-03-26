@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
  * @author by lupc
  * @date 2020-11-20 9:28
  */
-public class PhyListDTO {
+public class BasePageDTO {
 
     public static final String REG_NUMBER = "[0-9]+";
 
