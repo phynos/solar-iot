@@ -20,7 +20,7 @@
       "type": "",
       "format": "",
       "unit": "W",
-      "expr": "${a} * ${b}"
+      "expr": "U.value * I.value"
     }
   },
   "events": {
