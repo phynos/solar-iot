@@ -29,7 +29,7 @@
         <!-- 各种版本 -->
         <phynos.version>1.0-SNAPSHOT</phynos.version>
         <spring-boot.version>2.4.2</spring-boot.version>
-        <mybatis.version>3.5.2</mybatis.version>
+        <mybatis.version>3.5.6</mybatis.version>
         <mysql.version>5.1.48</mysql.version>
         <shiro.version>1.4.1</shiro.version>
         <netty.version>4.1.51.Final</netty.version>
