@@ -31,7 +31,7 @@
         <spring-boot.version>2.4.2</spring-boot.version>
         <mybatis.version>3.5.2</mybatis.version>
         <mysql.version>5.1.48</mysql.version>
-        <shiro.version>1.4.1</shiro.version>
+        <shiro.version>1.6.0</shiro.version>
         <netty.version>4.1.51.Final</netty.version>
         <mqttv3.version>1.2.5</mqttv3.version>
         <common.lang3.version>3.9</common.lang3.version>
