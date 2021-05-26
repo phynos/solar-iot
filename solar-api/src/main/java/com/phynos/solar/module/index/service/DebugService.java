@@ -1,6 +1,6 @@
 package com.phynos.solar.module.index.service;
 
-import com.phynos.solar.common.util.json.R;
+import com.phynos.solar.util.json.R;
 
 /**
  * @author by lupc

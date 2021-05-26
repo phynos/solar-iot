@@ -2,7 +2,6 @@ package com.phynos.solar.common.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
@@ -20,16 +19,6 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(AMyMVCInterceptor).addPathPatterns("/**");
-    }
-
-    @Override
-    protected void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-                .allowedOrigins("*")
-                .allowCredentials(true)
-                .allowedHeaders("*")
-                .allowedMethods("*")
-                .maxAge(3600);
     }
 
     @Override

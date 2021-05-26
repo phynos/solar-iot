@@ -1,8 +1,8 @@
 package com.phynos.solar.common.config;
 
-import com.phynos.solar.common.exception.BizException;
-import com.phynos.solar.common.util.json.R;
-import com.phynos.solar.common.util.json.ResultCodeEnum;
+import com.phynos.solar.util.web.exception.BizException;
+import com.phynos.solar.util.json.R;
+import com.phynos.solar.util.json.ResultCodeEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.http.converter.HttpMessageNotReadableException;

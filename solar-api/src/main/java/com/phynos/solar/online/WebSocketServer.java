@@ -2,6 +2,7 @@ package com.phynos.solar.online;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -13,9 +14,10 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * @Author: Lupc
+ * @author Lupc
  * @Date: 2019/12/4 12:00
  **/
+@ConditionalOnWebApplication
 @ServerEndpoint(value = "/api/wsocket/{userId}")
 @Component
 public class WebSocketServer {

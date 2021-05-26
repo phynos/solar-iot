@@ -14,8 +14,9 @@
     <modules>
         <module>solar-rule-easyrules</module>
         <module>solar-device</module>
-        <module>solar-util-json</module>
         <module>solar-codec</module>
+        <module>solar-util-web</module>
+        <module>solar-util-json</module>
     </modules>
 
 

@@ -1,6 +1,6 @@
-package com.phynos.solar.common.exception;
+package com.phynos.solar.util.web.exception;
 
-import com.phynos.solar.common.util.json.R;
+import com.phynos.solar.util.json.R;
 import lombok.Getter;
 
 /**
@@ -12,7 +12,7 @@ import lombok.Getter;
 @Getter
 public class BizException extends RuntimeException {
 
-    private R<?> r;
+    private final R<?> r;
 
     public BizException(R<?> r) {
         this.r = r;

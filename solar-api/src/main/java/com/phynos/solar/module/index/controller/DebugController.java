@@ -1,7 +1,7 @@
 package com.phynos.solar.module.index.controller;
 
-import com.phynos.solar.common.util.json.R;
 import com.phynos.solar.module.index.service.DebugService;
+import com.phynos.solar.util.json.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;

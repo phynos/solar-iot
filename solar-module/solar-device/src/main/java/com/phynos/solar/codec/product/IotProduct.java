@@ -8,6 +8,8 @@ import java.util.Map;
 
 public interface IotProduct {
 
+    String getCode();
+
     String getVendor();
 
     String getVersion();

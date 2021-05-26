@@ -1,10 +1,10 @@
 package com.phynos.solar.common.aspectj;
 
 import com.phynos.solar.common.annotation.OpLog;
-import com.phynos.solar.common.util.json.R;
-import com.phynos.solar.common.util.json.ResultCodeEnum;
-import com.phynos.solar.common.util.json.JsonUtil;
 import com.phynos.solar.common.util.ServletUtil;
+import com.phynos.solar.util.json.JsonUtil;
+import com.phynos.solar.util.json.R;
+import com.phynos.solar.util.json.ResultCodeEnum;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.AfterReturning;

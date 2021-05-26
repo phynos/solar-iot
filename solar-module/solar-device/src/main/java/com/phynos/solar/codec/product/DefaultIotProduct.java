@@ -11,6 +11,8 @@ import java.util.Map;
 @Setter
 public class DefaultIotProduct implements IotProduct {
 
+    private String code;
+
     private String version;
 
     private String vendor;
@@ -20,6 +22,11 @@ public class DefaultIotProduct implements IotProduct {
     private Map<String, IotEvent> events;
 
     private Map<String, IotService> services;
+
+    @Override
+    public String getCode() {
+        return code;
+    }
 
     @Override
     public String getVendor() {
@@ -45,4 +52,5 @@ public class DefaultIotProduct implements IotProduct {
     public Map<String, IotService> getServices() {
         return services;
     }
+
 }

@@ -1,11 +1,12 @@
 package com.phynos.solar.module.index.controller;
 
 import com.phynos.solar.common.dto.BasePageDTO;
-import com.phynos.solar.common.exception.BizException;
-import com.phynos.solar.common.util.json.R;
-import com.phynos.solar.common.util.json.ResultCodeEnum;
+import com.phynos.solar.module.index.dto.DateDTO;
+import com.phynos.solar.util.web.exception.BizException;
 import com.phynos.solar.module.index.dto.ExampleDTO;
 import com.phynos.solar.module.index.service.DebugService;
+import com.phynos.solar.util.json.R;
+import com.phynos.solar.util.json.ResultCodeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,6 +38,11 @@ public class ExampleController {
     @GetMapping("/error")
     public R<?> error() {
         throw new BizException(R.msg(ResultCodeEnum.UNSURPORT, "自定义业务异常"));
+    }
+
+    @GetMapping("/date")
+    public R<?> date(@Valid DateDTO dto) {
+        return R.data(dto);
     }
 
 }

@@ -1,4 +1,4 @@
-package com.phynos.solar.common.util.json;
+package com.phynos.solar.util.json;
 
 public enum ResultCodeEnum {
 

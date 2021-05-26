@@ -16,7 +16,7 @@ spring:
     restart:
       enabled: false
   profiles:
-    active: 'dev'
+    active: 'lupc'
   servlet:
     multipart:
       max-request-size: '10MB' # 上传文件总的最大值
@@ -24,42 +24,17 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
-  shardingsphere:
-    datasource:
-      names: ds0
-      common:
-        type: com.zaxxer.hikari.HikariDataSource
-        driver-class-name: com.mysql.jdbc.Driver
-      ds0:
-        type: com.zaxxer.hikari.HikariDataSource
-        driver-class-name: com.mysql.jdbc.Driver
-        # url: jdbc:mysql://42.192.126.212:7605/charger?useSSL=false
-        jdbc-url: jdbc:mysql://42.192.126.212:7605/charger?useSSL=false
-        username: root
-        password: 命令行输入
-    sharding:
-      default-data-source-name: ds0
-    #  打印SQL，不配置   打印的都是逻辑表
-    props:
-      sql:
-        show: true
-
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://42.192.126.212:7605/charger?useSSL=false
+    #jdbc-url: jdbc:mysql://42.192.126.212:7605/charger?useSSL=false
+    username: root
+    password: 命令行输入
 
 mybatis-plus:
   mapper-locations: classpath*:/mapper/*Mapper.xml
 
 # 日志配置
 logging:
-  file:
-    name: logs/phynos-api.log
-  level:
-    com:
-      phynos: debug
-      spring: trace
-  pattern:
-    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%t]){faint} %clr(%-40.40logger{39}){cyan}[lineno:%line]    %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"
-    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --- [%t] %-40.40logger{39}[lineno:%line]: %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"
-  logback:
-    rollingpolicy:
-      max-file-size: 300MB
-      max-history: 15
+  config: classpath:logback-spring.xml

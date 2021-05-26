@@ -102,6 +102,11 @@ public class DefaultIotDevice implements IotDevice {
     }
 
     @Override
+    public String getCode() {
+        return product.getCode();
+    }
+
+    @Override
     public String getVendor() {
         return product.getVendor();
     }

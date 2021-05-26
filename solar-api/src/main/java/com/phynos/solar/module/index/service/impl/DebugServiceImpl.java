@@ -1,7 +1,7 @@
 package com.phynos.solar.module.index.service.impl;
 
 import com.phynos.solar.module.index.service.DebugService;
-import com.phynos.solar.common.util.json.R;
+import com.phynos.solar.util.json.R;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

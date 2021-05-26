@@ -23,7 +23,7 @@ echo -e "length=${#ak},substring=${ak:0:3}\n"
 while  true
 do
    PID=`ps -ef|grep -v grep|grep ${APP_NAME}|awk '{print $2}'`
-   if [ -z $PID ]
+   if [ -z "${PID}" ]
    then
        echo "app not start."
        echo "start app now:"
