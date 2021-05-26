@@ -2,6 +2,7 @@ package com.phynos.solar.module.index.controller;
 
 import com.phynos.solar.common.dto.BasePageDTO;
 import com.phynos.solar.module.index.dto.DateDTO;
+import com.phynos.solar.module.index.dto.LocalDateDTO;
 import com.phynos.solar.util.web.exception.BizException;
 import com.phynos.solar.module.index.dto.ExampleDTO;
 import com.phynos.solar.module.index.service.DebugService;
@@ -42,6 +43,11 @@ public class ExampleController {
 
     @GetMapping("/date")
     public R<?> date(@Valid DateDTO dto) {
+        return R.data(dto);
+    }
+
+    @GetMapping("/localDate")
+    public R<?> localDate(@Valid LocalDateDTO dto) {
         return R.data(dto);
     }
 

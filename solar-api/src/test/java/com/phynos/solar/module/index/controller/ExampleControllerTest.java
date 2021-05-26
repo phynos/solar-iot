@@ -37,4 +37,18 @@ class ExampleControllerTest {
         assertNotNull(content);
     }
 
+    @Test
+    void localDate() throws Exception {
+        RequestBuilder builder = MockMvcRequestBuilders.get("/api/example/localDate")
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                .param("begin", "2021-05-25")
+                .param("end", "2021-05-26")
+                .param("time", "2021-05-26 10:37:00");
+        MvcResult mvcResult = mockMvc.perform(builder)
+                .andReturn();
+        String content = mvcResult.getResponse().getContentAsString(StandardCharsets.UTF_8);
+        log.info(content);
+        assertNotNull(content);
+    }
+
 }

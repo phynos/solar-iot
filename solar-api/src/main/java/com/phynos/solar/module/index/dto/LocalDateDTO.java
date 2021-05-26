@@ -4,27 +4,28 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * 日期测试
  *
  * @author lupc
- * @date 2021/5/26 10:02
+ * @date 2021/5/26 11:36
  */
 @Data
-public class DateDTO {
+public class LocalDateDTO {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
-    private Date begin;
+    private LocalDate begin;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
-    private Date end;
+    private LocalDate end;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date time;
+    private LocalDateTime time;
 
 }
