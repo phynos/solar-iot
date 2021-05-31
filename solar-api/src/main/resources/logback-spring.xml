@@ -16,7 +16,7 @@
     <!-- RollingFileAppender:滚动记录文件，先将日志记录到指定文件，当符合某个条件时，将日志记录到其他文件 -->
     <!-- 1.先按日期存日志，日期变了，将前一天的日志文件名重命名为xxx%日期%索引，新的日志仍然是traffic-datapull-gps.log -->
     <!-- 2.如果日期没有变化，但是当前日志文件的大小超过1kb时，对当前日志进行分割 重名名 -->
-    <appender name="ROLL_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="FILELOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!--<File>${catalina.base}/mylog/sys.log</File>-->
         <File>logs/phynos-api.log</File>
         <!-- rollingPolicy:当发生滚动时，决定 RollingFileAppender 的行为，涉及文件移动和重命名。 -->
@@ -49,10 +49,18 @@
         <appender-ref ref="STDOUT"/>
     </root>
 
+    <!-- 不同环境的日志级别配置 -->
+    <springProfile name="lupc">
+        <logger name="org.springframework" level="DEBUG"/>
+    </springProfile>
+
     <!-- 指定项目中某个包，当有日志操作行为时的日志记录级别 -->
     <!-- com.appley为根包，也就是只要是发生在这个根包下面的所有日志操作行为的权限都是DEBUG -->
     <!-- 级别依次为【从高到低】：FATAL > ERROR > WARN > INFO > DEBUG > TRACE  -->
+    <logger name="com.phynos.solar" level="DEBUG">
+        <appender-ref ref="FILELOG"/>
+    </logger>
     <logger name="org.springframework" level="INFO">
-        <appender-ref ref="ROLL_FILE"/>
+        <appender-ref ref="FILELOG"/>
     </logger>
 </configuration>

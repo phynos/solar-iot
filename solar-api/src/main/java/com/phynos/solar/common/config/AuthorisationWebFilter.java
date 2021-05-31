@@ -1,31 +1,36 @@
 package com.phynos.solar.common.config;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 /**
+ * 授权过滤器
+ * <pre>过滤器顺序依赖字母排序</pre>
+ *
  * @author by lupc
  * @date 2020-12-18 11:19
  */
+@Slf4j
 @Component
-@WebFilter(filterName = "AMyWebFilter",urlPatterns = "/**")
-public class AMyWebFilter implements Filter {
-
-    protected Logger logger = LoggerFactory.getLogger(getClass());
+@WebFilter(filterName = "AuthorisationWebFilter",urlPatterns = "/**")
+public class AuthorisationWebFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        logger.debug("AbcFilter init");
+        log.debug("AuthorisationWebFilter[授权过滤器] init");
     }
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        logger.debug("AbcFilter");
+        HttpServletRequest request = (HttpServletRequest) servletRequest;
+        String uri = request.getRequestURI();
+        log.debug("uri:{}", uri);
+
         filterChain.doFilter(servletRequest, servletResponse);
     }
 
