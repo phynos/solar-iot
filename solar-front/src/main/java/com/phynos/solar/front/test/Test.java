@@ -1,7 +1,7 @@
 package com.phynos.solar.front.test;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.solar.iot.model.ProtoPostUl;
+import com.solar.iot.codec.ProtoPostUl;
 import com.phynos.solar.front.autoconfig.MqttV3Template;
 import com.phynos.solar.util.json.JsonUtil;
 import lombok.extern.slf4j.Slf4j;

@@ -7,8 +7,9 @@ web单体式应用、Netty应用、Mqtt应用的代码总结
 solar
 ├── solar-api -- web-api管理接口
 ├── solar-front -- 前置机  
-└── solar-module -- 模块  
-     ├── solar-device -- 设备模型  
+└── solar-core -- 模块  
+     ├── solar-iot-device -- 设备模型
+     ├── solar-iot-codec -- 编解码器       
      ├── solar-ruler-* -- 规则引擎  
      └── solar-* -- 预留   
 

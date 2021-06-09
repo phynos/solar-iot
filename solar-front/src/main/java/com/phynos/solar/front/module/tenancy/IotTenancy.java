@@ -1,7 +1,7 @@
 package com.phynos.solar.front.module.tenancy;
 
 import com.solar.iot.model.device.IotDevice;
-import com.phynos.solar.rule.easyrules.rule.IotRule;
+import com.solar.iot.rule.easyrules.rule.IotRule;
 import lombok.Getter;
 import org.jeasy.rules.api.Facts;
 import org.jeasy.rules.api.Rules;

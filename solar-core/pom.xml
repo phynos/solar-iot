@@ -20,6 +20,6 @@
     <modules>
         <module>solar-iot-model</module>
         <module>solar-iot-codec</module>
-        <module>solar-rule-easyrules</module>
+        <module>solar-iot-rule-easyrules</module>
     </modules>
 </project>

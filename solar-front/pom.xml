@@ -54,7 +54,7 @@
 
         <dependency>
             <groupId>com.phynos.framework</groupId>
-            <artifactId>solar-rule-easyrules</artifactId>
+            <artifactId>solar-iot-rule-easyrules</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>

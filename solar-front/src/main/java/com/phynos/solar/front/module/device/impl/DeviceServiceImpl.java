@@ -1,7 +1,7 @@
 package com.phynos.solar.front.module.device.impl;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.solar.iot.model.ProtoPostUl;
+import com.solar.iot.codec.ProtoPostUl;
 import com.solar.iot.model.device.IotDevice;
 import com.phynos.solar.front.module.device.DeviceService;
 import com.phynos.solar.front.module.tenancy.IotTenancy;
