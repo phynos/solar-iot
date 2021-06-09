@@ -11,8 +11,9 @@
     <modules>
         <module>solar-front-raw</module>
         <module>solar-api</module>
-        <module>solar-module</module>
         <module>solar-front</module>
+        <module>solar-core</module>
+        <module>solar-core-common</module>
     </modules>
 
     <properties>

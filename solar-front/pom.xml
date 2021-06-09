@@ -59,7 +59,7 @@
         </dependency>
         <dependency>
             <groupId>com.phynos.framework</groupId>
-            <artifactId>solar-codec</artifactId>
+            <artifactId>solar-iot-codec</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

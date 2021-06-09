@@ -1,12 +1,12 @@
 package com.phynos.solar.front;
 
 
-import com.phynos.solar.codec.device.file.JsonDeviceBuild;
+import com.phynos.solar.rule.easyrules.rule.IotRuleBuild;
+import com.solar.iot.model.device.file.JsonDeviceBuild;
 import com.phynos.solar.front.autoconfig.MqttV3Template;
 import com.phynos.solar.front.module.tenancy.IotTenancy;
 import com.phynos.solar.front.module.tenancy.service.TenancyService;
 import com.phynos.solar.rule.easyrules.rule.IotRule;
-import com.phynos.solar.rule.easyrules.rule.IotRuleBuild;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;

@@ -1,6 +1,6 @@
 package com.phynos.solar.front.module.tenancy;
 
-import com.phynos.solar.codec.device.IotDevice;
+import com.solar.iot.model.device.IotDevice;
 import com.phynos.solar.rule.easyrules.rule.IotRule;
 import lombok.Getter;
 import org.jeasy.rules.api.Facts;
