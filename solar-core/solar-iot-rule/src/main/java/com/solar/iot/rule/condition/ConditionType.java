@@ -1,4 +1,4 @@
-package com.solar.iot.rule.easyrules.condition;
+package com.solar.iot.rule.condition;
 
 /**
  * 多个条件的组合形式

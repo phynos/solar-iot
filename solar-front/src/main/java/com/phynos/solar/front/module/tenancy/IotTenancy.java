@@ -1,7 +1,7 @@
 package com.phynos.solar.front.module.tenancy;
 
 import com.solar.iot.model.device.IotDevice;
-import com.solar.iot.rule.easyrules.rule.IotRule;
+import com.solar.iot.rule.easyrules.rule.IotRuleImpl;
 import lombok.Getter;
 import org.jeasy.rules.api.Facts;
 import org.jeasy.rules.api.Rules;
@@ -35,7 +35,7 @@ public class IotTenancy {
     /**
      * 租户的规则
      */
-    private final List<IotRule> rulers = new ArrayList<>();
+    private final List<IotRuleImpl> rulers = new ArrayList<>();
     private final RulesEngine rulesEngine = new DefaultRulesEngine();
     private final Facts facts = new Facts();
     private final Rules rules = new Rules();
@@ -55,12 +55,12 @@ public class IotTenancy {
         }
     }
 
-    public void addRule(IotRule... iotRules) {
-        for (IotRule iotRule : iotRules) {
-            rulers.add(iotRule);
+    public void addRule(IotRuleImpl... iotRuleImpls) {
+        for (IotRuleImpl iotRuleImpl : iotRuleImpls) {
+            rulers.add(iotRuleImpl);
         }
         //注册规则
-        rules.register(iotRules);
+        rules.register(iotRuleImpls);
     }
 
     public void fireRules() {

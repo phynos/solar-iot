@@ -1,10 +1,10 @@
 package com.solar.iot.rule.easyrules.rule;
 
 import com.solar.iot.model.device.IotDevice;
-import com.solar.iot.rule.easyrules.RuleFireType;
-import com.solar.iot.rule.easyrules.action.DeviceAction;
-import com.solar.iot.rule.easyrules.condition.ConditionType;
-import com.solar.iot.rule.easyrules.condition.DeviceConditon;
+import com.solar.iot.rule.RuleFireType;
+import com.solar.iot.rule.action.DeviceAction;
+import com.solar.iot.rule.condition.ConditionType;
+import com.solar.iot.rule.condition.DeviceConditon;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +21,7 @@ import java.util.Map;
 @Slf4j
 @Setter
 @Getter
-public class IotRule implements Rule {
+public class IotRuleImpl implements Rule {
 
     /**
      * 规则名称

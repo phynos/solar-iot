@@ -24,8 +24,8 @@ public class IotRuleBuild {
         return this;
     }
 
-    public IotRule build() {
-        IotRule rule = JsonUtil.stringToObject(json, IotRule.class);
+    public IotRuleImpl build() {
+        IotRuleImpl rule = JsonUtil.stringToObject(json, IotRuleImpl.class);
         return rule;
     }
 

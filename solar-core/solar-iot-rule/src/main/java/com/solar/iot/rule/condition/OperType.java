@@ -1,4 +1,4 @@
-package com.solar.iot.rule.easyrules.condition;
+package com.solar.iot.rule.condition;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

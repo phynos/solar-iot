@@ -8,7 +8,7 @@ solar
 ├── solar-api -- web-api管理接口
 ├── solar-front -- 前置机  
 └── solar-core -- 模块  
-     ├── solar-iot-device -- 设备模型
+     ├── solar-iot-model -- 设备模型
      ├── solar-iot-codec -- 编解码器       
      ├── solar-ruler-* -- 规则引擎  
      └── solar-* -- 预留   

@@ -1,4 +1,4 @@
-package com.solar.iot.rule.easyrules.action;
+package com.solar.iot.rule.action;
 
 import com.solar.iot.model.device.IotDevice;
 import lombok.Getter;

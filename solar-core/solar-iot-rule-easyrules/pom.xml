@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>solar-core</artifactId>
-        <groupId>com.phynos.framework</groupId>
+        <groupId>com.solar.iot</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -52,8 +52,8 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>com.phynos.framework</groupId>
-            <artifactId>solar-iot-model</artifactId>
+            <groupId>com.solar.iot</groupId>
+            <artifactId>solar-iot-rule</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

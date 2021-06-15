@@ -6,7 +6,7 @@ import com.solar.iot.model.device.file.JsonDeviceBuild;
 import com.phynos.solar.front.autoconfig.MqttV3Template;
 import com.phynos.solar.front.module.tenancy.IotTenancy;
 import com.phynos.solar.front.module.tenancy.service.TenancyService;
-import com.solar.iot.rule.easyrules.rule.IotRule;
+import com.solar.iot.rule.easyrules.rule.IotRuleImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -63,8 +63,8 @@ public class SolarFrontApplication implements CommandLineRunner {
     private void initRule(IotTenancy tenancy) {
         log.debug("初始化规则引擎...");
         //从json文件初始化-正式环境从数据库初始化
-        IotRule openRule = new IotRuleBuild().fronJson("/ruler/open.json").build();
-        IotRule closeRule = new IotRuleBuild().fronJson("/ruler/open.json").build();
+        IotRuleImpl openRule = new IotRuleBuild().fronJson("/ruler/open.json").build();
+        IotRuleImpl closeRule = new IotRuleBuild().fronJson("/ruler/open.json").build();
         tenancy.addRule(openRule, closeRule);
     }
 

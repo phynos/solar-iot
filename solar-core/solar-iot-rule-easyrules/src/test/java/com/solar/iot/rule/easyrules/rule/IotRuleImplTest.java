@@ -21,8 +21,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
  * 规则引擎-单元测试
  */
 @DisplayName("规则引擎-IOT测试")
-@SpringBootTest(classes = IotRuleTest.class)
-class IotRuleTest {
+@SpringBootTest(classes = IotRuleImplTest.class)
+class IotRuleImplTest {
 
     static final Map<String, IotDevice> deviceMap = new HashMap<>();
     static final RulesEngine rulesEngine = new DefaultRulesEngine();
@@ -37,9 +37,9 @@ class IotRuleTest {
         IotDevice device2 = new JsonDeviceBuild("0102").fromResource("/product/temp.json").build();
         deviceMap.put(device2.getSn(), device2);
         //初始化规则
-        IotRule openRule = new IotRuleBuild().fronJson("/ruler/open.json").build();
+        IotRuleImpl openRule = new IotRuleBuild().fronJson("/ruler/open.json").build();
         assertNotNull(openRule);
-        IotRule closeRule = new IotRuleBuild().fronJson("/ruler/close.json").build();
+        IotRuleImpl closeRule = new IotRuleBuild().fronJson("/ruler/close.json").build();
         assertNotNull(closeRule);
         //注册规则
         rules.register(openRule);
