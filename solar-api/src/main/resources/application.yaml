@@ -8,6 +8,8 @@ server:
   port: 7001
   tomcat:
     uri-encoding: 'UTF-8'
+  servlet:
+    context-path: /
 
 spring:
   application:
@@ -24,12 +26,15 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
+  security:
+    filter:
+      order: 5
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:mysql://42.192.126.212:7605/charger?useSSL=false
+    url: jdbc:mysql://42.192.126.212:7605/charger?useSSL=false&allowPublicKeyRetrieval=true
     #jdbc-url: jdbc:mysql://42.192.126.212:7605/charger?useSSL=false
-    username: root
+    username: lupc
     password: 命令行输入
 
 mybatis-plus:

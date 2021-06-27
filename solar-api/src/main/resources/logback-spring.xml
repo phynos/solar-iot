@@ -63,4 +63,7 @@
     <logger name="org.springframework" level="INFO">
         <appender-ref ref="FILELOG"/>
     </logger>
+    <logger name="org.springframework.security" level="DEBUG">
+        <appender-ref ref="FILELOG"/>
+    </logger>
 </configuration>

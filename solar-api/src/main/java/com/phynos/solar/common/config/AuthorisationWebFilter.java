@@ -1,6 +1,7 @@
 package com.phynos.solar.common.config;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
@@ -16,6 +17,7 @@ import java.io.IOException;
  * @date 2020-12-18 11:19
  */
 @Slf4j
+@Order(4)
 @Component
 @WebFilter(filterName = "AuthorisationWebFilter",urlPatterns = "/**")
 public class AuthorisationWebFilter implements Filter {
@@ -29,7 +31,7 @@ public class AuthorisationWebFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         String uri = request.getRequestURI();
-        log.debug("uri:{}", uri);
+        log.info("[授权过滤器]uri：{}", uri);
 
         filterChain.doFilter(servletRequest, servletResponse);
     }
