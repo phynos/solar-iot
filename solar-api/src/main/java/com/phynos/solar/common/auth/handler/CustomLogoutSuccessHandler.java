@@ -1,4 +1,4 @@
-package com.phynos.solar.common.auth;
+package com.phynos.solar.common.auth.handler;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;

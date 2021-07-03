@@ -1,4 +1,4 @@
-package com.phynos.solar.common.auth;
+package com.phynos.solar.common.auth.author;
 
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.AccessDeniedException;

@@ -1,4 +1,4 @@
-package com.phynos.solar.common.auth;
+package com.phynos.solar.common.auth.usersource;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;

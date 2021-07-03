@@ -1,23 +1,27 @@
 package com.phynos.solar.common.auth;
 
+import com.phynos.solar.common.auth.handler.CustomAccessDeniedHandler;
+import com.phynos.solar.common.auth.handler.CustomAuthenticationEntryPoint;
+import com.phynos.solar.common.auth.handler.CustomLogoutSuccessHandler;
+import com.phynos.solar.common.auth.jwttoken.JwtTokenFilter;
+import com.phynos.solar.common.auth.usersource.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity//开启Spring Security的功能
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    LoginSuccessHandler loginSuccessHandler;
-    @Autowired
-    LoginFailureHandler loginFailureHandler;
     @Autowired
     CustomLogoutSuccessHandler customLogoutSuccessHandler;
     @Autowired
@@ -25,42 +29,42 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     CustomAccessDeniedHandler customAccessDeniedHandler;
     @Autowired
-    TokenAuthenticationTokenFilter tokenAuthenticationTokenFilter;
+    JwtTokenFilter jwtTokenFilter;
     @Autowired
     CustomUserDetailsService customUserDetailsService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .mvcMatchers("/api/login").permitAll()
+        http.csrf().disable()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .exceptionHandling().accessDeniedHandler(customAccessDeniedHandler)
+                .authenticationEntryPoint(customAuthenticationEntryPoint)
+                .and()
+                .authorizeRequests()
+                .mvcMatchers("/auth/token", "/kaptcha", "/register/user", "/register/enterprise").permitAll()
                 .anyRequest()
-                .authenticated()
-                .and()
-                .formLogin()
-                .usernameParameter("username")
-                .passwordParameter("password")
-                .loginProcessingUrl("/api/login")
-                .successHandler(loginSuccessHandler)
-                .failureHandler(loginFailureHandler)
-                .permitAll()
-                .and()
-                .logout()
-                .logoutSuccessHandler(customLogoutSuccessHandler)
-                .and()
-                .csrf().disable();
-
-        // 开启登录认证流程过滤器
-        //http.addFilterBefore(tokenAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
-
-        http.exceptionHandling()
-                .accessDeniedHandler(customAccessDeniedHandler)
-                .authenticationEntryPoint(customAuthenticationEntryPoint);
+                .authenticated();
+        http.logout()
+                .logoutUrl("/logout")
+                .logoutSuccessHandler(customLogoutSuccessHandler);
+        // 禁用缓存
+        http.headers().cacheControl();
+        // 添加JWT filter
+        http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(customUserDetailsService)
                 .passwordEncoder(passwordEncoder());
+    }
+
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
     }
 
     /**

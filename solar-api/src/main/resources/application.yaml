@@ -4,6 +4,11 @@ com:
     solar:
       time: @timestamp@
 
+# 应用参数
+jwt:
+  secret: PDJ2544DEF4E55DF4D1
+  expires: 7 #超时天数
+
 server:
   port: 7001
   tomcat:
