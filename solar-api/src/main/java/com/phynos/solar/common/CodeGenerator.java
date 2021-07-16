@@ -4,6 +4,10 @@ import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.*;
+import com.baomidou.mybatisplus.generator.config.converts.OracleTypeConvert;
+import com.baomidou.mybatisplus.generator.config.po.TableField;
+import com.baomidou.mybatisplus.generator.config.rules.DbColumnType;
+import com.baomidou.mybatisplus.generator.config.rules.IColumnType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import org.apache.commons.lang3.StringUtils;
 
@@ -23,13 +27,17 @@ public class CodeGenerator {
      **/
     private static final String AUTHOR = "lupc";
 
-    private static String moduleName;
-
-    private static String packageName;
+    private static final String packageName = "com.phynos.solar.module";
 
     private static String tablePrefix;
 
-    private static String[] tableNames;
+    private static final String moduleName = "sys";
+
+    private static final String[] tableNames = {
+            "sys_user", "sys_role", "sys_menu",
+            "sys_user_role", "sys_role_menu",
+            "sys_dict", "sys_dict_type",
+            "sys_operation_log"};
 
     /**
      * <p>
@@ -60,15 +68,12 @@ public class CodeGenerator {
         // 数据源配置
         setDataSource(mpg, password);
         // 包配置
-        moduleName = scanner("模块名");
-        packageName = "com.phynos.solar.module";
         setPackageConfig(mpg);
         // 自定义配置
         setInjectionConfig(mpg);
         // 配置模板
         setTemplate(mpg);
         // 策略配置
-        tableNames = scanner("表名，多个英文逗号分割").split(",");
         tablePrefix = moduleName + "_";
         setStrategy(mpg);
         mpg.execute();
@@ -99,6 +104,18 @@ public class CodeGenerator {
         dsc.setDriverName("com.mysql.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword(password);
+        dsc.setTypeConvert(new OracleTypeConvert() {
+            @Override
+            public IColumnType processTypeConvert(GlobalConfig globalConfig, TableField tableField) {
+                String t = tableField.getType().toLowerCase();
+                if (t.contains("datetime")) {
+                    return DbColumnType.DATE;
+                } else if (t.contains("bit")) {
+                    return DbColumnType.BOOLEAN;
+                }
+                return super.processTypeConvert(globalConfig, tableField);
+            }
+        });
         mpg.setDataSource(dsc);
     }
 

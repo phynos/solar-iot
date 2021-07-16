@@ -23,7 +23,7 @@ public class Role implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "id", type = IdType.AUTO)
-    private Long id;
+    private String id;
 
     /**
      * 角色名称
@@ -38,12 +38,12 @@ public class Role implements Serializable {
     /**
      * 角色类型
      */
-    private Integer roleType;
+    private String roleType;
 
     /**
      * 区域id
      */
-    private Long areaId;
+    private String areaId;
 
     /**
      * 描述信息

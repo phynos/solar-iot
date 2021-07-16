@@ -23,17 +23,17 @@ public class UserRole implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "id", type = IdType.AUTO)
-    private Long id;
+    private String id;
 
     /**
      * 角色id
      */
-    private Long roleId;
+    private String roleId;
 
     /**
      * 管理员用户id
      */
-    private Long userId;
+    private String userId;
 
 
 }

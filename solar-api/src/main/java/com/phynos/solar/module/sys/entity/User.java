@@ -2,8 +2,8 @@ package com.phynos.solar.module.sys.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
+import java.util.Date;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
 import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -24,12 +24,12 @@ public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "id", type = IdType.AUTO)
-    private Long id;
+    private String id;
 
     /**
      * 数据创建时间
      */
-    private LocalDateTime createdDatetime;
+    private Date createdDatetime;
 
     /**
      * 登录-用户名
@@ -84,7 +84,7 @@ public class User implements Serializable {
     /**
      * 机构ID
      */
-    private Long deptId;
+    private String deptId;
 
     /**
      * 启用状态

@@ -2,6 +2,7 @@ package com.phynos.solar.module.sys.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
+import java.util.Date;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import lombok.Data;
@@ -9,7 +10,7 @@ import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 菜单
+ * 字典数据
  * </p>
  *
  * @author lupc
@@ -17,8 +18,8 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@TableName("sys_menu")
-public class Menu implements Serializable {
+@TableName("sys_dict")
+public class Dict implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -26,44 +27,39 @@ public class Menu implements Serializable {
     private String id;
 
     /**
-     * 菜单名称
-     */
-    private String text;
-
-    /**
      * 排序编号
      */
     private String sort;
 
     /**
-     * 父菜单id
+     * 字典标签
      */
-    private String pid;
+    private String dictLabel;
 
     /**
-     * 菜单类型：0=目录；1=菜单;2=按键
+     * 字典值
      */
-    private String type;
+    private String dictValue;
 
     /**
-     * 菜单URL
+     * 字典类型id
      */
-    private String url;
+    private String dictTypeId;
 
     /**
-     * 菜单图标
+     * 是否默认：0=否，=是
      */
-    private String icon;
+    private Boolean isDefault;
 
     /**
-     * 是否可见
+     * 状态:0=禁用，1=启用
      */
-    private Boolean visible;
+    private Boolean status;
 
     /**
-     * 权限字符
+     * 数据创建时间
      */
-    private String perms;
+    private Date createdDatetime;
 
     /**
      * 描述信息
