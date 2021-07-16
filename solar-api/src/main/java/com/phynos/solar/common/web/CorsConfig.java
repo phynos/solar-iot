@@ -1,4 +1,4 @@
-package com.phynos.solar.common.config;
+package com.phynos.solar.common.web;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

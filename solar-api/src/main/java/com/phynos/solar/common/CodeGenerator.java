@@ -17,6 +17,20 @@ import java.util.Scanner;
  */
 public class CodeGenerator {
 
+
+    /**
+     * 作者
+     **/
+    private static final String AUTHOR = "lupc";
+
+    private static String moduleName;
+
+    private static String packageName;
+
+    private static String tablePrefix;
+
+    private static String[] tableNames;
+
     /**
      * <p>
      * 读取控制台内容
@@ -42,80 +56,89 @@ public class CodeGenerator {
         // 代码生成器
         AutoGenerator mpg = new AutoGenerator();
         // 全局配置
-        GlobalConfig gc = new GlobalConfig();
-        String projectPath = System.getProperty("user.dir") + "/solar-api/";
-        gc.setOutputDir(projectPath + "/src/main/java");
-        gc.setAuthor("lupc");
-        gc.setOpen(false);
-        mpg.setGlobalConfig(gc);
+        setGlobalConfig(mpg);
         // 数据源配置
-        DataSourceConfig dsc = dataSourceConfig(password);
-        mpg.setDataSource(dsc);
+        setDataSource(mpg, password);
         // 包配置
-        PackageConfig pc = new PackageConfig();
-        pc.setModuleName(scanner("模块名"));
-        pc.setParent("com.phynos.solar.module");
-        mpg.setPackageInfo(pc);
+        moduleName = scanner("模块名");
+        packageName = "com.phynos.solar.module";
+        setPackageConfig(mpg);
         // 自定义配置
-        InjectionConfig cfg = injectionConfig();
-        mpg.setCfg(cfg);
+        setInjectionConfig(mpg);
         // 配置模板
-        TemplateConfig templateConfig = templateConfig();
-        mpg.setTemplate(templateConfig);
+        setTemplate(mpg);
         // 策略配置
-        StrategyConfig strategy = strategy(pc);
-        mpg.setStrategy(strategy);
+        tableNames = scanner("表名，多个英文逗号分割").split(",");
+        tablePrefix = moduleName + "_";
+        setStrategy(mpg);
         mpg.execute();
     }
 
+    private static void setGlobalConfig(AutoGenerator mpg) {
+        String projectPath = System.getProperty("user.dir") + "/solar-api/";
+        GlobalConfig gc = new GlobalConfig()
+                .setOutputDir(projectPath + "/src/main/java")
+                .setAuthor(AUTHOR)
+                .setFileOverride(true)
+                .setOpen(false);
+        mpg.setGlobalConfig(gc);
+    }
+
+    private static void setPackageConfig(AutoGenerator mpg) {
+        PackageConfig pc = new PackageConfig();
+        pc.setModuleName(moduleName);
+        pc.setParent(packageName);
+        mpg.setPackageInfo(pc);
+    }
+
     // 数据源配置
-    private static DataSourceConfig dataSourceConfig(String password) {
+    private static void setDataSource(AutoGenerator mpg, String password) {
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://42.192.126.212:7605/charger?useUnicode=true&characterEncoding=utf-8");
+        dsc.setUrl("jdbc:mysql://www.iotroll.com:7605/charger?useUnicode=true&characterEncoding=utf-8");
         //dsc.setSchemaName("public");
         dsc.setDriverName("com.mysql.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword(password);
-        return dsc;
+        mpg.setDataSource(dsc);
     }
 
     // 配置模板
-    private static TemplateConfig templateConfig() {
+    private static void setTemplate(AutoGenerator mpg) {
         // 配置模板
         TemplateConfig templateConfig = new TemplateConfig();
         // 配置自定义输出模板
         //指定自定义模板路径，注意不要带上.ftl/.vm, 会根据使用的模板引擎自动识别
         // templateConfig.setEntity("templates/entity2.java");
-        templateConfig.setService("templates/service2.java");
-        templateConfig.setServiceImpl("templates/serviceImpl2.java");
-        templateConfig.setController("templates/controller2.java");
+//        templateConfig.setService("templates/service2.java");
+//        templateConfig.setServiceImpl("templates/serviceImpl2.java");
+//        templateConfig.setController("templates/controller2.java");
+        templateConfig.setService(null);
+        templateConfig.setServiceImpl(null);
+        templateConfig.setController(null);
         templateConfig.setXml(null);
         // 模板引擎（如果更改了模板，则需要修改模板引擎）
         //mpg.setTemplateEngine(new FreemarkerTemplateEngine());
-        return templateConfig;
+        mpg.setTemplate(templateConfig);
     }
 
     // 策略配置
-    private static StrategyConfig strategy(PackageConfig pc) {
+    private static void setStrategy(AutoGenerator mpg) {
         // 策略配置
         StrategyConfig strategy = new StrategyConfig();
-        strategy.setNaming(NamingStrategy.underline_to_camel);
-        strategy.setColumnNaming(NamingStrategy.underline_to_camel);
-        //strategy.setSuperEntityClass("你自己的父类实体,没有就不用设置!");
-        strategy.setEntityLombokModel(true);
-        strategy.setRestControllerStyle(true);
-        // 公共父类
-        //strategy.setSuperControllerClass("你自己的父类控制器,没有就不用设置!");
-        // 写于父类中的公共字段
-        //strategy.setSuperEntityColumns("id");
-        strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));
-        strategy.setControllerMappingHyphenStyle(true);
-        strategy.setTablePrefix(pc.getModuleName() + "_");
-        return strategy;
+        strategy.setNaming(NamingStrategy.underline_to_camel)
+                .setColumnNaming(NamingStrategy.underline_to_camel)
+                //.setSuperEntityClass("你自己的父类实体,没有就不用设置!") //公共父类
+                //.setSuperEntityColumns("id") //写于父类中的公共字段
+                .setEntityLombokModel(true)
+                .setRestControllerStyle(true)
+                .setTablePrefix(tablePrefix)
+                .setInclude(tableNames)
+                .setControllerMappingHyphenStyle(true);
+        mpg.setStrategy(strategy);
     }
 
     //自定义配置
-    private static InjectionConfig injectionConfig() {
+    private static void setInjectionConfig(AutoGenerator mpg) {
         InjectionConfig cfg = new InjectionConfig() {
             @Override
             public void initMap() {
@@ -155,7 +178,7 @@ public class CodeGenerator {
         });
         */
 //        cfg.setFileOutConfigList(focList);
-        return cfg;
+        mpg.setCfg(cfg);
     }
 
 }

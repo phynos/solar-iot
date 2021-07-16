@@ -114,7 +114,6 @@ public class OpLogAspect {
         //请求的参数（这里暂时直接用url参数）
         getHttpRequestParamString(request);
         //
-        //IUserSession<Long> session = ShiroUtil.getLoginInfo(true, null);
         //操作用户
         //record.setOperUserId(session.getUserId());
         //操作地点

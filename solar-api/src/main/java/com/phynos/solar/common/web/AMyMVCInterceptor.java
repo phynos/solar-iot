@@ -1,4 +1,4 @@
-package com.phynos.solar.common.config;
+package com.phynos.solar.common.web;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

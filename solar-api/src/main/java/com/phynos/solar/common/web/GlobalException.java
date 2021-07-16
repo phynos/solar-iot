@@ -1,4 +1,4 @@
-package com.phynos.solar.common.config;
+package com.phynos.solar.common.web;
 
 import com.phynos.solar.util.web.exception.BizException;
 import com.phynos.solar.util.json.R;

@@ -1,4 +1,4 @@
-package com.phynos.solar.common.auth.author;
+package com.phynos.solar.common.web;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.annotation.Order;
@@ -19,19 +19,19 @@ import java.io.IOException;
 @Slf4j
 @Order(4)
 @Component
-@WebFilter(filterName = "AuthorisationWebFilter",urlPatterns = "/**")
-public class AuthorisationWebFilter implements Filter {
+@WebFilter(filterName = "CustomWebFilter",urlPatterns = "/**")
+public class CustomWebFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        log.debug("AuthorisationWebFilter[授权过滤器] init");
+        log.debug("CustomWebFilter[自定义过滤器] init");
     }
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         String uri = request.getRequestURI();
-        log.info("[授权过滤器]uri：{}", uri);
+        log.info("[自定义过滤器]uri：{}", uri);
 
         filterChain.doFilter(servletRequest, servletResponse);
     }
