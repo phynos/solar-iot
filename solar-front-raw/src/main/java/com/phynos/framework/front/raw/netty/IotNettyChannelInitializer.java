@@ -21,7 +21,7 @@ public class IotNettyChannelInitializer extends ChannelInitializer<SocketChannel
 
     private static final GlobalTrafficShapingHandler trafficHandler = new GlobalTrafficShapingHandler(EXECUTOR_GROUOP, 30, 30);
 
-    private Map<String, ChannelInboundHandlerAdapter> adapterMap = new HashMap<>();
+    private final Map<String, ChannelInboundHandlerAdapter> adapterMap = new HashMap<>();
 
     static {
         new Thread(new Runnable() {
