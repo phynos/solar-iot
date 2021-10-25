@@ -41,6 +41,10 @@ spring:
     #jdbc-url: jdbc:mysql://42.192.126.212:7605/charger?useSSL=false
     username: lupc
     password: 命令行输入
+    hikari:
+      connection-test-query: SELECT 1
+
+
 
 mybatis-plus:
   mapper-locations: classpath*:/mapper/*Mapper.xml
