@@ -3,9 +3,7 @@ package com.phynos.framework.front.raw.netty.handler;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
+import lombok.extern.slf4j.Slf4j;
 
 import java.net.InetSocketAddress;
 
@@ -13,11 +11,9 @@ import java.net.InetSocketAddress;
  * 通用消息处理器
  * @author Lupc
  */
-@Service
+@Slf4j
 @ChannelHandler.Sharable
 public class IotNettyServerHandler extends ChannelInboundHandlerAdapter {
-
-    Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
@@ -25,7 +21,7 @@ public class IotNettyServerHandler extends ChannelInboundHandlerAdapter {
         super.channelActive(ctx);
         InetSocketAddress insocket = (InetSocketAddress) ctx.channel()
                 .remoteAddress();
-        logger.debug("建立连接：IP={},PORT={}", insocket.getAddress().getHostAddress(), insocket.getPort());
+        log.debug("建立连接：IP={},PORT={}", insocket.getAddress().getHostAddress(), insocket.getPort());
     }
 
     @Override
@@ -33,13 +29,13 @@ public class IotNettyServerHandler extends ChannelInboundHandlerAdapter {
         super.channelInactive(ctx);
         InetSocketAddress insocket = (InetSocketAddress) ctx.channel()
                 .remoteAddress();
-        logger.debug("关闭连接：IP={},PORT={}", insocket.getAddress().getHostAddress(), insocket.getPort());
+        log.debug("关闭连接：IP={},PORT={}", insocket.getAddress().getHostAddress(), insocket.getPort());
     }
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg)
             throws Exception {
-        logger.debug("收到消息----普通处理器");
+        log.debug("收到消息----普通处理器");
         super.channelRead(ctx, msg);
     }
 

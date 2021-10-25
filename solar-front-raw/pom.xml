@@ -17,6 +17,12 @@
     </properties>
 
     <dependencies>
+        <!-- 常用类库 -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
@@ -50,6 +56,12 @@
                 <version>${spring-boot.version}</version>
                 <configuration>
                     <mainClass>com.phynos.framework.front.raw.FrontNettyApplication</mainClass>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
                 </configuration>
                 <executions>
                     <execution>

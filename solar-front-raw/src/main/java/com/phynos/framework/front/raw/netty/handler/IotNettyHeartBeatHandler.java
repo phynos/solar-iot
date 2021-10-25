@@ -7,21 +7,16 @@ import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.timeout.IdleStateEvent;
-import io.netty.util.Attribute;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 心跳处理器
  * @author Lupc
  *
  */
-@Service
+@Slf4j
 @ChannelHandler.Sharable
 public class IotNettyHeartBeatHandler extends ChannelInboundHandlerAdapter {
-
-	Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Override
 	public void userEventTriggered(ChannelHandlerContext ctx, Object evt) throws Exception {
@@ -29,11 +24,11 @@ public class IotNettyHeartBeatHandler extends ChannelInboundHandlerAdapter {
 		if(evt instanceof IdleStateEvent) {
 			if(!ioSession.isLogin) {
 				//如果没有登录，达到空闲时间，则直接关闭链接
-				logger.warn("没有登录，达到空闲时间，直接关闭链接");
+				log.warn("没有登录，达到空闲时间，直接关闭链接");
 				ctx.channel().close();
 				return;
 			}
-			logger.debug("空闲事件触发...");
+			log.debug("空闲事件触发...");
 			//发送心跳
 			IotHeartBeatMessage iotHeartBeatMessage = new IotHeartBeatMessage();
 			ctx.channel().writeAndFlush(iotHeartBeatMessage);
