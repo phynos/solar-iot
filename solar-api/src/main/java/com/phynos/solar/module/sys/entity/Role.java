@@ -2,6 +2,7 @@ package com.phynos.solar.module.sys.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
+import java.util.Date;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import lombok.Data;
@@ -13,7 +14,7 @@ import lombok.EqualsAndHashCode;
  * </p>
  *
  * @author lupc
- * @since 2021-07-16
+ * @since 2021-09-01
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -24,6 +25,16 @@ public class Role implements Serializable {
 
     @TableId(value = "id", type = IdType.AUTO)
     private String id;
+
+    /**
+     * 创建时间
+     */
+    private Date createTime;
+
+    /**
+     * 更新时间
+     */
+    private Date updateTime;
 
     /**
      * 角色名称

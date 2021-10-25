@@ -10,7 +10,7 @@ import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 字典类型
+ * 机构表
  * </p>
  *
  * @author lupc
@@ -18,8 +18,8 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@TableName("sys_dict_type")
-public class DictType implements Serializable {
+@TableName("sys_dept")
+public class Dept implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -27,29 +27,34 @@ public class DictType implements Serializable {
     private String id;
 
     /**
-     * 字典类型名称
-     */
-    private String dictTypeName;
-
-    /**
-     * 字典类型唯一键
-     */
-    private String dictTypeKey;
-
-    /**
-     * 状态:0=禁用，1=启用
-     */
-    private Boolean status;
-
-    /**
      * 数据创建时间
      */
-    private Date createdDatetime;
+    private Date createTime;
 
     /**
-     * 描述信息
+     * 更新时间
      */
-    private String remark;
+    private Date updateTime;
+
+    /**
+     * 部门名称
+     */
+    private String name;
+
+    /**
+     * 排序编号
+     */
+    private String sort;
+
+    /**
+     * 删除标志
+     */
+    private Boolean delFlag;
+
+    /**
+     * 父id
+     */
+    private String parentId;
 
 
 }

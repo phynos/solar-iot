@@ -14,7 +14,7 @@ import lombok.EqualsAndHashCode;
  * </p>
  *
  * @author lupc
- * @since 2021-07-16
+ * @since 2021-09-01
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -29,7 +29,12 @@ public class User implements Serializable {
     /**
      * 数据创建时间
      */
-    private Date createdDatetime;
+    private Date createTime;
+
+    /**
+     * 修改时间
+     */
+    private Date updateTime;
 
     /**
      * 登录-用户名

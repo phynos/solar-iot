@@ -35,9 +35,12 @@ public class CodeGenerator {
 
     private static final String[] tableNames = {
             "sys_user", "sys_role", "sys_menu",
-            "sys_user_role", "sys_role_menu",
+            "sys_user_role", "sys_role_menu", "sys_role_dept", "sys_role_action",
             "sys_dict", "sys_dict_type",
-            "sys_operation_log"};
+            "sys_dept", "sys_area", "sys_action",
+            "sys_ge_blob", "sys_ge_text",
+            "sys_parameter",
+            "sys_user_login_log", "sys_operation_log"};
 
     /**
      * <p>

@@ -2,7 +2,6 @@ package com.phynos.solar.module.sys.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
-import java.util.Date;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import lombok.Data;
@@ -10,7 +9,7 @@ import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 字典类型
+ * 角色机构表
  * </p>
  *
  * @author lupc
@@ -18,8 +17,8 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@TableName("sys_dict_type")
-public class DictType implements Serializable {
+@TableName("sys_role_dept")
+public class RoleDept implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -27,29 +26,14 @@ public class DictType implements Serializable {
     private String id;
 
     /**
-     * 字典类型名称
+     * 角色id
      */
-    private String dictTypeName;
+    private String roleId;
 
     /**
-     * 字典类型唯一键
+     * 机构id
      */
-    private String dictTypeKey;
-
-    /**
-     * 状态:0=禁用，1=启用
-     */
-    private Boolean status;
-
-    /**
-     * 数据创建时间
-     */
-    private Date createdDatetime;
-
-    /**
-     * 描述信息
-     */
-    private String remark;
+    private String deptId;
 
 
 }

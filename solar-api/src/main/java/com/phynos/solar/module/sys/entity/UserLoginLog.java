@@ -10,7 +10,7 @@ import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 字典类型
+ * 管理用户登录日志表
  * </p>
  *
  * @author lupc
@@ -18,8 +18,8 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@TableName("sys_dict_type")
-public class DictType implements Serializable {
+@TableName("sys_user_login_log")
+public class UserLoginLog implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -27,29 +27,24 @@ public class DictType implements Serializable {
     private String id;
 
     /**
-     * 字典类型名称
+     * 用户id
      */
-    private String dictTypeName;
+    private String userId;
 
     /**
-     * 字典类型唯一键
+     * 登录时间
      */
-    private String dictTypeKey;
+    private Date loginDatetime;
 
     /**
-     * 状态:0=禁用，1=启用
+     * 登录IP
      */
-    private Boolean status;
+    private String loginIp;
 
     /**
-     * 数据创建时间
+     * 登录平台
      */
-    private Date createdDatetime;
-
-    /**
-     * 描述信息
-     */
-    private String remark;
+    private String platform;
 
 
 }

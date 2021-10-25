@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author lupc
- * @since 2021-07-16
+ * @since 2021-09-01
  */
 public interface MenuMapper extends BaseMapper<Menu> {
 

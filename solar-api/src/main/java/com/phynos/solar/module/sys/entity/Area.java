@@ -4,13 +4,14 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import java.util.Date;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 字典类型
+ * 区域表格
  * </p>
  *
  * @author lupc
@@ -18,8 +19,8 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@TableName("sys_dict_type")
-public class DictType implements Serializable {
+@TableName("sys_area")
+public class Area implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -27,19 +28,30 @@ public class DictType implements Serializable {
     private String id;
 
     /**
-     * 字典类型名称
+     * 区域名称
      */
-    private String dictTypeName;
+    private String areaName;
 
     /**
-     * 字典类型唯一键
+     * 父区域id
      */
-    private String dictTypeKey;
+    @TableField("parentId")
+    private String parentid;
 
     /**
-     * 状态:0=禁用，1=启用
+     * 排序编号
      */
-    private Boolean status;
+    private String sort;
+
+    /**
+     * 区域编码
+     */
+    private String areaCode;
+
+    /**
+     * 创建用户id
+     */
+    private String createdUserId;
 
     /**
      * 数据创建时间
@@ -47,9 +59,24 @@ public class DictType implements Serializable {
     private Date createdDatetime;
 
     /**
+     * 更新用户id
+     */
+    private String updateUserId;
+
+    /**
+     * 更新时间
+     */
+    private Date updateDatetime;
+
+    /**
      * 描述信息
      */
     private String remark;
+
+    /**
+     * 是否被移除
+     */
+    private Boolean removed;
 
 
 }

@@ -10,7 +10,7 @@ import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 字典类型
+ * 系统参数表
  * </p>
  *
  * @author lupc
@@ -18,8 +18,8 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@TableName("sys_dict_type")
-public class DictType implements Serializable {
+@TableName("sys_parameter")
+public class Parameter implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -27,24 +27,44 @@ public class DictType implements Serializable {
     private String id;
 
     /**
-     * 字典类型名称
+     * 参数标签
      */
-    private String dictTypeName;
+    private String paraLabel;
 
     /**
-     * 字典类型唯一键
+     * 参数键名
      */
-    private String dictTypeKey;
+    private String paraKey;
 
     /**
-     * 状态:0=禁用，1=启用
+     * 参数键值
      */
-    private Boolean status;
+    private String paraValue;
+
+    /**
+     * 参数类型：0=系统内置（不可删），1=用户新增
+     */
+    private String paraType;
 
     /**
      * 数据创建时间
      */
     private Date createdDatetime;
+
+    /**
+     * 创建用户id
+     */
+    private String createdUserId;
+
+    /**
+     * 更新时间
+     */
+    private Date updateDatetime;
+
+    /**
+     * 更新用户id
+     */
+    private String updateUserId;
 
     /**
      * 描述信息

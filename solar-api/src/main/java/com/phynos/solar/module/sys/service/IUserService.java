@@ -1,5 +1,7 @@
 package com.phynos.solar.module.sys.service;
 
+import javax.annotation.Nonnull;
+
 /**
  * <p>
  * 管理用户表格 服务类
@@ -10,6 +12,6 @@ package com.phynos.solar.module.sys.service;
  */
 public interface IUserService {
 
-
+    void abc(@Nonnull String name);
 
 }
