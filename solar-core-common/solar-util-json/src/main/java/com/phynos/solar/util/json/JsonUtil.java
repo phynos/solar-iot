@@ -3,9 +3,11 @@ package com.phynos.solar.util.json;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * JSON序列化工具类
@@ -71,5 +73,23 @@ public class JsonUtil {
         }
     }
 
+    public static <T> List<T> jsonToList(String json, Class<T> cls) {
+        try {
+            return JSON_MAPPER.readValue(json, getCollectionType(List.class, cls));
+        } catch (JsonProcessingException e) {
+        }
+        return null;
+    }
+
+    /**
+     * 获取泛型的Collection Type
+     *
+     * @param collectionClass 泛型的Collection
+     * @param elementClasses  实体bean
+     * @return JavaType Java类型
+     */
+    private static JavaType getCollectionType(Class<?> collectionClass, Class<?>... elementClasses) {
+        return JSON_MAPPER.getTypeFactory().constructParametricType(collectionClass, elementClasses);
+    }
 
 }

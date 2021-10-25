@@ -6,15 +6,12 @@ import com.phynos.framework.front.raw.util.ChannelUtils;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-@Service
+@Slf4j
 @ChannelHandler.Sharable
 public class IotNettyLoginHandler extends ChannelInboundHandlerAdapter {
-
-    Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
@@ -30,7 +27,7 @@ public class IotNettyLoginHandler extends ChannelInboundHandlerAdapter {
         IoSession ioSession = ChannelUtils.getSessionBy(ctx.channel());
         if (msg instanceof IotLoginMessage) {
             IotLoginMessage iotMessage = (IotLoginMessage) msg;
-            logger.debug("登录消息，消息码={}，消息类型={}",
+            log.debug("登录消息，消息码={}，消息类型={}",
                     iotMessage.getMessageType(),
                     iotMessage.getClass().getName());
             //判断是否已经登录，如果已经登录，则直接关闭链接
@@ -40,7 +37,7 @@ public class IotNettyLoginHandler extends ChannelInboundHandlerAdapter {
             //记录登录状态
             ioSession.isLogin = true;
         } else if (!ioSession.isLogin) {
-            logger.warn("没有登录，直接关闭连接");
+            log.warn("没有登录，直接关闭连接");
             ctx.channel().close();
         } else {
             super.channelRead(ctx, msg);

@@ -1,8 +1,6 @@
 package com.phynos.framework.front.raw.netty;
 
-import com.phynos.framework.front.raw.netty.handler.IotNettyHeartBeatHandler;
-import com.phynos.framework.front.raw.netty.handler.IotNettyServerHandler;
-import com.phynos.framework.front.raw.netty.handler.IotNettyLoginHandler;
+import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.timeout.IdleStateHandler;
@@ -10,28 +8,20 @@ import io.netty.handler.traffic.GlobalTrafficShapingHandler;
 import io.netty.handler.traffic.TrafficCounter;
 import io.netty.util.concurrent.DefaultEventExecutorGroup;
 import io.netty.util.concurrent.EventExecutorGroup;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import lombok.extern.slf4j.Slf4j;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-@Component
+@Slf4j
 public class IotNettyChannelInitializer extends ChannelInitializer<SocketChannel> {
 
     private static final EventExecutorGroup EXECUTOR_GROUOP = new DefaultEventExecutorGroup(Runtime.getRuntime().availableProcessors() * 2 + 1);
 
     private static final GlobalTrafficShapingHandler trafficHandler = new GlobalTrafficShapingHandler(EXECUTOR_GROUOP, 30, 30);
 
-    Logger logger = LoggerFactory.getLogger(getClass());
-
-    @Autowired
-    IotNettyLoginHandler iotNettyLoginHandler;
-    @Autowired
-    IotNettyHeartBeatHandler iotNettyHeartBeatHandler;
-    @Autowired
-    IotNettyServerHandler iotNettyServerHandler;
+    private final Map<String, ChannelInboundHandlerAdapter> adapterMap = new HashMap<>();
 
     static {
         new Thread(new Runnable() {
@@ -54,6 +44,15 @@ public class IotNettyChannelInitializer extends ChannelInitializer<SocketChannel
         }).start();
     }
 
+    public IotNettyChannelInitializer() {
+
+    }
+
+    public IotNettyChannelInitializer addAdapter(String name, ChannelInboundHandlerAdapter adapter) {
+        adapterMap.put(name, adapter);
+        return this;
+    }
+
     @Override
     protected void initChannel(SocketChannel ch) throws Exception {
         //增加流量监测
@@ -64,12 +63,9 @@ public class IotNettyChannelInitializer extends ChannelInitializer<SocketChannel
         ch.pipeline().addLast(new IotNettyEncoder());
         // 处理器-空闲触发器
         ch.pipeline().addLast(EXECUTOR_GROUOP, new IdleStateHandler(10, 10, 10, TimeUnit.SECONDS));
-        //处理器-心跳
-        ch.pipeline().addLast(EXECUTOR_GROUOP, iotNettyHeartBeatHandler);
-        //处理器-登录
-        ch.pipeline().addLast(EXECUTOR_GROUOP, iotNettyLoginHandler);
-        //处理器-基础
-        ch.pipeline().addLast(EXECUTOR_GROUOP, "work-handler", iotNettyServerHandler);
+        adapterMap.forEach((k,v) -> {
+            ch.pipeline().addLast(EXECUTOR_GROUOP, k, v);
+        });
     }
 
 }
