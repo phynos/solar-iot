@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Nonnull;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import java.util.List;
@@ -34,6 +35,11 @@ public class UserServiceImpl implements IUserService {
         queryWrapper.eq("username", "admin");
         List<User> users = userMapper.selectList(queryWrapper);
         users.forEach(user -> log.debug(user.getPassword()));
+    }
+
+    @Override
+    public void checkUser(@Nonnull String username) {
+
     }
 
 }

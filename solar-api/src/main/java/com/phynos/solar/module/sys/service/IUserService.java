@@ -12,6 +12,6 @@ import javax.annotation.Nonnull;
  */
 public interface IUserService {
 
-    void abc(@Nonnull String name);
+    void checkUser(@Nonnull String username);
 
 }

@@ -45,17 +45,6 @@ spring:
           #jdbc-url: jdbc:mysql://42.192.126.212:7605/charger?useSSL=false
           username: lupc
           password: 命令行输入
-  shardingsphere:
-    datasource:
-      name: sharding-order-system
-      sharding-order-system:
-        type: com.zaxxer.hikari.HikariDataSource
-        driverClassName: com.mysql.jdbc.Driver
-        url: jdbc:mysql://www.iotroll.com:7605/charger?useSSL=false&allowPublicKeyRetrieval=true
-        username: lupc
-        password: 命令行输入
-    rules:
-      sharding:
 
 mybatis-plus:
   mapper-locations: classpath*:/mapper/*Mapper.xml
