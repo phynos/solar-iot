@@ -1,12 +1,12 @@
 package com.phynos.solar.module.sys.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
-import java.util.Date;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import java.util.Date;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * <p>
@@ -14,22 +14,22 @@ import lombok.EqualsAndHashCode;
  * </p>
  *
  * @author lupc
- * @since 2021-09-01
+ * @since 2021-12-13
  */
-@Data
-@EqualsAndHashCode(callSuper = false)
+@Getter
+@Setter
 @TableName("sys_dict")
 public class Dict implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "id", type = IdType.AUTO)
-    private String id;
+    private Long id;
 
     /**
      * 排序编号
      */
-    private String sort;
+    private Integer sort;
 
     /**
      * 字典标签
@@ -44,7 +44,7 @@ public class Dict implements Serializable {
     /**
      * 字典类型id
      */
-    private String dictTypeId;
+    private Long dictTypeId;
 
     /**
      * 是否默认：0=否，=是

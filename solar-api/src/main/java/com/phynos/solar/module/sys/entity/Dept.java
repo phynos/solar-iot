@@ -1,12 +1,12 @@
 package com.phynos.solar.module.sys.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
-import java.util.Date;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import java.util.Date;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * <p>
@@ -14,17 +14,17 @@ import lombok.EqualsAndHashCode;
  * </p>
  *
  * @author lupc
- * @since 2021-09-01
+ * @since 2021-12-13
  */
-@Data
-@EqualsAndHashCode(callSuper = false)
+@Getter
+@Setter
 @TableName("sys_dept")
 public class Dept implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "id", type = IdType.AUTO)
-    private String id;
+    private Long id;
 
     /**
      * 数据创建时间
@@ -37,6 +37,11 @@ public class Dept implements Serializable {
     private Date updateTime;
 
     /**
+     * 父id
+     */
+    private Long pid;
+
+    /**
      * 部门名称
      */
     private String name;
@@ -44,17 +49,12 @@ public class Dept implements Serializable {
     /**
      * 排序编号
      */
-    private String sort;
+    private Integer sort;
 
     /**
      * 删除标志
      */
     private Boolean delFlag;
-
-    /**
-     * 父id
-     */
-    private String parentId;
 
 
 }

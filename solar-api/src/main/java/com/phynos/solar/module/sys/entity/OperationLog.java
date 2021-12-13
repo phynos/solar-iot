@@ -1,12 +1,12 @@
 package com.phynos.solar.module.sys.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
-import java.util.Date;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import java.util.Date;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * <p>
@@ -14,17 +14,22 @@ import lombok.EqualsAndHashCode;
  * </p>
  *
  * @author lupc
- * @since 2021-09-01
+ * @since 2021-12-13
  */
-@Data
-@EqualsAndHashCode(callSuper = false)
+@Getter
+@Setter
 @TableName("sys_operation_log")
 public class OperationLog implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "id", type = IdType.AUTO)
-    private String id;
+    private Long id;
+
+    /**
+     * 操作时间
+     */
+    private Date createTime;
 
     /**
      * 模块标题
@@ -47,14 +52,14 @@ public class OperationLog implements Serializable {
     private String methodParams;
 
     /**
-     * 操作状态：0=正常 1=异常）
+     * 操作终端
      */
-    private Boolean status;
+    private Integer flatform;
 
     /**
      * 操作用户id
      */
-    private String operUserId;
+    private Long operUserId;
 
     /**
      * 请求URL
@@ -67,14 +72,14 @@ public class OperationLog implements Serializable {
     private String operIp;
 
     /**
-     * 操作平台
-     */
-    private String operFlatform;
-
-    /**
      * 操作地点
      */
     private String operLocation;
+
+    /**
+     * 错误码
+     */
+    private Integer errorCode;
 
     /**
      * 错误消息
@@ -82,9 +87,9 @@ public class OperationLog implements Serializable {
     private String errorMsg;
 
     /**
-     * 操作时间
+     * 操作状态：0=正常 1=异常）
      */
-    private Date operationDatetime;
+    private Boolean status;
 
 
 }

@@ -1,12 +1,12 @@
 package com.phynos.solar.module.sys.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
-import java.util.Date;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import java.util.Date;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * <p>
@@ -14,17 +14,17 @@ import lombok.EqualsAndHashCode;
  * </p>
  *
  * @author lupc
- * @since 2021-09-01
+ * @since 2021-12-13
  */
-@Data
-@EqualsAndHashCode(callSuper = false)
+@Getter
+@Setter
 @TableName("sys_parameter")
 public class Parameter implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "id", type = IdType.AUTO)
-    private String id;
+    private Long id;
 
     /**
      * 参数标签
@@ -44,7 +44,7 @@ public class Parameter implements Serializable {
     /**
      * 参数类型：0=系统内置（不可删），1=用户新增
      */
-    private String paraType;
+    private Integer paraType;
 
     /**
      * 数据创建时间
@@ -54,7 +54,7 @@ public class Parameter implements Serializable {
     /**
      * 创建用户id
      */
-    private String createdUserId;
+    private Long createdUserId;
 
     /**
      * 更新时间
@@ -64,7 +64,7 @@ public class Parameter implements Serializable {
     /**
      * 更新用户id
      */
-    private String updateUserId;
+    private Long updateUserId;
 
     /**
      * 描述信息
