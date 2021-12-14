@@ -2,8 +2,7 @@ package com.phynos.solar.module.index.service.impl;
 
 import com.phynos.solar.module.index.service.DebugService;
 import com.phynos.solar.util.json.R;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.scheduling.annotation.Async;
@@ -15,10 +14,9 @@ import javax.annotation.PostConstruct;
  * @author by lupc
  * @date 2020-12-18 14:06
  */
+@Slf4j
 @Service
 public class DebugServiceImpl implements DebugService {
-
-    Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
     ApplicationContext ac;
@@ -37,7 +35,7 @@ public class DebugServiceImpl implements DebugService {
     @Async("asyncTaskExecutor")
     @Override
     public void testThread() {
-        logger.debug("当前处理线程名称：" + Thread.currentThread().getName());
+        log.debug("当前处理线程名称：" + Thread.currentThread().getName());
     }
 
 }

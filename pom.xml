@@ -29,10 +29,10 @@
         <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
         <!-- 各种版本 -->
         <phynos.version>1.0-SNAPSHOT</phynos.version>
-        <spring-boot.version>2.4.2</spring-boot.version>
-        <mybatis.version>3.5.2</mybatis.version>
+        <spring-boot.version>2.6.1</spring-boot.version>
+        <mybatis.version>3.5.8</mybatis.version>
         <mysql.version>5.1.48</mysql.version>
-        <netty.version>4.1.51.Final</netty.version>
+        <netty.version>4.1.71.Final</netty.version>
         <mqttv3.version>1.2.5</mqttv3.version>
         <common.lang3.version>3.9</common.lang3.version>
     </properties>
