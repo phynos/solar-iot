@@ -10,6 +10,7 @@ WORKDIR /iot
 # 声明暴露端口
 EXPOSE 7001
 #复制到容器指定目录
+COPY --from=hengyunabc/arthas:latest /opt/arthas /opt/arthas
 COPY ./target/phynos-solar-api.jar /iot/phynos-solar-api.jar
 # 启动后执行命令
 ENTRYPOINT [ "java", "-jar", "/iot/phynos-solar-api.jar" ]

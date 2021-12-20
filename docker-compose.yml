@@ -1,0 +1,26 @@
+version: '3'
+services:
+  iot-api:
+    build:
+      context: ./solar-api
+    image: iot/solar-api
+    container_name: solar-api
+    restart: always
+    volumes:
+      - /home/lupc/tink/iot:/iot/logs
+    ports:
+      - 7001:7001
+    environment:
+      DB_PASSWORD: ${DB_PASSWORD}
+      APP_PORT: 7001
+
+  iot-front:
+    build:
+      context: ./solar-front
+    image: iot/solar-front
+    container_name: solar-front
+    restart: always
+    volumes:
+      - /home/lupc/tink/iot:/iot/logs
+    environment:
+      DB_PASSWORD: ${DB_PASSWORD}

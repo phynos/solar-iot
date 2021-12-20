@@ -40,7 +40,7 @@ spring:
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:postgresql://www.iotroll.com:7609/iotdb?useUnicode=true&characterEncoding=utf-8
     username: iot
-    password: 命令行输入
+    password: ${DB_PASSWORD}
 
 
 mybatis-plus:
