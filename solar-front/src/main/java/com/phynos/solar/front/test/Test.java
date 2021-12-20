@@ -1,12 +1,13 @@
 package com.phynos.solar.front.test;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.solar.iot.codec.ProtoPostUl;
-import com.phynos.solar.front.autoconfig.MqttV3Template;
+import com.phynos.solar.front.mqtt.spring.MqttV3Template;
 import com.phynos.solar.util.json.JsonUtil;
+import com.solar.iot.codec.ProtoPostUl;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.RandomUtils;
+import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -28,6 +29,9 @@ public class Test {
     MqttV3Template mqttV3Template;
 
     ProtoPostUl<Map<String, Object>> payload;
+
+    @Autowired
+    MqttClient mqttClient;
 
     @PostConstruct
     public void init() {

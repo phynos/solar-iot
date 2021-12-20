@@ -1,4 +1,4 @@
-package com.phynos.solar.front.autoconfig;
+package com.phynos.solar.front.mqtt.spring;
 
 import org.springframework.integration.annotation.MessagingGateway;
 import org.springframework.integration.mqtt.support.MqttHeaders;

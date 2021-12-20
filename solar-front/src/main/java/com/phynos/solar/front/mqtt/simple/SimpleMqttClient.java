@@ -1,11 +1,8 @@
-package com.phynos.solar.front.simple;
+package com.phynos.solar.front.mqtt.simple;
 
-import com.phynos.solar.front.autoconfig.MqttProperties;
+import com.phynos.solar.front.mqtt.MqttProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.paho.client.mqttv3.*;
-
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 
 @Slf4j
 public class SimpleMqttClient implements MqttCallback {
@@ -25,7 +22,6 @@ public class SimpleMqttClient implements MqttCallback {
         this.mqttProperties = mqttProperties;
     }
 
-    @PostConstruct
     public void connect() {
         // setup MQTT Client
         String clientID = CLIENT_ID;
@@ -49,7 +45,6 @@ public class SimpleMqttClient implements MqttCallback {
         log.debug("Connected to {}", mqttProperties.getUrl());
     }
 
-    @PreDestroy
     public void disconnect() {
         // disconnect
         try {

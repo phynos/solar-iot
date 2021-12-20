@@ -3,7 +3,7 @@ package com.phynos.solar.front;
 
 import com.solar.iot.rule.easyrules.rule.IotRuleBuild;
 import com.solar.iot.model.device.file.JsonDeviceBuild;
-import com.phynos.solar.front.autoconfig.MqttV3Template;
+import com.phynos.solar.front.mqtt.spring.MqttV3Template;
 import com.phynos.solar.front.module.tenancy.IotTenancy;
 import com.phynos.solar.front.module.tenancy.service.TenancyService;
 import com.solar.iot.rule.easyrules.rule.IotRuleImpl;

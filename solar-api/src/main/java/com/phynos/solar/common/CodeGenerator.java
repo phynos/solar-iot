@@ -2,14 +2,14 @@ package com.phynos.solar.common;
 
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.config.*;
-import com.baomidou.mybatisplus.generator.config.converts.MySqlTypeConvert;
+import com.baomidou.mybatisplus.generator.config.converts.PostgreSqlTypeConvert;
 import com.baomidou.mybatisplus.generator.config.po.TableField;
-import com.baomidou.mybatisplus.generator.config.querys.MySqlQuery;
+import com.baomidou.mybatisplus.generator.config.querys.PostgreSqlQuery;
 import com.baomidou.mybatisplus.generator.config.rules.DbColumnType;
 import com.baomidou.mybatisplus.generator.config.rules.IColumnType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.VelocityTemplateEngine;
-import com.baomidou.mybatisplus.generator.keywords.MySqlKeyWordsHandler;
+import com.baomidou.mybatisplus.generator.keywords.PostgreSqlKeyWordsHandler;
 
 /**
  * mybatis-plus 代码生成
@@ -57,12 +57,12 @@ public class CodeGenerator {
                 .execute();
     }
 
-    // 数据源配置
+    public static final String URL = "jdbc:postgresql://www.iotroll.com:7609/iotdb?useUnicode=true&characterEncoding=utf-8";
     private static DataSourceConfig.Builder dataSourceConfigBuild(String password) {
-        return new DataSourceConfig.Builder("jdbc:mysql://www.iotroll.com:7605/charger?useUnicode=true&characterEncoding=utf-8", "root", password)
-                .dbQuery(new MySqlQuery())
-                //.schema("mybatis-plus")
-                .typeConvert(new MySqlTypeConvert() {
+        return new DataSourceConfig.Builder(URL, "iot", password)
+                .dbQuery(new PostgreSqlQuery())
+                .schema("iot")
+                .typeConvert(new PostgreSqlTypeConvert() {
                     @Override
                     public IColumnType processTypeConvert(GlobalConfig globalConfig, TableField tableField) {
                         String t = tableField.getType().toLowerCase();
@@ -74,7 +74,7 @@ public class CodeGenerator {
                         return super.processTypeConvert(globalConfig, tableField);
                     }
                 })
-                .keyWordsHandler(new MySqlKeyWordsHandler());
+                .keyWordsHandler(new PostgreSqlKeyWordsHandler());
     }
 
     //全局配置

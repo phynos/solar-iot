@@ -1,23 +1,12 @@
 
 mqtt:
   clientId: server_001
-  url: tcp://42.192.126.212:7607
+  url: tcp://42.192.126.212:7612
   username: admin
   password: "启动传入"
   defaultTopic: m2m.phynos.com/things/007
 
+
+# 日志配置
 logging:
-  level:
-    com:
-      phynos:
-        solar: DEBUG
-      spring: DEBUG
-  pattern:
-    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%t]){faint} %clr(%-40.40logger{39}){cyan}[lineno:%line]    %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"
-    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --- [%t] %-40.40logger{39}[lineno:%line]: %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"
-  file:
-    name: logs/front-mqtt.log
-  logback:
-    rollingpolicy:
-      max-history: 15
-      max-file-size: 300MB
+  config: classpath:logback-spring.xml

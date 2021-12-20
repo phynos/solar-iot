@@ -1,6 +1,7 @@
-package com.phynos.solar.front.autoconfig;
+package com.phynos.solar.front.mqtt.spring;
 
 import com.phynos.solar.front.module.device.DeviceService;
+import com.phynos.solar.front.mqtt.MqttProperties;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -24,7 +25,7 @@ import org.springframework.messaging.MessageHandler;
 @EnableConfigurationProperties(MqttProperties.class)
 public class MqttAutoConfiguration {
 
-    private MqttProperties mqttProperties;
+    private final MqttProperties mqttProperties;
 
     //消息驱动
     private MqttPahoMessageDrivenChannelAdapter adapter;
@@ -87,7 +88,7 @@ public class MqttAutoConfiguration {
     @Bean
     @ServiceActivator(inputChannel = "mqttInputChannel")
     public MessageHandler handler(final DeviceService deviceService) {
-        return message -> deviceService.data(message);
+        return deviceService::data;
     }
 
 }

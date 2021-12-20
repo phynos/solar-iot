@@ -31,6 +31,7 @@
         <phynos.version>1.0-SNAPSHOT</phynos.version>
         <spring-boot.version>2.6.1</spring-boot.version>
         <mybatis.version>3.5.8</mybatis.version>
+        <postgresql.version>42.3.1</postgresql.version>
         <mysql.version>5.1.48</mysql.version>
         <netty.version>4.1.71.Final</netty.version>
         <mqttv3.version>1.2.5</mqttv3.version>
