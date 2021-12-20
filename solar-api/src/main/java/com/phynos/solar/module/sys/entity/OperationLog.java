@@ -1,10 +1,8 @@
 package com.phynos.solar.module.sys.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,7 +12,7 @@ import lombok.Setter;
  * </p>
  *
  * @author lupc
- * @since 2021-12-13
+ * @since 2021-12-20
  */
 @Getter
 @Setter
@@ -23,13 +21,12 @@ public class OperationLog implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
     /**
      * 操作时间
      */
-    private Date createTime;
+    private LocalDateTime createTime;
 
     /**
      * 模块标题
@@ -89,7 +86,7 @@ public class OperationLog implements Serializable {
     /**
      * 操作状态：0=正常 1=异常）
      */
-    private Boolean status;
+    private String status;
 
 
 }

@@ -1,6 +1,8 @@
 package com.phynos.solar.module.sys.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.phynos.solar.module.sys.entity.User;
 import com.phynos.solar.module.sys.mapper.UserMapper;
@@ -31,8 +33,8 @@ public class UserServiceImpl implements IUserService {
 
     @PostConstruct
     public void test() {
-        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("username", "admin");
+        LambdaQueryWrapper<User> queryWrapper = Wrappers.lambdaQuery();
+        queryWrapper.eq(User::getUsername, "admin");
         List<User> users = userMapper.selectList(queryWrapper);
         users.forEach(user -> log.debug(user.getPassword()));
     }

@@ -1,10 +1,7 @@
 package com.phynos.solar.module.sys.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
-import java.sql.Blob;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,7 +11,7 @@ import lombok.Setter;
  * </p>
  *
  * @author lupc
- * @since 2021-12-13
+ * @since 2021-12-20
  */
 @Getter
 @Setter
@@ -23,13 +20,12 @@ public class GeBlob implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
     /**
      * 大字节数据
      */
-    private Blob content;
+    private byte[] content;
 
 
 }

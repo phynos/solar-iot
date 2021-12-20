@@ -5,11 +5,11 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
  * <p>
- * 管理用户表格 Mapper 接口
+ *  Mapper 接口
  * </p>
  *
  * @author lupc
- * @since 2021-12-13
+ * @since 2021-12-20
  */
 public interface UserMapper extends BaseMapper<User> {
 

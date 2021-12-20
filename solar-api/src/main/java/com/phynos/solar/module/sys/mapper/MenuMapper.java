@@ -5,11 +5,11 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
  * <p>
- * 菜单 Mapper 接口
+ *  Mapper 接口
  * </p>
  *
  * @author lupc
- * @since 2021-12-13
+ * @since 2021-12-20
  */
 public interface MenuMapper extends BaseMapper<Menu> {
 
