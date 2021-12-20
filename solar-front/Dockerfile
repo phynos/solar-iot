@@ -8,6 +8,6 @@ RUN mkdir -p /iot \
 # 指定工作目录
 WORKDIR /iot
 #复制到容器指定目录
-COPY ./target/phynos-solar-mqtt.jar /iot/phynos-solar-mqtt.jar
+COPY ./target/solar-front-mqtt.jar /iot/solar-front-mqtt.jar
 # 启动后执行命令
-ENTRYPOINT [ "java", "-jar", "/iot/phynos-solar-mqtt.jar" ]
+ENTRYPOINT [ "java", "-jar", "/iot/solar-front-mqtt.jar" ]

@@ -65,7 +65,7 @@
     </dependencies>
 
     <build>
-        <finalName>phynos-front-mqtt</finalName>
+        <finalName>solar-front-mqtt</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

@@ -126,7 +126,7 @@
     </dependencies>
 
     <build>
-        <finalName>phynos-solar-api</finalName>
+        <finalName>solar-api</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

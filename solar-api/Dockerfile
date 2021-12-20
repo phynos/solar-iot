@@ -11,6 +11,6 @@ WORKDIR /iot
 EXPOSE 7001
 #复制到容器指定目录
 COPY --from=hengyunabc/arthas:latest /opt/arthas /opt/arthas
-COPY ./target/phynos-solar-api.jar /iot/phynos-solar-api.jar
+COPY ./target/solar-api.jar /iot/solar-api.jar
 # 启动后执行命令
-ENTRYPOINT [ "java", "-jar", "/iot/phynos-solar-api.jar" ]
+ENTRYPOINT [ "java", "-jar", "/iot/solar-api.jar" ]
