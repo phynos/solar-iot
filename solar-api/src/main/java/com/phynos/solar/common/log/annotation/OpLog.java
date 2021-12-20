@@ -1,4 +1,4 @@
-package com.phynos.solar.common.annotation;
+package com.phynos.solar.common.log.annotation;
 
 import java.lang.annotation.*;
 

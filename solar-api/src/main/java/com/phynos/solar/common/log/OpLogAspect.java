@@ -1,10 +1,11 @@
-package com.phynos.solar.common.aspectj;
+package com.phynos.solar.common.log;
 
-import com.phynos.solar.common.annotation.OpLog;
+import com.phynos.solar.common.log.annotation.OpLog;
 import com.phynos.solar.common.util.ServletUtil;
 import com.phynos.solar.util.json.JsonUtil;
 import com.phynos.solar.util.json.R;
 import com.phynos.solar.util.json.ResultCodeEnum;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -12,8 +13,6 @@ import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Component;
@@ -29,15 +28,14 @@ import java.util.Map;
  *
  * @author phynos
  */
+@Slf4j
 @Aspect
 @Component
 @EnableAsync
 public class OpLogAspect {
 
-    Logger logger = LoggerFactory.getLogger(getClass());
-
     // 切点
-    @Pointcut("@annotation(com.phynos.solar.common.annotation.OpLog)")
+    @Pointcut("@annotation(com.phynos.solar.common.log.annotation.OpLog)")
     public void logPointCut() {
 
     }
@@ -70,7 +68,7 @@ public class OpLogAspect {
             final Object rvt,
             final Exception e) {
         try {
-            logger.debug("当前系统日志处理线程名称：" + Thread.currentThread().getName());
+            log.debug("当前系统日志处理线程名称：" + Thread.currentThread().getName());
             // 获得注解
             OpLog controllerLog = getAnnotationLog(joinPoint);
             if (controllerLog == null) {
@@ -87,7 +85,7 @@ public class OpLogAspect {
                     boolean result = r.getStatus() == ResultCodeEnum.OK.getCode();
                 } else {
                     //进入这里，表示返回结果不是json数据
-                    logger.warn("暂时无法处理 返回结果不是json的情况");
+                    log.warn("暂时无法处理 返回结果不是json的情况");
 
                 }
             }
@@ -100,8 +98,8 @@ public class OpLogAspect {
             //
         } catch (Exception exp) {
             // 记录本地异常日志
-            logger.error("==前置通知异常==");
-            logger.error("异常信息:{}" + exp.getMessage());
+            log.error("==前置通知异常==");
+            log.error("异常信息:{}" + exp.getMessage());
         }
     }
 

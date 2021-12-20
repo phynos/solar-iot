@@ -1,14 +1,11 @@
 package com.phynos.solar.module.sys.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.phynos.solar.module.sys.entity.User;
 import com.phynos.solar.module.sys.mapper.UserMapper;
-import com.phynos.solar.module.sys.service.IUserService;
+import com.phynos.solar.module.sys.service.UserService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Nonnull;
@@ -26,7 +23,7 @@ import java.util.List;
  */
 @Slf4j
 @Service
-public class UserServiceImpl implements IUserService {
+public class UserServiceImpl implements UserService {
 
     @Resource
     UserMapper userMapper;

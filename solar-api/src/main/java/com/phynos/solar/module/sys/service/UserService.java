@@ -10,7 +10,7 @@ import javax.annotation.Nonnull;
  * @author lupc
  * @since 2021-02-23
  */
-public interface IUserService {
+public interface UserService {
 
     void checkUser(@Nonnull String username);
 

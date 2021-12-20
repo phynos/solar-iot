@@ -8,7 +8,7 @@ import lombok.Setter;
 
 /**
  * <p>
- * 操作记录表
+ * 
  * </p>
  *
  * @author lupc
@@ -84,9 +84,9 @@ public class OperationLog implements Serializable {
     private String errorMsg;
 
     /**
-     * 操作状态：0=正常 1=异常）
+     * 操作状态
      */
-    private String status;
+    private Boolean status;
 
 
 }
