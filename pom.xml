@@ -32,7 +32,7 @@
         <spring-boot.version>2.6.1</spring-boot.version>
         <mybatis.version>3.5.8</mybatis.version>
         <postgresql.version>42.3.1</postgresql.version>
-        <mysql.version>5.1.48</mysql.version>
+        <mysql.version>8.0.16</mysql.version>
         <netty.version>4.1.71.Final</netty.version>
         <mqttv3.version>1.2.5</mqttv3.version>
         <common.lang3.version>3.9</common.lang3.version>
