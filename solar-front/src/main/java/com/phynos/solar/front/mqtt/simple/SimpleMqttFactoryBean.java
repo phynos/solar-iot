@@ -9,7 +9,7 @@ import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.InitializingBean;
 
 /**
- * 注释内容
+ * 负责创建mqttclient
  *
  * @author lupc
  * @date 2021/12/17 15:10
@@ -78,6 +78,8 @@ public class SimpleMqttFactoryBean implements MqttCallback, FactoryBean<MqttClie
         connOpt.setKeepAliveInterval(30);
         connOpt.setUserName(mqttProperties.getUsername());
         connOpt.setPassword(mqttProperties.getPassword().toCharArray());
+
+        connect();
     }
 
     public void connect() {

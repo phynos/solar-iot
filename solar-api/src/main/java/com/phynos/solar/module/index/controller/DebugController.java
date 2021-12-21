@@ -18,7 +18,7 @@ import java.util.Date;
  * @date 2019/10/10 20:24
  **/
 @RestController
-@RequestMapping("/api/debug")
+@RequestMapping("/debug")
 public class DebugController {
 
     @Value("${com.phynos.solar.time}")

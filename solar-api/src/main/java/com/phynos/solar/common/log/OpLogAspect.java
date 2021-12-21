@@ -68,7 +68,7 @@ public class OpLogAspect {
             final Object rvt,
             final Exception e) {
         try {
-            log.debug("当前系统日志处理线程名称：" + Thread.currentThread().getName());
+            log.debug("当前系统日志处理线程名称：{}", Thread.currentThread().getName());
             // 获得注解
             OpLog controllerLog = getAnnotationLog(joinPoint);
             if (controllerLog == null) {

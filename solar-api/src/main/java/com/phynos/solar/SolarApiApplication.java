@@ -8,8 +8,8 @@ import org.springframework.scheduling.annotation.EnableAsync;
  * @author by Lupc
  * @date 2019/9/25.
  */
-@SpringBootApplication
 @EnableAsync
+@SpringBootApplication
 public class SolarApiApplication {
 
     public static void main(String[] args) {

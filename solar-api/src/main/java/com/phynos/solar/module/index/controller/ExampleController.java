@@ -20,7 +20,7 @@ import javax.validation.Valid;
  * @date 2021/3/26 13:57
  */
 @RestController
-@RequestMapping("/api/example")
+@RequestMapping("/example")
 public class ExampleController {
 
     @Autowired

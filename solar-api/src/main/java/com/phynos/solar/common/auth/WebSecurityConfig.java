@@ -61,7 +61,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         return o;
                     }
                 })
-                .mvcMatchers("/auth/token", "/kaptcha", "/register/user", "/register/enterprise").permitAll()
+                .mvcMatchers(
+                        "/auth/token",
+                        "/kaptcha",
+                        "/register/user",
+                        "/register/enterprise").permitAll()
                 .anyRequest()
                 .authenticated();
         http.logout()

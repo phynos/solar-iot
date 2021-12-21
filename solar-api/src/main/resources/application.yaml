@@ -3,17 +3,24 @@ com:
     solar:
       time: @timestamp@
 
-# 应用参数
+# JWT参数
 jwt:
   secret: PDJ2544DEF4E55DF4D1
   expires: 7 #超时天数
+
+# 文件存储
+oss:
+  url: http://42.192.126.212:7610/
+  bucket: test
+  accessKey: minioadmin
+  secretKey: ${OSS_PASSWORD}
 
 server:
   port: 7001
   tomcat:
     uri-encoding: 'UTF-8'
   servlet:
-    context-path: /
+    context-path: /api
 
 spring:
   main:
