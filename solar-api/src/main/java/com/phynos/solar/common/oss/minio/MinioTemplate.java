@@ -3,10 +3,13 @@ package com.phynos.solar.common.oss.minio;
 import com.phynos.solar.common.oss.OssFileInfo;
 import com.phynos.solar.common.oss.OssProperties;
 import com.phynos.solar.common.oss.OssTemplate;
+import com.phynos.solar.common.util.UuidUtil;
 import io.minio.*;
 import io.minio.errors.*;
 import io.minio.http.Method;
 import io.minio.messages.Bucket;
+import org.apache.commons.io.FilenameUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -199,6 +202,35 @@ public class MinioTemplate implements OssTemplate {
         return null;
     }
 
+    @Override
+    public OssFileInfo saveObjectRealName(String bucketName, String dirs, MultipartFile multipartFile) throws IOException {
+        return saveObject(bucketName, dirs, multipartFile.getOriginalFilename(), multipartFile);
+    }
+
+    @Override
+    public OssFileInfo saveObject(String bucketName, String dirs, MultipartFile multipartFile) throws IOException {
+        String uuid = UuidUtil.uid();
+        String originFileName = multipartFile.getOriginalFilename();
+        String fileName = uuid + "." + FilenameUtils.getExtension(originFileName);
+        return saveObject(bucketName, dirs, fileName, multipartFile);
+    }
+
+    @Override
+    public OssFileInfo saveObject(
+            String bucketName, String dirs, String fileName, MultipartFile multipartFile) throws IOException {
+        long size = multipartFile.getSize();
+        String objectName = dirs + fileName;
+        try (InputStream is = multipartFile.getInputStream()) {
+            putObject(bucketName, objectName, is, size, multipartFile.getContentType());
+            OssFileInfo ossFileInfo = new OssFileInfo();
+            ossFileInfo.setFileSize(size);
+            ossFileInfo.setObjectName(objectName);
+            ossFileInfo.setFileName(multipartFile.getOriginalFilename());
+            ossFileInfo.setContentType(multipartFile.getContentType());
+            return ossFileInfo;
+        }
+    }
+
     /**
      * 获取对象数据
      *
@@ -206,6 +238,7 @@ public class MinioTemplate implements OssTemplate {
      * @param objectName 对象名称
      * @return
      */
+    @Override
     public InputStream getObject(String bucketName, String objectName) {
         GetObjectArgs getObjectArgs = GetObjectArgs.builder()
                 .bucket(bucketName)

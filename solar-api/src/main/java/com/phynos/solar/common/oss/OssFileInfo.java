@@ -16,24 +16,26 @@ import java.time.LocalDateTime;
 @Data
 public class OssFileInfo {
 
+    private String objectName;
+
     private String fileName;
 
     private long fileSize;
 
+    private String contentType;
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private LocalDateTime lastModified;
-
-    private String uri;
 
     public static OssFileInfo fromMinioStat(StatObjectResponse stat) {
         if(stat == null || stat.deleteMarker()) {
             return null;
         }
         OssFileInfo ossFileInfo = new OssFileInfo();
-        ossFileInfo.setFileName(stat.object());
+        ossFileInfo.setObjectName(stat.object());
         ossFileInfo.setFileSize(stat.size());
         ossFileInfo.setLastModified(stat.lastModified().toLocalDateTime());
-        ossFileInfo.setUri("/api/oss/object/download/" + stat.object());
+        ossFileInfo.setContentType(stat.contentType());
         return ossFileInfo;
     }
 
