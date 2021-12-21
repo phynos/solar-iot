@@ -203,12 +203,14 @@ public class MinioTemplate implements OssTemplate {
     }
 
     @Override
-    public OssFileInfo saveObjectRealName(String bucketName, String dirs, MultipartFile multipartFile) throws IOException {
+    public OssFileInfo saveObjectRealName(
+            String bucketName, String dirs, MultipartFile multipartFile) throws IOException {
         return saveObject(bucketName, dirs, multipartFile.getOriginalFilename(), multipartFile);
     }
 
     @Override
-    public OssFileInfo saveObject(String bucketName, String dirs, MultipartFile multipartFile) throws IOException {
+    public OssFileInfo saveObject(
+            String bucketName, String dirs, MultipartFile multipartFile) throws IOException {
         String uuid = UuidUtil.uid();
         String originFileName = multipartFile.getOriginalFilename();
         String fileName = uuid + "." + FilenameUtils.getExtension(originFileName);
@@ -225,7 +227,7 @@ public class MinioTemplate implements OssTemplate {
             OssFileInfo ossFileInfo = new OssFileInfo();
             ossFileInfo.setFileSize(size);
             ossFileInfo.setObjectName(objectName);
-            ossFileInfo.setFileName(multipartFile.getOriginalFilename());
+            ossFileInfo.setFileRealName(multipartFile.getOriginalFilename());
             ossFileInfo.setContentType(multipartFile.getContentType());
             return ossFileInfo;
         }
@@ -269,6 +271,21 @@ public class MinioTemplate implements OssTemplate {
     }
 
     /**
+     * 移除对象
+     *
+     * @param bucketName 桶名称
+     * @param objectName 对象名称
+     */
+    @Override
+    public void removeObject(String bucketName, String objectName) {
+        try {
+            minioClient.removeObject(RemoveObjectArgs.builder().bucket(bucketName).object(objectName).build());
+        } catch (ServerException | InsufficientDataException | ErrorResponseException | IOException | NoSuchAlgorithmException | InvalidKeyException | InvalidResponseException | XmlParserException | InternalException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * 存储对象
      *
      * @param bucketName  桶名称
@@ -307,7 +324,6 @@ public class MinioTemplate implements OssTemplate {
         }
     }
 
-
     /**
      * upload适用于比较大的文件，putObject适用于小的文件内容，upload支持自定义多线程并发上传
      *
@@ -341,18 +357,5 @@ public class MinioTemplate implements OssTemplate {
         }
     }
 
-    /**
-     * 移除对象
-     *
-     * @param bucketName 桶名称
-     * @param objectName 对象名称
-     */
-    public void removeObject(String bucketName, String objectName) {
-        try {
-            minioClient.removeObject(RemoveObjectArgs.builder().bucket(bucketName).object(objectName).build());
-        } catch (ServerException | InsufficientDataException | ErrorResponseException | IOException | NoSuchAlgorithmException | InvalidKeyException | InvalidResponseException | XmlParserException | InternalException e) {
-            e.printStackTrace();
-        }
-    }
 
 }

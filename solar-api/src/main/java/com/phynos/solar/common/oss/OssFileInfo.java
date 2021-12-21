@@ -1,14 +1,13 @@
 package com.phynos.solar.common.oss;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import io.minio.StatObjectResponse;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 
 /**
- * 注释内容
+ * 文件（对象）持久化信息
  *
  * @author lupc
  * @date 2021/12/21 09:27
@@ -16,9 +15,12 @@ import java.time.LocalDateTime;
 @Data
 public class OssFileInfo {
 
+    /**
+     * 对象名称，唯一
+     */
     private String objectName;
 
-    private String fileName;
+    private String fileRealName;
 
     private long fileSize;
 

@@ -1,8 +1,6 @@
 package com.phynos.solar.common.oss;
 
-import com.alibaba.excel.util.IoUtils;
 import com.phynos.solar.util.json.R;
-import io.minio.StatObjectResponse;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -44,7 +42,6 @@ public class OssController {
             IOUtils.copy(is, os);
         }
     }
-
 
     @RequestMapping("/object/url")
     public String getURL() {
