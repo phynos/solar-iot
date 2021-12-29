@@ -127,18 +127,10 @@
             <groupId>io.minio</groupId>
             <artifactId>minio</artifactId>
             <version>8.3.4</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.squareup.okhttp3</groupId>
-                    <artifactId>okhttp</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
-        <!-- http -->
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>
-            <version>4.9.3</version>
         </dependency>
 
     </dependencies>
