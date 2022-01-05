@@ -7,11 +7,10 @@ import com.phynos.solar.common.auth.jwttoken.JwtTokenProperties;
 import com.phynos.solar.common.auth.jwttoken.service.TokenService;
 import com.phynos.solar.common.auth.jwttoken.util.Auth0JwtUtil;
 import com.phynos.solar.common.auth.jwttoken.vo.JwtAuthVO;
-import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,7 +43,7 @@ public class TokenServiceImpl implements TokenService {
         String token = createJWTToken(username);
         JwtAuthVO vo = new JwtAuthVO();
         vo.setAccessToken(token);
-        vo.setExpiresIn(DateUtils.addDays(new Date(), jwtTokenProperties.getExpires()));
+        vo.setExpiresIn(LocalDateTime.now().plusDays(jwtTokenProperties.getExpires()));
         vo.setUserType(1);
         return vo;
     }

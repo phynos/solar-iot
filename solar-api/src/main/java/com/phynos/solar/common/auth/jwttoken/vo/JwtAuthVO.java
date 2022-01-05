@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * 返回结果封装
@@ -20,7 +20,7 @@ public class JwtAuthVO {
 
     @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss", timezone = "GMT+8")
     @JsonProperty("expires_in")
-    private Date expiresIn;
+    private LocalDateTime expiresIn;
 
     private Integer userType;
 
