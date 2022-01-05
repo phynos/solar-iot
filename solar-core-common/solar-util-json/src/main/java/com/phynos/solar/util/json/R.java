@@ -16,7 +16,7 @@ import java.util.Map;
  */
 @Setter
 @Getter
-public class R<T> {
+public final class R<T> {
 
     /**
      * 状态值
@@ -92,6 +92,7 @@ public class R<T> {
 
     /**
      * 附带调试信息，支持格式化
+     *
      * @param error
      * @param format
      * @param arguments
@@ -102,8 +103,17 @@ public class R<T> {
         return tip(error, tip);
     }
 
-    public static <K> R<K> data(K data) {
-        R<K> r = new R<>(ResultCodeEnum.OK.getCode(), ResultCodeEnum.OK.getMsg());
+    public static <T> R<T> error(ResultCodeEnum error) {
+        return error(error, error.getMsg());
+    }
+
+    public static <T> R<T> error(ResultCodeEnum error, String msg) {
+        R<T> r = new R<>(error.getCode(), msg);
+        return r;
+    }
+
+    public static <T> R<T> data(T data) {
+        R<T> r = new R<>(ResultCodeEnum.OK.getCode(), ResultCodeEnum.OK.getMsg());
         r.setData(data);
         return r;
     }
@@ -113,13 +123,13 @@ public class R<T> {
      */
     public static class Build {
 
-        private final Map<String,Object> data = new HashMap<>();
+        private final Map<String, Object> data = new HashMap<>();
 
         public Build() {
 
         }
 
-        public Build put(String key,Object value) {
+        public Build put(String key, Object value) {
             data.put(key, value);
             return this;
         }

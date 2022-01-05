@@ -3,6 +3,7 @@ package com.phynos.solar.common.auth.jwttoken;
 import com.phynos.solar.common.auth.UserAuthService;
 import com.phynos.solar.common.auth.jwttoken.dto.LoginDTO;
 import com.phynos.solar.common.auth.jwttoken.service.TokenService;
+import com.phynos.solar.common.auth.jwttoken.vo.JwtAuthVO;
 import com.phynos.solar.common.auth.kaptcha.KaptchaService;
 import com.phynos.solar.util.json.R;
 import com.phynos.solar.util.json.ResultCodeEnum;
@@ -41,11 +42,11 @@ public class TokenController {
     UserAuthService userAuthService;
 
     @PostMapping("")
-    public R<?> tokenAuth(@RequestBody @Valid LoginDTO dto) throws AuthenticationException {
+    public R<JwtAuthVO> tokenAuth(@RequestBody @Valid LoginDTO dto) throws AuthenticationException {
         //验证码
         ResultCodeEnum result = kaptchaService.valid(dto.getCode());
         if (result != ResultCodeEnum.OK) {
-            return R.code(result);
+            return R.error(result);
         }
         UsernamePasswordAuthenticationToken upToken = userAuthService.createUpAuthTokenBeforAuth(
                 dto.getUsername(),
@@ -57,15 +58,15 @@ public class TokenController {
             //登录成功
         } catch (BadCredentialsException | UsernameNotFoundException e) {
             //登录失败
-            return R.code(ResultCodeEnum.USERNAME_PASSWORD_MISMATCH);
+            return R.error(ResultCodeEnum.USERNAME_PASSWORD_MISMATCH);
         } catch (AccountExpiredException e) {
-            return R.msg(ResultCodeEnum.USERNAME_PASSWORD_MISMATCH, "账户被禁用");
+            return R.error(ResultCodeEnum.USERNAME_PASSWORD_MISMATCH, "账户被禁用");
         } catch (LockedException e) {
-            return R.msg(ResultCodeEnum.USERNAME_PASSWORD_MISMATCH, "账户被锁定");
+            return R.error(ResultCodeEnum.USERNAME_PASSWORD_MISMATCH, "账户被锁定");
         } catch (CredentialsExpiredException e) {
-            return R.msg(ResultCodeEnum.USERNAME_PASSWORD_MISMATCH, "账户凭证过期");
+            return R.error(ResultCodeEnum.USERNAME_PASSWORD_MISMATCH, "账户凭证过期");
         } catch (SessionAuthenticationException e) {
-            return R.msg(ResultCodeEnum.USERNAME_PASSWORD_MISMATCH, "您已在其他设备登录，禁止登录");
+            return R.error(ResultCodeEnum.USERNAME_PASSWORD_MISMATCH, "您已在其他设备登录，禁止登录");
         }
         //返回TOKEN给客户端
         return R.data(tokenService.buildAuthResult(dto.getUsername()));
