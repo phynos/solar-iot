@@ -1,7 +1,7 @@
 
 
 PROGRAM='/home/phynos/app'
-apps=(phynos-api phynos-netty phynos-actuator phynos-push)
+apps=(solar-api solar-netty solar-actuator solar-push)
 
 for app in "${apps[@]}"
 do
