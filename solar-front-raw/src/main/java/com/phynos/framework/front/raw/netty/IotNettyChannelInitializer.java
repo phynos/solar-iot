@@ -62,7 +62,7 @@ public class IotNettyChannelInitializer extends ChannelInitializer<SocketChannel
         // encoded
         ch.pipeline().addLast(new IotNettyEncoder());
         // 处理器-空闲触发器
-        ch.pipeline().addLast(EXECUTOR_GROUOP, new IdleStateHandler(10, 10, 10, TimeUnit.SECONDS));
+        ch.pipeline().addLast(EXECUTOR_GROUOP, new IdleStateHandler(10, 10, 120, TimeUnit.SECONDS));
         adapterMap.forEach((k,v) -> {
             ch.pipeline().addLast(EXECUTOR_GROUOP, k, v);
         });

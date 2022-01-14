@@ -32,7 +32,7 @@
         <spring-boot.version>2.6.1</spring-boot.version>
         <mybatis.version>3.5.8</mybatis.version>
         <postgresql.version>42.3.1</postgresql.version>
-        <netty.version>4.1.71.Final</netty.version>
+        <netty.version>4.1.72.Final</netty.version>
         <mqttv3.version>1.2.5</mqttv3.version>
         <common.lang3.version>3.9</common.lang3.version>
         <common.io.version>2.11.0</common.io.version>
@@ -124,18 +124,6 @@
                 <groupId>org.eclipse.paho</groupId>
                 <artifactId>org.eclipse.paho.client.mqttv3</artifactId>
                 <version>${mqttv3.version}</version>
-            </dependency>
-
-            <!-- 文档生成 -->
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger2</artifactId>
-                <version>${swagger.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger-ui</artifactId>
-                <version>${swagger.version}</version>
             </dependency>
 
             <!-- java-常用公共类库 -->

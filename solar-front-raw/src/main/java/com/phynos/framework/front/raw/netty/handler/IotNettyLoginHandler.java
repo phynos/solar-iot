@@ -35,8 +35,8 @@ public class IotNettyLoginHandler extends ChannelInboundHandlerAdapter {
             //执行登录
 
             //记录登录状态
-            ioSession.isLogin = true;
-        } else if (!ioSession.isLogin) {
+            ioSession.setLogin(true);
+        } else if (!ioSession.isLogin()) {
             log.warn("没有登录，直接关闭连接");
             ctx.channel().close();
         } else {

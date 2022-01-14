@@ -5,16 +5,14 @@ import com.phynos.framework.front.raw.util.ClassUtil;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 解码器
  * @author Lupc
  */
+@Slf4j
 public class IotNettyDecoder extends LengthFieldBasedFrameDecoder {
-
-	Logger logger = LoggerFactory.getLogger(getClass());
 
 	public IotNettyDecoder(
 			int maxFrameLength, 
@@ -32,7 +30,7 @@ public class IotNettyDecoder extends LengthFieldBasedFrameDecoder {
 		if(frame == null) {
 			return null;
 		}
-		logger.debug("消息全部到达！");
+		log.debug("消息全部到达！");
 		byte[] head = new byte[4];
 		frame.readBytes(head);
 		int messageType = frame.readInt();
@@ -41,7 +39,7 @@ public class IotNettyDecoder extends LengthFieldBasedFrameDecoder {
 		frame.readBytes(data);
 		//构造消息体
 		Class<?> clazz = ClassUtil.getMsgClassByType(messageType);
-		IotMessage message = (IotMessage)clazz.newInstance();
+		IotMessage message = (IotMessage)clazz.getDeclaredConstructor(IotMessage.class).newInstance();
 		message.setMessageType(messageType);
 		message.setData(data);
 		return message;

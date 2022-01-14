@@ -1,11 +1,14 @@
 package com.phynos.framework.front.raw.netty;
 
+import lombok.Data;
+
 /**
  * @author by Lupc
  * @date 2020/4/5.
  */
+@Data
 public class IoSession {
 
-    public boolean isLogin = false;
+    private boolean isLogin = false;
 
 }
