@@ -1,6 +1,6 @@
 package com.phynos.solar.common.log;
 
-import com.phynos.solar.common.log.annotation.OpLog;
+import com.phynos.solar.common.log.annotation.SystemAuditLog;
 import com.phynos.solar.common.util.ServletUtil;
 import com.phynos.solar.util.json.JsonUtil;
 import com.phynos.solar.util.json.R;
@@ -26,16 +26,15 @@ import java.util.Map;
 /**
  * 切面处理类：操作日志 AOP处理类
  *
- * @author phynos
+ * @author lupc
  */
 @Slf4j
 @Aspect
 @Component
-@EnableAsync
-public class OpLogAspect {
+public class SystemAuditLogAspect {
 
     // 切点
-    @Pointcut("@annotation(com.phynos.solar.common.log.annotation.OpLog)")
+    @Pointcut("@annotation(com.phynos.solar.common.log.annotation.SystemAuditLog)")
     public void logPointCut() {
 
     }
@@ -70,7 +69,7 @@ public class OpLogAspect {
         try {
             log.debug("当前系统日志处理线程名称：{}", Thread.currentThread().getName());
             // 获得注解
-            OpLog controllerLog = getAnnotationLog(joinPoint);
+            SystemAuditLog controllerLog = getAnnotationLog(joinPoint);
             if (controllerLog == null) {
                 return;
             }
@@ -86,7 +85,6 @@ public class OpLogAspect {
                 } else {
                     //进入这里，表示返回结果不是json数据
                     log.warn("暂时无法处理 返回结果不是json的情况");
-
                 }
             }
             // 设置方法名称
@@ -99,7 +97,7 @@ public class OpLogAspect {
         } catch (Exception exp) {
             // 记录本地异常日志
             log.error("==前置通知异常==");
-            log.error("异常信息:{}" + exp.getMessage());
+            log.error("异常信息:{}", exp.getMessage());
         }
     }
 
@@ -143,7 +141,7 @@ public class OpLogAspect {
      * @throws Exception
      */
     public void getControllerMethodDescription(
-            OpLog log) throws Exception {
+            SystemAuditLog log) throws Exception {
         //设置模块
         log.module();
         //设置功能
@@ -157,13 +155,13 @@ public class OpLogAspect {
     /**
      * 是否存在注解，如果存在就获取
      */
-    private OpLog getAnnotationLog(JoinPoint joinPoint) throws Exception {
+    private SystemAuditLog getAnnotationLog(JoinPoint joinPoint) throws Exception {
         Signature signature = joinPoint.getSignature();
         MethodSignature methodSignature = (MethodSignature) signature;
         Method method = methodSignature.getMethod();
 
         if (method != null) {
-            return method.getAnnotation(OpLog.class);
+            return method.getAnnotation(SystemAuditLog.class);
         }
         return null;
     }
