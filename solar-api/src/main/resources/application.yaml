@@ -23,8 +23,6 @@ server:
     context-path: /api
 
 spring:
-  main:
-    allow-circular-references: true
   application:
     name: SolarApi
   devtools:

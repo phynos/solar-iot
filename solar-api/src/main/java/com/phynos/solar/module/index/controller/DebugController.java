@@ -38,12 +38,6 @@ public class DebugController {
         return new R.Build().put("buildTime", sdf.format(date)).build();
     }
 
-    @GetMapping("/testThread")
-    public String testThread() {
-        debugService.testThread();
-        return "ok";
-    }
-
     @GetMapping("/test")
     public R<?> test() {
         return debugService.test();

@@ -1,10 +1,13 @@
 package com.phynos.solar.module.index.service.impl;
 
 import com.phynos.solar.module.index.service.DebugService;
+import com.phynos.solar.module.index.service.TestService;
 import com.phynos.solar.util.json.R;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -16,26 +19,25 @@ import javax.annotation.PostConstruct;
  */
 @Slf4j
 @Service
-public class DebugServiceImpl implements DebugService {
+public class DebugServiceImpl implements ApplicationContextAware, DebugService {
 
-    @Autowired
-    ApplicationContext ac;
+    private ApplicationContext applicationContext;
 
     @PostConstruct
     public void init() {
-        ac.getBean(DebugService.class).testThread();
+        applicationContext.getBean(TestService.class).testThread();
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
     }
 
     @Override
     public R<?> test() {
-        ac.getBean(DebugService.class).testThread();
+        applicationContext.getBean(TestService.class).testThread();
         return R.ok();
     }
 
-    @Async("asyncTaskExecutor")
-    @Override
-    public void testThread() {
-        log.debug("当前处理线程名称：" + Thread.currentThread().getName());
-    }
 
 }

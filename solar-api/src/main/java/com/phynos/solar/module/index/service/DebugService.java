@@ -10,6 +10,4 @@ public interface DebugService {
 
     R<?> test();
 
-    void testThread();
-
 }
