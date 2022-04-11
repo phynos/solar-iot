@@ -4,25 +4,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
- * @author Lupc
- * @Date: 2019/10/18 20:01
- **/
+ * 注释内容
+ *
+ * @author lupc
+ * @date 2022/4/11 11:30
+ */
 @Configuration
-public class WebMvcConfig extends WebMvcConfigurationSupport {
+public class WebMvcConfig implements WebMvcConfigurer {
 
     @Autowired
     com.phynos.solar.common.web.AMyMVCInterceptor AMyMVCInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+        WebMvcConfigurer.super.addInterceptors(registry);
         registry.addInterceptor(AMyMVCInterceptor).addPathPatterns("/**");
     }
 
     @Override
-    protected void addResourceHandlers(ResourceHandlerRegistry registry) {
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        WebMvcConfigurer.super.addResourceHandlers(registry);
         //配置
         registry.addResourceHandler("swagger-ui.html")
                 .addResourceLocations("classpath:/META-INF/resources/");
@@ -35,5 +39,4 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
         registry.addResourceHandler("/upload/**")
                 .addResourceLocations("file:static/upload/");
     }
-
 }

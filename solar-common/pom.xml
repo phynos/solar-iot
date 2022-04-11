@@ -9,16 +9,17 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>solar-core-common</artifactId>
+    <artifactId>solar-common</artifactId>
     <packaging>pom</packaging>
+    <modules>
+        <module>solar-oss</module>
+        <module>solar-util-json</module>
+        <module>solar-util-web</module>
+    </modules>
 
     <properties>
-
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
     </properties>
-
-    <modules>
-        <module>solar-util-web</module>
-        <module>solar-util-json</module>
-    </modules>
 
 </project>
