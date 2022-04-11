@@ -15,6 +15,7 @@
         <module>solar-oss</module>
         <module>solar-util-json</module>
         <module>solar-util-web</module>
+        <module>solar-log-web</module>
     </modules>
 
     <properties>

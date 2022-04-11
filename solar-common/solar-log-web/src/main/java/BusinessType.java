@@ -1,5 +1,3 @@
-package com.phynos.solar.common.constant;
-
 public class BusinessType {
     
 	/** 其它 */

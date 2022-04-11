@@ -1,10 +1,10 @@
-package com.phynos.solar.common.log;
+package com.phynos.solar.log.web;
 
-import com.phynos.solar.common.log.annotation.SystemAuditLog;
-import com.phynos.solar.common.util.ServletUtil;
+import com.phynos.solar.log.web.annotation.SystemAuditLog;
 import com.phynos.solar.util.json.JsonUtil;
 import com.phynos.solar.util.json.R;
 import com.phynos.solar.util.json.ResultCodeEnum;
+import com.phynos.solar.util.web.ServletUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
@@ -14,7 +14,6 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -22,7 +21,6 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
 import java.util.Map;
-import java.util.concurrent.locks.LockSupport;
 
 /**
  * 切面处理类：操作日志 AOP处理类
@@ -35,7 +33,7 @@ import java.util.concurrent.locks.LockSupport;
 public class SystemAuditLogAspect {
 
     // 切点
-    @Pointcut("@annotation(com.phynos.solar.common.log.annotation.SystemAuditLog)")
+    @Pointcut("@annotation(com.phynos.solar.log.web.annotation.SystemAuditLog)")
     public void logPointCut() {
 
     }
