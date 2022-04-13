@@ -29,14 +29,13 @@
         <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
         <!-- 各种版本 -->
         <phynos.version>1.0-SNAPSHOT</phynos.version>
-        <spring-boot.version>2.6.1</spring-boot.version>
+        <spring-boot.version>2.6.6</spring-boot.version>
         <mybatis.version>3.5.8</mybatis.version>
         <postgresql.version>42.3.3</postgresql.version>
         <netty.version>4.1.72.Final</netty.version>
         <mqttv3.version>1.2.5</mqttv3.version>
         <common.lang3.version>3.9</common.lang3.version>
         <common.io.version>2.11.0</common.io.version>
-        <guava.version>31.0.1-jre</guava.version>
         <swagger.version>3.0.0</swagger.version>
         <okhttp.version>4.9.3</okhttp.version>
     </properties>
@@ -150,7 +149,7 @@
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
-                <version>${guava.version}</version>
+                <version>31.0.1-jre</version>
             </dependency>
 
             <dependency>

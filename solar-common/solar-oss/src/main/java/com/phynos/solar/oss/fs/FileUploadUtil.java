@@ -1,5 +1,6 @@
-package com.phynos.solar.common.util;
+package com.phynos.solar.oss.fs;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.ResourceUtils;
@@ -12,9 +13,8 @@ import java.io.FileNotFoundException;
  * @Author: Lupc
  * @Date: 2019/10/28 17:21
  **/
+@Slf4j
 public class FileUploadUtil {
-
-    private static Logger logger = LoggerFactory.getLogger(FileUploadUtil.class.getSimpleName());
 
     public static boolean saveFileToDisk(
             MultipartFile fileUpload,
@@ -26,7 +26,7 @@ public class FileUploadUtil {
             if (!path.exists()) {
                 path = new File("");
             }
-            logger.debug(path.getAbsolutePath());
+            log.debug(path.getAbsolutePath());
             File upload = new File(path.getAbsolutePath(), "static/");
             for(String dir : parentDirs) {
                 upload = new File(upload, dir + "/");
@@ -38,7 +38,7 @@ public class FileUploadUtil {
             fileUpload.transferTo(new File(upload.getAbsolutePath(), fileName));
             return true;
         } catch (Exception e) {
-            logger.error(e.getMessage(), e.getCause());
+            log.error(e.getMessage(), e.getCause());
             return false;
         }
     }
