@@ -5,11 +5,11 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
  * <p>
- * 角色机构表 Mapper 接口
+ * 角色部门关联表 Mapper 接口
  * </p>
  *
  * @author lupc
- * @since 2021-12-20
+ * @since 2022-04-24
  */
 public interface RoleDeptMapper extends BaseMapper<RoleDept> {
 

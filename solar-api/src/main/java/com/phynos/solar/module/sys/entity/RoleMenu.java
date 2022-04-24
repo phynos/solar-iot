@@ -11,7 +11,7 @@ import lombok.Setter;
  * </p>
  *
  * @author lupc
- * @since 2021-12-20
+ * @since 2022-04-24
  */
 @Getter
 @Setter
@@ -22,14 +22,8 @@ public class RoleMenu implements Serializable {
 
     private Long id;
 
-    /**
-     * 角色id
-     */
     private Long roleId;
 
-    /**
-     * 菜单id
-     */
     private Long menuId;
 
 

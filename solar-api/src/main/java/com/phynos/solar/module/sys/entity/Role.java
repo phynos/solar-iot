@@ -8,11 +8,11 @@ import lombok.Setter;
 
 /**
  * <p>
- * 角色
+ * 角色表
  * </p>
  *
  * @author lupc
- * @since 2021-12-20
+ * @since 2022-04-24
  */
 @Getter
 @Setter
@@ -21,6 +21,9 @@ public class Role implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 角色id
+     */
     private Long id;
 
     /**
@@ -29,12 +32,32 @@ public class Role implements Serializable {
     private LocalDateTime createTime;
 
     /**
-     * 更新时间
+     * 创建人ID
      */
-    private LocalDateTime updateTime;
+    private Long createId;
 
     /**
-     * 角色名称
+     * 创建人-姓名
+     */
+    private String createRealname;
+
+    /**
+     * 修改时间
+     */
+    private LocalDateTime modifyTime;
+
+    /**
+     * 企业id
+     */
+    private Long tenantId;
+
+    /**
+     * 企业code
+     */
+    private String tenantCode;
+
+    /**
+     * 角色名
      */
     private String roleName;
 
@@ -44,17 +67,7 @@ public class Role implements Serializable {
     private String roleCode;
 
     /**
-     * 角色类型
-     */
-    private Integer roleType;
-
-    /**
-     * 区域id
-     */
-    private Long areaId;
-
-    /**
-     * 描述信息
+     * 备注
      */
     private String remark;
 

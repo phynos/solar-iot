@@ -1,6 +1,6 @@
 package com.phynos.solar.module.sys.mapper;
 
-import com.phynos.solar.module.sys.entity.OperationLog;
+import com.phynos.solar.module.sys.entity.LogLogin;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -9,8 +9,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author lupc
- * @since 2021-12-20
+ * @since 2022-04-24
  */
-public interface OperationLogMapper extends BaseMapper<OperationLog> {
+public interface LogLoginMapper extends BaseMapper<LogLogin> {
 
 }

@@ -7,11 +7,11 @@ import lombok.Setter;
 
 /**
  * <p>
- * 角色机构表
+ * 角色部门关联表
  * </p>
  *
  * @author lupc
- * @since 2021-12-20
+ * @since 2022-04-24
  */
 @Getter
 @Setter
@@ -28,7 +28,7 @@ public class RoleDept implements Serializable {
     private Long roleId;
 
     /**
-     * 机构id
+     * 部门id
      */
     private Long deptId;
 

@@ -7,25 +7,35 @@ import lombok.Setter;
 
 /**
  * <p>
- * 通用二进制存储表
+ * 隐患文件中间表
  * </p>
  *
  * @author lupc
- * @since 2021-12-20
+ * @since 2022-04-24
  */
 @Getter
 @Setter
-@TableName("sys_ge_blob")
-public class GeBlob implements Serializable {
+@TableName("sys_file_biz")
+public class FileBiz implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     private Long id;
 
     /**
-     * 大字节数据
+     * 业务id
      */
-    private byte[] content;
+    private Long bizId;
+
+    /**
+     * 文件id
+     */
+    private Long fileId;
+
+    /**
+     * 关联的业务表
+     */
+    private String bizTable;
 
 
 }

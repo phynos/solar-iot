@@ -7,11 +7,11 @@ import lombok.Setter;
 
 /**
  * <p>
- * 用户角色绑定
+ * 用户角色关联表
  * </p>
  *
  * @author lupc
- * @since 2021-12-20
+ * @since 2022-04-24
  */
 @Getter
 @Setter
@@ -23,14 +23,14 @@ public class UserRole implements Serializable {
     private Long id;
 
     /**
+     * 用户id
+     */
+    private Long userId;
+
+    /**
      * 角色id
      */
     private Long roleId;
-
-    /**
-     * 管理员用户id
-     */
-    private Long userId;
 
 
 }

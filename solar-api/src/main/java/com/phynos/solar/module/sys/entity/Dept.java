@@ -2,17 +2,16 @@ package com.phynos.solar.module.sys.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.Setter;
 
 /**
  * <p>
- * 机构表
+ * 企业部门表
  * </p>
  *
  * @author lupc
- * @since 2021-12-20
+ * @since 2022-04-24
  */
 @Getter
 @Setter
@@ -24,19 +23,9 @@ public class Dept implements Serializable {
     private Long id;
 
     /**
-     * 数据创建时间
+     * 租户id
      */
-    private LocalDateTime createTime;
-
-    /**
-     * 更新时间
-     */
-    private LocalDateTime updateTime;
-
-    /**
-     * 父id
-     */
-    private Long pid;
+    private Long tenantId;
 
     /**
      * 部门名称
@@ -44,14 +33,39 @@ public class Dept implements Serializable {
     private String name;
 
     /**
-     * 排序编号
+     * 排序
      */
     private Integer sort;
 
     /**
-     * 删除标志
+     * 负责人
      */
-    private String delFlag;
+    private String manager;
+
+    /**
+     * 联系电话
+     */
+    private String tel;
+
+    /**
+     * 邮箱
+     */
+    private String email;
+
+    /**
+     * 部门状态
+     */
+    private Boolean status;
+
+    /**
+     * 组织层级
+     */
+    private String deptType;
+
+    /**
+     * 父id
+     */
+    private Long pid;
 
 
 }

@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
  */
 @Setter
 @Getter
-public class PhyLoginDto {
+public class LoginDTO {
 
     @NotNull(message = "用户名不能为空")
     private String username;

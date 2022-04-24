@@ -2,13 +2,12 @@ package com.phynos.solar.module.sys.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.Setter;
 
 /**
  * <p>
- * 字典表
+ * 
  * </p>
  *
  * @author lupc
@@ -16,42 +15,45 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-@TableName("sys_dict")
-public class Dict implements Serializable {
+@TableName("sys_tenant")
+public class Tenant implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 主键
+     * 主键id
      */
     private Long id;
 
     /**
-     * 创建时间
-     */
-    private LocalDateTime createTime;
-
-    private Long createUserId;
-
-    /**
-     * 字典名称
+     * 名称
      */
     private String name;
 
     /**
-     * 字典编码
+     * 编码
      */
     private String code;
 
     /**
-     * 状态
+     * 密码
      */
-    private Boolean status;
+    private String password;
 
     /**
-     * 备注
+     * 小程序openid
      */
-    private String note;
+    private String openid;
+
+    /**
+     * 小程序unionid
+     */
+    private String unionid;
+
+    /**
+     * 行业类别
+     */
+    private String industryType;
 
 
 }

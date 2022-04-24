@@ -32,13 +32,13 @@ public class CodeGenerator {
     private static final String moduleName = "sys";
 
     private static final String[] tableNames = {
-            "sys_user", "sys_role", "sys_menu",
-            "sys_user_role", "sys_role_menu", "sys_role_dept", "sys_role_action",
-            "sys_dict", "sys_dict_type",
-            "sys_dept", "sys_area", "sys_action",
-            "sys_ge_blob", "sys_ge_text",
+            "sys_tenant",
+            "sys_user", "sys_role", "sys_menu", "sys_dept",
+            "sys_user_role", "sys_role_menu", "sys_role_dept",
+            "sys_dict", "sys_dict_item",
             "sys_parameter",
-            "sys_user_login_log", "sys_operation_log"};
+            "sys_log_login", "sys_log_audit",
+            "sys_file", "sys_file_biz"};
 
     public static void main(String[] args) {
         //从命令行获取密码
@@ -58,6 +58,7 @@ public class CodeGenerator {
     }
 
     public static final String URL = "jdbc:postgresql://www.iotroll.com:7609/iotdb?useUnicode=true&characterEncoding=utf-8";
+
     private static DataSourceConfig.Builder dataSourceConfigBuild(String password) {
         return new DataSourceConfig.Builder(URL, "iot", password)
                 .dbQuery(new PostgreSqlQuery())
@@ -66,9 +67,7 @@ public class CodeGenerator {
                     @Override
                     public IColumnType processTypeConvert(GlobalConfig globalConfig, TableField tableField) {
                         String t = tableField.getType().toLowerCase();
-                        if (t.contains("datetime")) {
-                            return DbColumnType.DATE;
-                        } else if (t.contains("bit")) {
+                        if (t.contains("bit")) {
                             return DbColumnType.BOOLEAN;
                         }
                         return super.processTypeConvert(globalConfig, tableField);

@@ -8,11 +8,11 @@ import lombok.Setter;
 
 /**
  * <p>
- * 
+ * 用户表
  * </p>
  *
  * @author lupc
- * @since 2021-12-20
+ * @since 2022-04-24
  */
 @Getter
 @Setter
@@ -21,57 +21,20 @@ public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 用户id
+     */
     private Long id;
 
     /**
-     * 数据创建时间
-     */
-    private LocalDateTime createTime;
-
-    /**
-     * 修改时间
-     */
-    private LocalDateTime updateTime;
-
-    /**
-     * 登录-用户名
+     * 用户名
      */
     private String username;
 
     /**
-     * 性别，绑定字典
-     */
-    private String sex;
-
-    /**
-     * 登录-邮箱
-     */
-    private String email;
-
-    /**
-     * 登录-移动电话
-     */
-    private String mobilePhone;
-
-    /**
-     * 登录密码
+     * 密码MD5
      */
     private String password;
-
-    /**
-     * 邮箱验证是否通过
-     */
-    private Boolean emailValidated;
-
-    /**
-     * 手机验证是否通过
-     */
-    private Boolean mobilePhoneValidated;
-
-    /**
-     * 昵称
-     */
-    private String nickname;
 
     /**
      * 真实姓名
@@ -79,19 +42,89 @@ public class User implements Serializable {
     private String realname;
 
     /**
-     * 身份证号
+     * 创建人
      */
-    private String identityCard;
+    private Long createUserId;
 
     /**
-     * 机构ID
+     * 创建时间
+     */
+    private LocalDateTime createTime;
+
+    /**
+     * 修改人
+     */
+    private Long modifyUserId;
+
+    /**
+     * 修改时间
+     */
+    private LocalDateTime modifyTime;
+
+    /**
+     * 电话号码
+     */
+    private String phone;
+
+    /**
+     * 性别 0：男 1：女 2：保密
+     */
+    private String gender;
+
+    /**
+     * 描述
+     */
+    private String description;
+
+    /**
+     * 图片
+     */
+    private String image;
+
+    /**
+     * 最后访问时间
+     */
+    private LocalDateTime lastLoginTime;
+
+    /**
+     * 部门id
      */
     private Long deptId;
 
     /**
+     * 昵称
+     */
+    private String nickname;
+
+    /**
      * 启用状态
      */
-    private Boolean enabled;
+    private Boolean enable;
+
+    /**
+     * 盐加密
+     */
+    private String salt;
+
+    /**
+     * 微信公众号-用户唯一标志
+     */
+    private String openid;
+
+    /**
+     * 微信公众号
+     */
+    private String unionid;
+
+    /**
+     * 租户ID
+     */
+    private Long tenantId;
+
+    /**
+     * 租户CODE
+     */
+    private String tenantCode;
 
 
 }

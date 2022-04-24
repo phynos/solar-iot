@@ -2,35 +2,34 @@ package com.phynos.solar.module.sys.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.Setter;
 
 /**
  * <p>
- * 角色权限绑定
+ * 
  * </p>
  *
  * @author lupc
- * @since 2021-12-20
+ * @since 2022-04-24
  */
 @Getter
 @Setter
-@TableName("sys_role_action")
-public class RoleAction implements Serializable {
+@TableName("sys_log_login")
+public class LogLogin implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     private Long id;
 
-    /**
-     * 角色id
-     */
-    private Long roleId;
+    private LocalDateTime createTime;
 
-    /**
-     * 权限id
-     */
-    private Long actionId;
+    private Long userId;
+
+    private String loginIp;
+
+    private Integer platform;
 
 
 }
