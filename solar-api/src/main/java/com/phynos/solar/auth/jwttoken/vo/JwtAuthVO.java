@@ -1,4 +1,4 @@
-package com.phynos.solar.common.auth.jwttoken.vo;
+package com.phynos.solar.auth.jwttoken.vo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;

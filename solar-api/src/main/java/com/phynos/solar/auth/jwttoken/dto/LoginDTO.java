@@ -1,4 +1,4 @@
-package com.phynos.solar.common.auth.jwttoken.dto;
+package com.phynos.solar.auth.jwttoken.dto;
 
 import lombok.Data;
 

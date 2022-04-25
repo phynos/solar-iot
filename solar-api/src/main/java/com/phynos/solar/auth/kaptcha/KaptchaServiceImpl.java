@@ -1,4 +1,4 @@
-package com.phynos.solar.common.auth.kaptcha;
+package com.phynos.solar.auth.kaptcha;
 
 import com.google.code.kaptcha.Producer;
 import com.phynos.solar.common.util.UuidUtil;
@@ -6,7 +6,6 @@ import com.phynos.solar.util.json.ResultCodeEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -24,7 +23,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service
 public class KaptchaServiceImpl implements KaptchaService {
 
-    public final static ConcurrentHashMap<String,String> CACHE = new ConcurrentHashMap<>();
+    public final static ConcurrentHashMap<String, String> CACHE = new ConcurrentHashMap<>();
 
     @Autowired
     Producer captchaProducer;
@@ -51,10 +50,6 @@ public class KaptchaServiceImpl implements KaptchaService {
     @Override
     public ResultCodeEnum valid(String code) {
         //先判断需不需要验证码
-        if("china".length() > "usa".length()) {
-            return ResultCodeEnum.OK;
-        }
-
         //检查传入参数
         if (StringUtils.isEmpty(code)) {
             return ResultCodeEnum.IMAGE_VALID_CODE_REQUIRED;
@@ -83,11 +78,10 @@ public class KaptchaServiceImpl implements KaptchaService {
 
     private void saveKaptcha(String sessionId, String capText) {
         CACHE.put(sessionId, capText);
-        SecurityContextHolder.clearContext();
     }
 
     private String getKaptcha(String sessionId) {
-        if(StringUtils.isEmpty(sessionId)) {
+        if (StringUtils.isEmpty(sessionId)) {
             return null;
         }
         return CACHE.get(sessionId);

@@ -1,12 +1,10 @@
-package com.phynos.solar.common.auth.jwttoken.service.impl;
+package com.phynos.solar.auth.jwttoken.service.impl;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.phynos.solar.common.auth.CustomUserDetails;
-import com.phynos.solar.common.auth.UserAuthService;
-import com.phynos.solar.common.auth.jwttoken.JwtTokenProperties;
-import com.phynos.solar.common.auth.jwttoken.service.TokenService;
-import com.phynos.solar.common.auth.jwttoken.util.Auth0JwtUtil;
-import com.phynos.solar.common.auth.jwttoken.vo.JwtAuthVO;
+import com.phynos.solar.auth.jwttoken.JwtTokenProperties;
+import com.phynos.solar.auth.jwttoken.service.TokenService;
+import com.phynos.solar.auth.jwttoken.util.Auth0JwtUtil;
+import com.phynos.solar.auth.jwttoken.vo.JwtAuthVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,8 +23,6 @@ public class TokenServiceImpl implements TokenService {
 
     @Autowired
     JwtTokenProperties jwtTokenProperties;
-    @Autowired
-    UserAuthService userAuthService;
 
     @Override
     public String createJWTToken(String username) {
@@ -46,17 +42,6 @@ public class TokenServiceImpl implements TokenService {
         vo.setExpiresIn(LocalDateTime.now().plusDays(jwtTokenProperties.getExpires()));
         vo.setUserType(1);
         return vo;
-    }
-
-    @Override
-    public void refresh(CustomUserDetails loginUser) {
-
-    }
-
-    @Override
-    public CustomUserDetails getLoginUser(DecodedJWT token) {
-        String username = token.getClaim("username").asString();
-        return userAuthService.getLoginUser(username);
     }
 
     @Override

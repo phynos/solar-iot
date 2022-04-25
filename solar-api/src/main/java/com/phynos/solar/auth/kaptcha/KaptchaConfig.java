@@ -1,4 +1,4 @@
-package com.phynos.solar.common.auth.kaptcha;
+package com.phynos.solar.auth.kaptcha;
 
 import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.impl.DefaultKaptcha;

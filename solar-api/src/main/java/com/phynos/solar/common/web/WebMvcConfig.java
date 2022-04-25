@@ -20,7 +20,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        WebMvcConfigurer.super.addInterceptors(registry);
         registry.addInterceptor(AMyMVCInterceptor).addPathPatterns("/**");
     }
 

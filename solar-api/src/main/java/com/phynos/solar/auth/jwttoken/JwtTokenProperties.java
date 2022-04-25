@@ -1,4 +1,4 @@
-package com.phynos.solar.common.auth.jwttoken;
+package com.phynos.solar.auth.jwttoken;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

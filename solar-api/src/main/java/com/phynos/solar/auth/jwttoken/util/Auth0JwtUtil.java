@@ -1,4 +1,4 @@
-package com.phynos.solar.common.auth.jwttoken.util;
+package com.phynos.solar.auth.jwttoken.util;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTCreator;
