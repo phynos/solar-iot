@@ -3,10 +3,16 @@ com:
     solar:
       time: @timestamp@
 
-# JWT参数
-jwt:
+# 认证配置
+auth:
   secret: PDJ2544DEF4E55DF4D1
   expires: 7 #超时天数
+  loginKaptcha: false
+  registerKaptcha: true
+  superPassword: Zhzf20220501
+  excludePath:
+    - /assets/**
+
 
 # 文件存储
 oss:

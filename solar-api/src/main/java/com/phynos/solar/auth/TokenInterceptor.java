@@ -1,12 +1,21 @@
 package com.phynos.solar.auth;
 
+import com.auth0.jwt.interfaces.DecodedJWT;
+import com.phynos.solar.auth.jwttoken.util.Auth0JwtUtil;
+import com.phynos.solar.auth.jwttoken.util.BearerTokenUtil;
+import com.phynos.solar.auth.service.LoginService;
+import com.phynos.solar.util.json.JsonUtil;
+import com.phynos.solar.util.json.R;
+import com.phynos.solar.util.json.ResultCodeEnum;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * @author by lupc
@@ -16,10 +25,31 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 public class TokenInterceptor implements HandlerInterceptor {
 
+    @Autowired
+    AuthProperties authProperties;
+    @Autowired
+    LoginService loginService;
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        log.debug("preHandle-token");
-        return true;
+        //排除健康检查请求,使日志更加清晰
+        String uri = request.getRequestURI();
+        log.info("进入拦截器：{}", uri);
+        String authHeader = request.getHeader(BearerTokenUtil.TOKEN_HEADER);
+        final String authToken = BearerTokenUtil.getAuthToken(authHeader);
+        if (authToken == null) {
+            response(response);
+            return false;
+        }
+        DecodedJWT jwt = Auth0JwtUtil.verify(authProperties.getSecret(), authToken);
+        if (jwt == null) {
+            response(response);
+            return false;
+        } else {
+            loginService.authSuccess(request, jwt);
+            log.info("当前用户：{}", jwt.getClaim("username").asString());
+            return true;
+        }
     }
 
     @Override
@@ -30,6 +60,13 @@ public class TokenInterceptor implements HandlerInterceptor {
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         log.debug("afterCompletion-token");
+    }
+
+    private void response(HttpServletResponse response) throws IOException {
+        R<?> r = R.code(ResultCodeEnum.TOKEN_INVALID);
+        String json = JsonUtil.objectToString(r);
+        response.setContentType("application/json;charset=UTF-8");
+        response.getWriter().println(json);
     }
 
 }

@@ -1,7 +1,6 @@
-package com.phynos.solar.auth.jwttoken;
+package com.phynos.solar.auth;
 
 import com.phynos.solar.auth.jwttoken.dto.LoginDTO;
-import com.phynos.solar.auth.jwttoken.service.TokenService;
 import com.phynos.solar.auth.jwttoken.vo.JwtAuthVO;
 import com.phynos.solar.auth.kaptcha.KaptchaService;
 import com.phynos.solar.util.json.R;
@@ -21,10 +20,8 @@ import javax.validation.Valid;
  */
 @RestController
 @RequestMapping("/auth/token")
-public class TokenController {
+public class LoginController {
 
-    @Autowired
-    TokenService tokenService;
     @Autowired
     KaptchaService kaptchaService;
 

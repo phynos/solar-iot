@@ -39,6 +39,7 @@ public enum ResultCodeEnum {
 	MOBILE_NUM_EXIST(4011,"当前手机号已经被使用"),
 	CA_LOGIN_CERT_UNVALID(4012,"登录失败，证书验证失败"),
 	CA_LOGIN_NONE_USER(4013,"登录失败，无法找到证书对应的用户"),
+	TOKEN_INVALID(4019, "无效token~~"),
 
 	//11XXX 业务1-逻辑错误
 	STATION_UNIT_NOT_EXIST(20012,"分组不存在"),
