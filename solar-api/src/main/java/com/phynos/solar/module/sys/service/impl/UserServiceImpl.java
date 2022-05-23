@@ -1,11 +1,16 @@
 package com.phynos.solar.module.sys.service.impl;
 
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.phynos.solar.module.sys.entity.User;
+import com.phynos.solar.module.sys.mapper.UserMapper;
 import com.phynos.solar.module.sys.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Nonnull;
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * <p>
@@ -19,11 +24,13 @@ import javax.annotation.PostConstruct;
 @Service
 public class UserServiceImpl implements UserService {
 
-
+    @Resource
+    UserMapper userMapper;
 
     @PostConstruct
     public void test() {
-
+        List<User> data = userMapper.selectList(Wrappers.lambdaQuery(User.class));
+        data.forEach(user -> log.info(user.toString()));
     }
 
     @Override

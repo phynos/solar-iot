@@ -27,7 +27,7 @@ public class CodeGenerator {
 
     private static final String packageName = "com.phynos.solar.module";
 
-    private static String tablePrefix;
+    private static final String[] tablePrefix = {"sys"};
 
     private static final String moduleName = "sys";
 
@@ -39,6 +39,10 @@ public class CodeGenerator {
             "sys_parameter",
             "sys_log_login", "sys_log_audit",
             "sys_file", "sys_file_biz"};
+
+    public static final String URL = "jdbc:postgresql://www.iotroll.com:7609/iotdb?useUnicode=true&characterEncoding=utf-8";
+
+    private static final String schema = "iot";
 
     public static void main(String[] args) {
         //从命令行获取密码
@@ -57,12 +61,10 @@ public class CodeGenerator {
                 .execute();
     }
 
-    public static final String URL = "jdbc:postgresql://www.iotroll.com:7609/iotdb?useUnicode=true&characterEncoding=utf-8";
-
     private static DataSourceConfig.Builder dataSourceConfigBuild(String password) {
         return new DataSourceConfig.Builder(URL, "iot", password)
                 .dbQuery(new PostgreSqlQuery())
-                .schema("iot")
+                .schema(schema)
                 .typeConvert(new PostgreSqlTypeConvert() {
                     @Override
                     public IColumnType processTypeConvert(GlobalConfig globalConfig, TableField tableField) {
@@ -84,6 +86,7 @@ public class CodeGenerator {
                 .author(AUTHOR) // 设置作者
                 //.enableSwagger() // 开启 swagger 模式
                 .fileOverride() // 覆盖已生成文件
+                .disableOpenDir()
                 .outputDir(outputDir); // 指定输出目录
     }
 
@@ -96,24 +99,28 @@ public class CodeGenerator {
     // 配置模板
     private static void setTemplate(TemplateConfig.Builder builder) {
         // 配置自定义输出模板
-        //指定自定义模板路径，注意不要带上.ftl/.vm, 会根据使用的模板引擎自动识别
-        // templateConfig.setEntity("templates/entity2.java");
-//        templateConfig.setService("templates/service2.java");
-//        templateConfig.setServiceImpl("templates/serviceImpl2.java");
-//        templateConfig.setController("templates/controller2.java");
-        // 模板引擎（如果更改了模板，则需要修改模板引擎）
-        //mpg.setTemplateEngine(new FreemarkerTemplateEngine());
-        builder.disable(TemplateType.CONTROLLER, TemplateType.XML, TemplateType.SERVICE, TemplateType.SERVICEIMPL);
+//        builder.entity("templates/entity2.java")
+//                .service("templates/service2.java")
+//                .serviceImpl("templates/serviceImpl2.java")
+//                .controller("templates/controller2.java");
+        builder.disable(
+                TemplateType.CONTROLLER,
+                TemplateType.XML,
+                TemplateType.SERVICE,
+                TemplateType.SERVICEIMPL);
     }
 
     // 策略配置
     private static void setStrategy(StrategyConfig.Builder builder) {
         // 策略配置
-        tablePrefix = moduleName + "_";
         builder.addInclude(tableNames) // 设置需要生成的表名
-                .addTablePrefix(tablePrefix, "c_") // 设置过滤表前缀
-                .controllerBuilder().enableHyphenStyle().enableRestStyle()
-                .entityBuilder().enableLombok()
+                .addTablePrefix(tablePrefix) // 设置过滤表前缀
+                //.enableSchema()
+                .controllerBuilder()
+                .enableHyphenStyle()
+                .enableRestStyle()
+                .entityBuilder()
+                .enableLombok()
                 .naming(NamingStrategy.underline_to_camel)
                 .columnNaming(NamingStrategy.underline_to_camel)
         ;

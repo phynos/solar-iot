@@ -8,14 +8,10 @@ import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -59,35 +55,6 @@ public class Auth0JwtUtil {
             log.error("验证token失败：{}", exception.getMessage());
             return null;
         }
-    }
-
-    public static void test(String secret, String token) {
-        DecodedJWT jwt = verify(secret, token);
-
-        String decodeHeader = "";
-        String decodePayload = StringUtils.toEncodedString(Base64.getDecoder().decode(jwt.getPayload()), StandardCharsets.UTF_8);
-
-        String signature = jwt.getSignature();
-        String name = jwt.getClaim("name").asString();
-        String introduce = jwt.getClaim("introduce").asString();
-
-        System.out.println("header:" + jwt.getHeader());
-        System.out.println("payload:" + jwt.getPayload());
-        System.out.println("signature:" + signature);
-
-        System.out.println("headerString:" + decodeHeader);
-        System.out.println("payloadString:" + decodePayload);
-
-        System.out.println("name:" + name);
-        System.out.println("introduce:" + introduce);
-    }
-
-    public static void main(String[] args) {
-        Map<String, String> claims = new HashMap<>();
-        claims.put("aaa", "dfadfaf");
-        String secret = "PDJ2544DEF4E55DF4D1";
-        String token = create(secret, 7, claims);
-        test(secret, token);
     }
 
 }
