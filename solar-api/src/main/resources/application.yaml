@@ -61,6 +61,7 @@ mybatis-plus:
     banner: off
   mapper-locations: classpath*:/mapper/*Mapper.xml
 
+
 # 日志配置
 logging:
   config: classpath:logback-spring.xml

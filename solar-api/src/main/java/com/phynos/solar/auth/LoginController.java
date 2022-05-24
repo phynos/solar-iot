@@ -8,10 +8,7 @@ import com.phynos.solar.auth.service.LoginService;
 import com.phynos.solar.auth.vo.LoginUserVO;
 import com.phynos.solar.util.json.R;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashMap;
@@ -36,6 +33,15 @@ public class LoginController {
 
     @PostMapping("")
     public R<JwtAuthVO> tokenAuth(@RequestBody @Valid LoginDTO dto) throws AuthException {
+        return login(dto);
+    }
+
+    @GetMapping("")
+    public R<JwtAuthVO> tokenAuth2(@Valid LoginDTO dto) throws AuthException {
+        return login(dto);
+    }
+
+    private R<JwtAuthVO> login(LoginDTO dto) throws AuthException {
         LoginUserVO loginUserVO = loginService.login(dto);
         //
         Map<String, String> map = new HashMap<>();//用来存放payload
