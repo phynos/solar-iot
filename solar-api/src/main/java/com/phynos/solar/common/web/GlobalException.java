@@ -1,5 +1,6 @@
 package com.phynos.solar.common.web;
 
+import com.phynos.solar.auth.AuthException;
 import com.phynos.solar.util.web.exception.BizException;
 import com.phynos.solar.util.json.R;
 import com.phynos.solar.util.json.ResultCodeEnum;
@@ -35,6 +36,12 @@ public class GlobalException {
     public R<?> bizException(BizException ex) {
         log.error(ex.getMessage(), ex);
         return ex.getR();
+    }
+
+    @ExceptionHandler(value = AuthException.class)
+    public R<?> authException(AuthException ex) {
+        log.error(ex.getMessage(), ex);
+        return R.msg(ResultCodeEnum.PARAMETER_ERROR, "'");
     }
 
     @ResponseBody

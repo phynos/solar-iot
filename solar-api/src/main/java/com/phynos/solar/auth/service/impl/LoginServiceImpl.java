@@ -11,6 +11,7 @@ import com.phynos.solar.auth.service.LoginService;
 import com.phynos.solar.common.util.web.SpringWebUtil;
 import com.phynos.solar.module.sys.entity.User;
 import com.phynos.solar.module.sys.mapper.UserMapper;
+import com.phynos.solar.util.json.ResultCodeEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +36,15 @@ public class LoginServiceImpl implements LoginService {
         LambdaQueryWrapper<User> queryWrapper = Wrappers.lambdaQuery();
         queryWrapper.eq(User::getUsername, dto.getUsername());
         User user = userMapper.selectOne(queryWrapper);
+        //检查用户是否存在
+        if (user == null) {
+            throw new AuthException(ResultCodeEnum.USERNAME_PASSWORD_MISMATCH);
+        }
+        //检查用户是否被禁用
+        if (!user.getEnable()) {
+            throw new AuthException(ResultCodeEnum.USER_DISABLED);
+        }
+        //检查用户是否密码匹配
 
         HttpServletRequest request = SpringWebUtil.getHttpServletRequest();
         return loginSuccess(request, user);

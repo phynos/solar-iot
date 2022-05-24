@@ -37,7 +37,7 @@ public class ExampleController {
     }
 
     @GetMapping("/error")
-    public R<?> error() {
+    public R<?> error() throws BizException {
         throw new BizException(R.msg(ResultCodeEnum.UNSURPORT, "自定义业务异常"));
     }
 

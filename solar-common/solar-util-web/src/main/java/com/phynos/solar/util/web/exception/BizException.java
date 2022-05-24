@@ -10,7 +10,7 @@ import lombok.Getter;
  * @date 2021-02-24 17:28
  */
 @Getter
-public class BizException extends RuntimeException {
+public class BizException extends Exception {
 
     private final R<?> r;
 
