@@ -58,6 +58,7 @@ mybatis-plus:
   global-config:
     db-config:
       schema: iot
+    banner: off
   mapper-locations: classpath*:/mapper/*Mapper.xml
 
 # 日志配置

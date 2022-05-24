@@ -1,6 +1,7 @@
 package com.phynos.solar.common.mybatisplus;
 
 import com.baomidou.mybatisplus.extension.plugins.handler.TenantLineHandler;
+import com.phynos.solar.auth.TenantConext;
 import net.sf.jsqlparser.expression.Expression;
 import net.sf.jsqlparser.expression.LongValue;
 import org.apache.commons.lang3.ArrayUtils;
@@ -30,7 +31,7 @@ public class TenantHandler implements TenantLineHandler {
 
     @Override
     public Expression getTenantId() {
-        return new LongValue(0);
+        return new LongValue(TenantConext.getTenantId());
     }
 
 

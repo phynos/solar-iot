@@ -22,6 +22,11 @@ public class JwtAuthVO {
     @JsonProperty("expires_in")
     private LocalDateTime expiresIn;
 
-    private Integer userType;
+    private boolean bindFlag = false;
+
+    public JwtAuthVO(String token) {
+        this.accessToken = token;
+        this.expiresIn = LocalDateTime.now().plusDays(7);
+    }
 
 }

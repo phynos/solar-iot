@@ -1,6 +1,10 @@
 package com.phynos.solar.module.sys.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.inner.TenantLineInnerInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.phynos.solar.common.mybatisplus.MybatisPlusConfig;
 import com.phynos.solar.module.sys.entity.User;
 import com.phynos.solar.module.sys.mapper.UserMapper;
 import com.phynos.solar.module.sys.service.UserService;
@@ -29,8 +33,18 @@ public class UserServiceImpl implements UserService {
 
     @PostConstruct
     public void test() {
-        List<User> data = userMapper.selectList(Wrappers.lambdaQuery(User.class));
+        LambdaQueryWrapper<User> queryWrapper = Wrappers.lambdaQuery();
+
+        List<User> data = userMapper.selectList(queryWrapper);
         data.forEach(user -> log.info(user.toString()));
+    }
+
+    @Override
+    public Page<User> pageList() {
+        LambdaQueryWrapper<User> queryWrapper = Wrappers.lambdaQuery();
+        Page<User> page = new Page<>();
+        page = userMapper.selectPage(page, queryWrapper);
+        return page;
     }
 
     @Override

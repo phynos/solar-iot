@@ -1,5 +1,8 @@
 package com.phynos.solar.module.sys.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.phynos.solar.module.sys.entity.User;
+
 import javax.annotation.Nonnull;
 
 /**
@@ -11,6 +14,8 @@ import javax.annotation.Nonnull;
  * @since 2021-02-23
  */
 public interface UserService {
+
+    Page<User> pageList();
 
     void checkUser(@Nonnull String username);
 

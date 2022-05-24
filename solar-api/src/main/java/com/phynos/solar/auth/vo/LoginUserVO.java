@@ -2,7 +2,9 @@ package com.phynos.solar.auth.vo;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+import com.phynos.solar.module.sys.entity.User;
 import lombok.Data;
+import org.springframework.beans.BeanUtils;
 
 /**
  * token解码后，进一步查询的信息
@@ -25,7 +27,7 @@ public class LoginUserVO {
      */
     private String realname;
 
-    @JsonSerialize(using= ToStringSerializer.class)
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long tenantId;
 
     private String tenantCode;
@@ -44,5 +46,11 @@ public class LoginUserVO {
      * unionid
      */
     private String unionid;
+
+    public static LoginUserVO fromDO(User user) {
+        LoginUserVO vo = new LoginUserVO();
+        BeanUtils.copyProperties(user, vo);
+        return vo;
+    }
 
 }
