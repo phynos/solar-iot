@@ -10,8 +10,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 /**
- * @Author: Lupc
- * @Date: 2019/10/28 17:21
+ * @author lupc
+ * @date 2019/10/28 17:21
  **/
 @Slf4j
 public class FileUploadUtil {
@@ -19,7 +19,7 @@ public class FileUploadUtil {
     public static boolean saveFileToDisk(
             MultipartFile fileUpload,
             String fileName,
-            String ...parentDirs) {
+            String... parentDirs) {
         try {
             //指定本地文件夹存储图片
             File path = new File(ResourceUtils.getURL("classpath:").getPath());
@@ -28,7 +28,7 @@ public class FileUploadUtil {
             }
             log.debug(path.getAbsolutePath());
             File upload = new File(path.getAbsolutePath(), "static/");
-            for(String dir : parentDirs) {
+            for (String dir : parentDirs) {
                 upload = new File(upload, dir + "/");
             }
             if (!upload.exists()) {
@@ -44,11 +44,11 @@ public class FileUploadUtil {
     }
 
     public static void deleteFileFromDisk(String fileName,
-                                          String ...parentDirs) {
+                                          String... parentDirs) {
         try {
             File path = new File(ResourceUtils.getURL("classpath:").getPath());
             File upload = new File(path.getAbsolutePath(), "static/");
-            for(String dir : parentDirs) {
+            for (String dir : parentDirs) {
                 upload = new File(upload, dir + "/");
             }
             File file = new File(upload.getAbsolutePath(), fileName);

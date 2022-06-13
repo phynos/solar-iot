@@ -111,8 +111,6 @@ public class MinioOssTemplate implements OssTemplate {
             httpServletResponse.setContentType(response.headers().get("Content-Type"));
             httpServletResponse.setContentLength(Integer.parseInt(response.headers().get("Content-Length")));
             transferTo(response, os);
-        } catch (IOException e) {
-            e.printStackTrace();
         } catch (Exception e) {
             throw new OssException();
         }

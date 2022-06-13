@@ -1,0 +1,5 @@
+minio:
+  endpoint: 'http://iotroll.com:7610'
+  bucketName: test
+  accessKey: 'phynos'
+  secretKey: 'East300376'
