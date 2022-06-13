@@ -12,8 +12,15 @@ import org.apache.commons.lang3.StringUtils;
 @Getter
 public enum ViewContentType {
 
+    /**
+     * 正常二进制下载类型
+     */
     DEFAULT("default", "application/octet-stream"),
     JSON("json", "application/json"),
+    XML("xml", "text/xml"),
+    HTML("html", "text/html"),
+    PDF("pdf", "application/pdf"),
+    MSWORD("msword", "application/msword"),
     JPG("jpg", "image/jpeg"),
     TIFF("tiff", "image/tiff"),
     GIF("gif", "image/gif"),
