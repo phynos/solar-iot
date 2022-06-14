@@ -85,7 +85,6 @@ public class CodeGenerator {
         builder
                 .author(AUTHOR) // 设置作者
                 //.enableSwagger() // 开启 swagger 模式
-                .fileOverride() // 覆盖已生成文件
                 .disableOpenDir()
                 .outputDir(outputDir); // 指定输出目录
     }
