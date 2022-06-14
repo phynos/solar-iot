@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-    com.phynos.solar.oss.OssTemplate
+    com.phynos.solar.oss.OssAutoConfiguration

@@ -33,10 +33,10 @@ public class UserServiceImpl implements UserService {
 
     @PostConstruct
     public void test() {
-        LambdaQueryWrapper<User> queryWrapper = Wrappers.lambdaQuery();
-
-        List<User> data = userMapper.selectList(queryWrapper);
-        data.forEach(user -> log.info(user.toString()));
+//        LambdaQueryWrapper<User> queryWrapper = Wrappers.lambdaQuery();
+//
+//        List<User> data = userMapper.selectList(queryWrapper);
+//        data.forEach(user -> log.info(user.toString()));
     }
 
     @Override

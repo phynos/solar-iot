@@ -15,11 +15,10 @@ auth:
 
 
 # 文件存储
-oss:
-  url: http://42.192.126.212:7610/
-  bucket: test
-  accessKey: minioadmin
-  secretKey: ${OSS_PASSWORD}
+minio:
+  endpoint: http://iotroll.com:7610
+  bucketName: test
+  accessKey: phynos
 
 server:
   port: 7001
@@ -52,7 +51,6 @@ spring:
     url: jdbc:postgresql://www.iotroll.com:7609/iotdb?useUnicode=true&characterEncoding=utf-8
     username: iot
     password: ${DB_PASSWORD}
-
 
 mybatis-plus:
   global-config:

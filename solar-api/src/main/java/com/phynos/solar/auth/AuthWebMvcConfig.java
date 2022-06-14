@@ -22,7 +22,8 @@ public class AuthWebMvcConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(tokenInterceptor)
                 .addPathPatterns("/**")
-                .excludePathPatterns("/auth/token");
+                .excludePathPatterns("/auth/token")
+                .excludePathPatterns("/file/**");
     }
 
 }
