@@ -1,0 +1,10 @@
+
+spring:
+  datasource:
+    password: ${DB_PASSWORD}
+
+minio:
+  endpoint: http://${DOCKER_HOST}:7610
+  bucketName: test
+  accessKey: phynos
+  secretKey: ${DB_PASSWORD}

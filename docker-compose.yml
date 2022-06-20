@@ -14,6 +14,8 @@ services:
     environment:
       DB_PASSWORD: ${DB_PASSWORD}
       APP_PORT: 7001
+      PROFILE: prod
+      SPRING_PROFILES_ACTIVE: prod
 
   iot-front:
     build:
