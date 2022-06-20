@@ -1,7 +1,7 @@
 # 基于的镜像
 FROM adoptopenjdk/openjdk11
 # 设置环境变量
-ENV TZ=Asia/Shanghai PROFILE=prod
+ENV TZ=Asia/Shanghai PROFILE=prod DOCKER_HOST=1
 # 执行命令，为了防止多层镜像，这里只执行一次（docker build时候运行）
 RUN mkdir -p /app \
     && echo "${TZ}" > /etc/timezone

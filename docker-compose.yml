@@ -15,7 +15,7 @@ services:
       DB_PASSWORD: ${DB_PASSWORD}
       APP_PORT: 7001
       PROFILE: prod
-      SPRING_PROFILES_ACTIVE: prod
+      DOCKER_HOST: ${DOCKER_HOST}
 
   iot-front:
     build:
