@@ -40,8 +40,8 @@ public class CodeGenerator {
             "sys_log_login", "sys_log_audit",
             "sys_file", "sys_file_biz"};
 
-    public static final String URL = "jdbc:postgresql://www.iotroll.com:7609/iotdb?useUnicode=true&characterEncoding=utf-8";
-
+    public static final String dbURL = "jdbc:postgresql://www.iotroll.com:7609/iotdb?useUnicode=true&characterEncoding=utf-8";
+    private static final String dbUsername = "iot";
     private static final String schema = "iot";
 
     public static void main(String[] args) {
@@ -62,7 +62,7 @@ public class CodeGenerator {
     }
 
     private static DataSourceConfig.Builder dataSourceConfigBuild(String password) {
-        return new DataSourceConfig.Builder(URL, "iot", password)
+        return new DataSourceConfig.Builder(dbURL, dbUsername, password)
                 .dbQuery(new PostgreSqlQuery())
                 .schema(schema)
                 .typeConvert(new PostgreSqlTypeConvert() {
