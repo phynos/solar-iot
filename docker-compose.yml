@@ -8,7 +8,7 @@ services:
     container_name: solar-api
     restart: always
     volumes:
-      - ${DIR}/iot:/iot/logs
+      - ${DIR}/solar-api:/app/logs
     ports:
       - "7001:7001"
     environment:
@@ -22,6 +22,6 @@ services:
     container_name: solar-front
     restart: always
     volumes:
-      - ${DIR}/iot:/iot/logs
+      - ${DIR}/solar-front:/app/logs
     environment:
       DB_PASSWORD: ${DB_PASSWORD}
