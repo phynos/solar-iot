@@ -3,6 +3,7 @@ package com.phynos.solar.module.sys.mapper;
 import com.phynos.solar.module.sys.entity.LogLogin;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.session.ResultHandler;
 
 import java.util.List;
 
@@ -17,5 +18,7 @@ import java.util.List;
 public interface LogLoginMapper extends BaseMapper<LogLogin> {
 
     void batchInsert(@Param("logList") List<LogLogin> logList);
+
+    void streamQuery(ResultHandler<LogLogin> resultHandler);
 
 }

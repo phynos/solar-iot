@@ -4,11 +4,11 @@ import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.phynos.solar.module.sys.entity.LogLogin;
 import com.phynos.solar.module.sys.mapper.LogLoginMapper;
 import com.phynos.solar.module.sys.service.LogLoginService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,15 +19,25 @@ import java.util.List;
  * @author lupc
  * @date 2022/6/21 09:57
  */
+@Slf4j
 @Service
 public class LogLoginServiceImpl implements LogLoginService {
 
     @Resource
     LogLoginMapper logLoginMapper;
 
-    @Profile("lupc")
-    @PostConstruct
-    public void testData() {
+    @Transactional
+    @Override
+    public void testStreamQuery() {
+        logLoginMapper.streamQuery(resultContext -> {
+            if (resultContext.getResultCount() % 3000 == 0) {
+                log.info("流式读取数量：{}", resultContext.getResultCount());
+            }
+        });
+    }
+
+    @Override
+    public void testBatchInsert() {
         String[] ips = new String[]{"172.16.22.89", "192.168.0.1"};
         List<LogLogin> data = new ArrayList<>();
 

@@ -29,4 +29,12 @@
         </foreach>
     </insert>
 
+    <select id="streamQuery" resultMap="BaseResultMap" fetchSize="3000">
+        select
+            <include refid="Base_Column_List"></include>
+        from
+            sys_log_login
+        order by create_time desc
+    </select>
+
 </mapper>
