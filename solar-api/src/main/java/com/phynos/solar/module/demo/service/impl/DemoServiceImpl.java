@@ -24,6 +24,7 @@ public class DemoServiceImpl implements DemoService {
     @PostConstruct
     public void test() {
         loginService.testStreamQuery();
+        //loginService.testBatchInsert();
     }
 
 
