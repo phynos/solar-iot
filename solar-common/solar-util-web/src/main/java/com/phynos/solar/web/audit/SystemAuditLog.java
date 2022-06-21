@@ -1,4 +1,4 @@
-package com.phynos.solar.log.web.annotation;
+package com.phynos.solar.web.audit;
 
 import java.lang.annotation.*;
 

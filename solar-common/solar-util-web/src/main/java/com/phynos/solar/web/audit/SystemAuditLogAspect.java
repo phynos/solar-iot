@@ -1,6 +1,5 @@
-package com.phynos.solar.log.web;
+package com.phynos.solar.web.audit;
 
-import com.phynos.solar.log.web.annotation.SystemAuditLog;
 import com.phynos.solar.util.json.JsonUtil;
 import com.phynos.solar.util.json.R;
 import com.phynos.solar.util.json.ResultCodeEnum;
@@ -33,7 +32,7 @@ import java.util.Map;
 public class SystemAuditLogAspect {
 
     // 切点
-    @Pointcut("@annotation(com.phynos.solar.log.web.annotation.SystemAuditLog)")
+    @Pointcut("@annotation(com.phynos.solar.web.audit.SystemAuditLog)")
     public void logPointCut() {
 
     }

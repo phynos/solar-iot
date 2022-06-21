@@ -1,4 +1,4 @@
-package com.phynos.solar.log.web;
+package com.phynos.solar.web.audit;
 
 import lombok.Data;
 

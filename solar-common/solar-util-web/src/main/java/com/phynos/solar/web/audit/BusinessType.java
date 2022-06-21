@@ -1,3 +1,5 @@
+package com.phynos.solar.web.audit;
+
 public class BusinessType {
     
 	/** 其它 */
