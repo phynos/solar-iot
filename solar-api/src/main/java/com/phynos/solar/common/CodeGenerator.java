@@ -11,6 +11,9 @@ import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.VelocityTemplateEngine;
 import com.baomidou.mybatisplus.generator.keywords.PostgreSqlKeyWordsHandler;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * mybatis-plus 代码生成
  *
@@ -19,7 +22,7 @@ import com.baomidou.mybatisplus.generator.keywords.PostgreSqlKeyWordsHandler;
  */
 public class CodeGenerator {
 
-
+    private static final String projectPath = System.getProperty("user.dir") + "/solar-api/";
     /**
      * 作者
      **/
@@ -31,14 +34,16 @@ public class CodeGenerator {
 
     private static final String moduleName = "sys";
 
+    //    private static final String[] tableNames = {
+//            "sys_tenant",
+//            "sys_user", "sys_role", "sys_menu", "sys_dept",
+//            "sys_user_role", "sys_role_menu", "sys_role_dept",
+//            "sys_dict", "sys_dict_item",
+//            "sys_parameter",
+//            "sys_log_login", "sys_log_audit",
+//            "sys_file", "sys_file_biz"};
     private static final String[] tableNames = {
-            "sys_tenant",
-            "sys_user", "sys_role", "sys_menu", "sys_dept",
-            "sys_user_role", "sys_role_menu", "sys_role_dept",
-            "sys_dict", "sys_dict_item",
-            "sys_parameter",
-            "sys_log_login", "sys_log_audit",
-            "sys_file", "sys_file_biz"};
+            "sys_log_login"};
 
     public static final String dbURL = "jdbc:postgresql://www.iotroll.com:7609/iotdb?useUnicode=true&characterEncoding=utf-8";
     private static final String dbUsername = "iot";
@@ -80,7 +85,6 @@ public class CodeGenerator {
 
     //全局配置
     private static void setGlobal(GlobalConfig.Builder builder) {
-        String projectPath = System.getProperty("user.dir") + "/solar-api/";
         String outputDir = projectPath + "/src/main/java";
         builder
                 .author(AUTHOR) // 设置作者
@@ -90,8 +94,12 @@ public class CodeGenerator {
     }
 
     private static void setPackage(PackageConfig.Builder builder) {
+        String xmlDir = projectPath + "/src/main/resources/mapper";
+        Map<OutputFile, String> pathInfo = new HashMap<>();
+        pathInfo.put(OutputFile.xml, xmlDir);
         builder.parent(packageName) // 设置父包名
                 .moduleName(moduleName) // 设置父包模块名
+                .pathInfo(pathInfo)
         ;
     }
 
@@ -104,7 +112,6 @@ public class CodeGenerator {
 //                .controller("templates/controller2.java");
         builder.disable(
                 TemplateType.CONTROLLER,
-                TemplateType.XML,
                 TemplateType.SERVICE,
                 TemplateType.SERVICEIMPL);
     }
@@ -119,9 +126,13 @@ public class CodeGenerator {
                 .enableHyphenStyle()
                 .enableRestStyle()
                 .entityBuilder()
+                .fileOverride()
                 .enableLombok()
                 .naming(NamingStrategy.underline_to_camel)
                 .columnNaming(NamingStrategy.underline_to_camel)
+                .mapperBuilder()
+                .enableBaseColumnList()
+                .enableBaseResultMap()
         ;
     }
 
