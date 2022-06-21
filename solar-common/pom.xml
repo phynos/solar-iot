@@ -13,9 +13,9 @@
     <packaging>pom</packaging>
     <modules>
         <module>solar-oss</module>
-        <module>solar-util-json</module>
-        <module>solar-util-web</module>
         <module>solar-log-web</module>
+        <module>solar-util-base</module>
+        <module>solar-util-web</module>
     </modules>
 
     <properties>

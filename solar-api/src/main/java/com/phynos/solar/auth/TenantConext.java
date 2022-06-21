@@ -1,6 +1,6 @@
 package com.phynos.solar.auth;
 
-import com.phynos.solar.common.util.web.SpringWebUtil;
+import com.phynos.solar.util.web.SpringWebUtil;
 
 import javax.servlet.http.HttpServletRequest;
 

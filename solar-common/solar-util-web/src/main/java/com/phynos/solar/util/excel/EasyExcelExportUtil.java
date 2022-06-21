@@ -1,4 +1,4 @@
-package com.phynos.solar.common.util.excel;
+package com.phynos.solar.util.excel;
 
 import com.alibaba.excel.EasyExcel;
 

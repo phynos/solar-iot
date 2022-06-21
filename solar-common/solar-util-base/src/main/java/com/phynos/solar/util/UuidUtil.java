@@ -1,4 +1,4 @@
-package com.phynos.solar.common.util;
+package com.phynos.solar.util;
 
 import java.util.UUID;
 

@@ -8,7 +8,7 @@ import com.phynos.solar.auth.jwttoken.dto.LoginDTO;
 import com.phynos.solar.auth.vo.LoginUserVO;
 import com.phynos.solar.auth.vo.TokenInfo;
 import com.phynos.solar.auth.service.LoginService;
-import com.phynos.solar.common.util.web.SpringWebUtil;
+import com.phynos.solar.util.web.SpringWebUtil;
 import com.phynos.solar.module.sys.entity.User;
 import com.phynos.solar.module.sys.mapper.UserMapper;
 import com.phynos.solar.util.json.ResultCodeEnum;

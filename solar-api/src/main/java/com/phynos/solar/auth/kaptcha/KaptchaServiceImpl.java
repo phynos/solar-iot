@@ -1,7 +1,7 @@
 package com.phynos.solar.auth.kaptcha;
 
 import com.google.code.kaptcha.Producer;
-import com.phynos.solar.common.util.UuidUtil;
+import com.phynos.solar.util.UuidUtil;
 import com.phynos.solar.util.json.ResultCodeEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;

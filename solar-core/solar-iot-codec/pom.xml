@@ -27,7 +27,7 @@
         </dependency>
         <dependency>
             <groupId>com.solar.iot</groupId>
-            <artifactId>solar-util-json</artifactId>
+            <artifactId>solar-util-base</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
