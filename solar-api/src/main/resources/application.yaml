@@ -16,7 +16,7 @@ auth:
 
 # 文件存储
 minio:
-  endpoint: http://iotroll.com:7610
+  endpoint: http://daqishan.cn:7610
   bucketName: test
   accessKey: phynos
 
@@ -48,9 +48,14 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgresql://www.iotroll.com:7609/iotdb?useUnicode=true&characterEncoding=utf-8
+    url: jdbc:postgresql://daqishan.cn:7609/iotdb?useUnicode=true&characterEncoding=utf-8
     username: iot
     password: ${DB_PASSWORD}
+  redis:
+    host: daqishan.cn:7608
+    database: 0
+    password: ${DB_PASSWORD}
+
 
 mybatis-plus:
   global-config:

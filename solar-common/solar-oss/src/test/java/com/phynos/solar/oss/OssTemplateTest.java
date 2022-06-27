@@ -18,7 +18,7 @@ class OssTemplateTest {
     @BeforeAll
     public static void initOss() {
         OssProperties ossProperties = new OssProperties();
-        ossProperties.setEndpoint("http://iotroll.com:7610");
+        ossProperties.setEndpoint("http://daqishan.cn:7610");
         ossProperties.setBucketName("test");
         ossProperties.setAccessKey("phynos");
         String passwd = System.getenv().get("PASSWORD");

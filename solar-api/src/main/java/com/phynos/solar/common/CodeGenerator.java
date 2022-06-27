@@ -45,7 +45,7 @@ public class CodeGenerator {
     private static final String[] tableNames = {
             "sys_log_login"};
 
-    public static final String dbURL = "jdbc:postgresql://www.iotroll.com:7609/iotdb?useUnicode=true&characterEncoding=utf-8";
+    public static final String dbURL = "jdbc:postgresql://www.daqishan.cn:7609/iotdb?useUnicode=true&characterEncoding=utf-8";
     private static final String dbUsername = "iot";
     private static final String schema = "iot";
 

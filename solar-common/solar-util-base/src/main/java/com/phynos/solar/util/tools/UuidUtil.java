@@ -1,9 +1,9 @@
-package com.phynos.solar.util;
+package com.phynos.solar.util.tools;
 
 import java.util.UUID;
 
 /**
- * @author by Lupc
+ * @author lupc
  * @date 2019/9/26.
  */
 public class UuidUtil {
