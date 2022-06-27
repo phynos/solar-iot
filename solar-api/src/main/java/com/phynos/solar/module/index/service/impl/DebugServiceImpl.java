@@ -2,16 +2,20 @@ package com.phynos.solar.module.index.service.impl;
 
 import com.phynos.solar.module.index.service.DebugService;
 import com.phynos.solar.module.index.service.TestService;
+import com.phynos.solar.module.index.vo.PersonVO;
 import com.phynos.solar.util.json.R;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author by lupc
@@ -39,5 +43,19 @@ public class DebugServiceImpl implements ApplicationContextAware, DebugService {
         return R.ok();
     }
 
+    @Cacheable(cacheNames = "test", key = "#name")
+    @Override
+    public List<PersonVO> testCache(String name) {
+        log.info("没有命中缓存...");
+        List<PersonVO> data = new ArrayList<>();
+        if ("admin".equals(name)) {
+            PersonVO vo = new PersonVO();
+            vo.setName("admin");
+            vo.setAge(18);
+            vo.setImg("d");
+            data.add(vo);
+        }
+        return data;
+    }
 
 }

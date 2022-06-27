@@ -51,11 +51,13 @@ spring:
     url: jdbc:postgresql://daqishan.cn:7609/iotdb?useUnicode=true&characterEncoding=utf-8
     username: iot
     password: ${DB_PASSWORD}
+  cache:
+    type: redis
   redis:
-    host: daqishan.cn:7608
+    host: daqishan.cn
+    port: 7608
     database: 0
     password: ${DB_PASSWORD}
-
 
 mybatis-plus:
   global-config:

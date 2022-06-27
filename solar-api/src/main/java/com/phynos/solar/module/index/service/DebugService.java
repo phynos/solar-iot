@@ -1,6 +1,9 @@
 package com.phynos.solar.module.index.service;
 
+import com.phynos.solar.module.index.vo.PersonVO;
 import com.phynos.solar.util.json.R;
+
+import java.util.List;
 
 /**
  * @author by lupc
@@ -9,5 +12,8 @@ import com.phynos.solar.util.json.R;
 public interface DebugService {
 
     R<?> test();
+
+
+    List<PersonVO> testCache(String name);
 
 }

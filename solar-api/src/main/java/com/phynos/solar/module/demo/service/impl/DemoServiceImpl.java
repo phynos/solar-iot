@@ -23,7 +23,7 @@ public class DemoServiceImpl implements DemoService {
     @Profile("lupc")
     @PostConstruct
     public void test() {
-        loginService.testStreamQuery();
+        //loginService.testStreamQuery();
         //loginService.testBatchInsert();
     }
 

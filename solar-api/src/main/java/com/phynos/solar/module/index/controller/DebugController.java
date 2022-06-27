@@ -1,6 +1,7 @@
 package com.phynos.solar.module.index.controller;
 
 import com.phynos.solar.module.index.service.DebugService;
+import com.phynos.solar.module.index.vo.PersonVO;
 import com.phynos.solar.util.json.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,6 +13,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Lupc
@@ -43,5 +45,10 @@ public class DebugController {
         return debugService.test();
     }
 
+    @RequestMapping("/cache/test")
+    public R<List<PersonVO>> testCache(String name) {
+        List<PersonVO> data = debugService.testCache(name);
+        return R.data(data);
+    }
 
 }
