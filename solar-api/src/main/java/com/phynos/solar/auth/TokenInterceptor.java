@@ -4,6 +4,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.phynos.solar.auth.jwttoken.util.Auth0JwtUtil;
 import com.phynos.solar.auth.jwttoken.util.BearerTokenUtil;
 import com.phynos.solar.auth.service.LoginService;
+import com.phynos.solar.auth.vo.TokenInfo;
 import com.phynos.solar.util.json.JsonUtil;
 import com.phynos.solar.util.json.R;
 import com.phynos.solar.util.json.ResultCodeEnum;
@@ -18,7 +19,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @author by lupc
+ * token登录拦截器
+ *
+ * @author lupc
  * @date 2020-12-18 11:23
  */
 @Slf4j
@@ -46,8 +49,8 @@ public class TokenInterceptor implements HandlerInterceptor {
             response(response);
             return false;
         } else {
-            loginService.authSuccess(request, jwt);
-            log.info("当前用户：{}", jwt.getClaim("username").asString());
+            TokenInfo tokenInfo = loginService.authSuccess(request, jwt);
+            log.info("当前用户：{}", tokenInfo.getUsername());
             return true;
         }
     }

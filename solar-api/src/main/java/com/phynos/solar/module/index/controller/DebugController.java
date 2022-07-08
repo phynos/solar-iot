@@ -16,7 +16,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author Lupc
+ * @author lupc
  * @date 2019/10/10 20:24
  **/
 @RestController
@@ -49,6 +49,12 @@ public class DebugController {
     public R<List<PersonVO>> testCache(String name) {
         List<PersonVO> data = debugService.testCache(name);
         return R.data(data);
+    }
+
+    @RequestMapping("/cache/clear")
+    public R<?> clearCache(String name) {
+        debugService.clearCache(name);
+        return R.ok();
     }
 
 }

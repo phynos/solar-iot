@@ -16,4 +16,6 @@ public interface DebugService {
 
     List<PersonVO> testCache(String name);
 
+    void clearCache(String name);
+
 }

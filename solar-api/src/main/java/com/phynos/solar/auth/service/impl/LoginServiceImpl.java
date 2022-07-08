@@ -55,7 +55,9 @@ public class LoginServiceImpl implements LoginService {
         //将租户id放入当前请求
         Long tenantId = Long.valueOf(jwt.getClaim("tenantId").asString());
         request.setAttribute("tenantId", tenantId);
-        return null;
+        TokenInfo tokenInfo = TokenInfo.fromJWT(jwt);
+        request.setAttribute("tokenInfo", tokenInfo);
+        return tokenInfo;
     }
 
     @Override

@@ -7,6 +7,7 @@ import com.phynos.solar.util.json.R;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -56,6 +57,12 @@ public class DebugServiceImpl implements ApplicationContextAware, DebugService {
             data.add(vo);
         }
         return data;
+    }
+
+    @CacheEvict(cacheNames = "test", key = "#name")
+    @Override
+    public void clearCache(String name) {
+
     }
 
 }

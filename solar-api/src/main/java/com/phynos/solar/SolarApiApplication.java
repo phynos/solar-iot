@@ -6,7 +6,7 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 /**
- * @author by Lupc
+ * @author lupc
  * @date 2019/9/25.
  */
 @EnableCaching

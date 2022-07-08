@@ -47,8 +47,10 @@ public class LoginController {
         Map<String, String> map = new HashMap<>();//用来存放payload
         map.put("id", String.valueOf(loginUserVO.getUserId()));
         map.put("username", loginUserVO.getUsername());
+        map.put("realname", loginUserVO.getRealname());
         map.put("tenantId", String.valueOf(loginUserVO.getTenantId()));
         map.put("tenantCode", loginUserVO.getTenantCode());
+        map.put("tenantName", loginUserVO.getTenantName());
         String token = Auth0JwtUtil.create(authProperties.getSecret(), 7, map);
         JwtAuthVO vo = new JwtAuthVO(token);
         return R.data(vo);

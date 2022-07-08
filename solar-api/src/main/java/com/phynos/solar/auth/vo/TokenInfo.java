@@ -1,5 +1,6 @@
 package com.phynos.solar.auth.vo;
 
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Data;
@@ -14,7 +15,7 @@ import lombok.Data;
 @Data
 public class TokenInfo {
 
-    @JsonSerialize(using= ToStringSerializer.class)
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long userId;
 
     /**
@@ -27,11 +28,23 @@ public class TokenInfo {
      */
     private String realname;
 
-    @JsonSerialize(using= ToStringSerializer.class)
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long tenantId;
 
     private String tenantCode;
 
     private String tenantName;
+
+
+    public static TokenInfo fromJWT(DecodedJWT jwt) {
+        TokenInfo tokenInfo = new TokenInfo();
+        tokenInfo.setUserId(jwt.getClaim("id").asLong());
+        tokenInfo.setUsername(jwt.getClaim("username").asString());
+        tokenInfo.setRealname(jwt.getClaim("realname").asString());
+        tokenInfo.setTenantId(jwt.getClaim("tenantId").asLong());
+        tokenInfo.setTenantCode(jwt.getClaim("tenantCode").asString());
+        tokenInfo.setTenantName(jwt.getClaim("tenantName").asString());
+        return tokenInfo;
+    }
 
 }
