@@ -1,5 +1,6 @@
 package com.phynos.solar.common.web;
 
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
@@ -15,7 +16,7 @@ import java.util.Collections;
  * @date 2021/5/26 11:03
  */
 @Configuration
-public class CorsConfig {
+public class WebConfig {
 
     @Bean
     public CorsFilter corsFilter() {
@@ -33,5 +34,13 @@ public class CorsConfig {
         source.registerCorsConfiguration("/**", corsConfiguration);
         return new CorsFilter(source);
     }
+
+    @Bean
+    public FilterRegistrationBean<MyWebFilter> registrationBean() {
+        FilterRegistrationBean<MyWebFilter> filterRegistrationBean = new FilterRegistrationBean(new MyWebFilter());
+        filterRegistrationBean.addUrlPatterns("/*");
+        return filterRegistrationBean;
+    }
+
 
 }

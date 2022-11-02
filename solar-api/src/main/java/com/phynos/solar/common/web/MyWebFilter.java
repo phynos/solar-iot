@@ -1,26 +1,19 @@
 package com.phynos.solar.common.web;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 /**
- * 授权过滤器
- * <pre>过滤器顺序依赖字母排序</pre>
+ * 过滤器
  *
- * @author by lupc
+ * @author lupc
  * @date 2020-12-18 11:19
  */
 @Slf4j
-@Order(4)
-@Component
-@WebFilter(filterName = "CustomWebFilter",urlPatterns = "/**")
-public class CustomWebFilter implements Filter {
+public class MyWebFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
