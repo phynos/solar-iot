@@ -2,14 +2,12 @@ package com.phynos.solar.auth.service.impl;
 
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.phynos.solar.auth.AuthException;
-import com.phynos.solar.auth.user.UserDetailService;
 import com.phynos.solar.auth.jwttoken.dto.LoginDTO;
 import com.phynos.solar.auth.service.UserLoginService;
+import com.phynos.solar.auth.user.UserDetailService;
 import com.phynos.solar.auth.user.UserDetails;
-import com.phynos.solar.auth.vo.LoginUserVO;
 import com.phynos.solar.auth.vo.TokenInfo;
 import com.phynos.solar.util.json.ResultCodeEnum;
-import com.phynos.solar.util.web.SpringWebUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -32,7 +30,7 @@ public class UserLoginServiceImpl implements UserLoginService {
     }
 
     @Override
-    public LoginUserVO login(LoginDTO dto) throws AuthException {
+    public TokenInfo login(LoginDTO dto) throws AuthException {
         UserDetails userDetails = userDetailService.loadUserByUsername(dto.getUsername());
         //检查用户是否存在
         if (userDetails == null) {
@@ -56,9 +54,9 @@ public class UserLoginServiceImpl implements UserLoginService {
         return tokenInfo;
     }
 
-    public LoginUserVO loginSuccess(HttpServletRequest request, UserDetails userDetails) {
+    public TokenInfo loginSuccess(HttpServletRequest request, UserDetails userDetails) {
         request.setAttribute("tenantId", userDetails.getTenantId());
-        return LoginUserVO.fromUserDetails(userDetails);
+        return TokenInfo.fromUserDetails(userDetails);
     }
 
     public static HttpServletRequest getHttpServletRequest() {

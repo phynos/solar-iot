@@ -5,13 +5,12 @@ import com.phynos.solar.auth.jwttoken.util.Auth0JwtUtil;
 import com.phynos.solar.auth.jwttoken.vo.JwtAuthVO;
 import com.phynos.solar.auth.kaptcha.KaptchaService;
 import com.phynos.solar.auth.service.UserLoginService;
-import com.phynos.solar.auth.vo.LoginUserVO;
+import com.phynos.solar.auth.vo.TokenInfo;
 import com.phynos.solar.util.json.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -42,15 +41,8 @@ public class LoginController {
     }
 
     private R<JwtAuthVO> login(LoginDTO dto) throws AuthException {
-        LoginUserVO loginUserVO = userLoginService.login(dto);
-        //
-        Map<String, String> map = new HashMap<>();//用来存放payload
-        map.put("id", String.valueOf(loginUserVO.getUserId()));
-        map.put("username", loginUserVO.getUsername());
-        map.put("realname", loginUserVO.getRealname());
-        map.put("tenantId", String.valueOf(loginUserVO.getTenantId()));
-        map.put("tenantCode", loginUserVO.getTenantCode());
-        map.put("tenantName", loginUserVO.getTenantName());
+        TokenInfo tokenInfo = userLoginService.login(dto);
+        Map<String, String> map = tokenInfo.toMap();
         String token = Auth0JwtUtil.create(authProperties.getSecret(), 7, map);
         JwtAuthVO vo = new JwtAuthVO(token);
         return R.data(vo);
