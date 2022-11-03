@@ -3,7 +3,7 @@ package com.phynos.solar.auth;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.phynos.solar.auth.jwttoken.util.Auth0JwtUtil;
 import com.phynos.solar.auth.jwttoken.util.BearerTokenUtil;
-import com.phynos.solar.auth.service.LoginService;
+import com.phynos.solar.auth.service.UserLoginService;
 import com.phynos.solar.auth.vo.TokenInfo;
 import com.phynos.solar.util.json.JsonUtil;
 import com.phynos.solar.util.json.R;
@@ -31,7 +31,7 @@ public class TokenInterceptor implements HandlerInterceptor {
     @Autowired
     AuthProperties authProperties;
     @Autowired
-    LoginService loginService;
+    UserLoginService userLoginService;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -49,7 +49,7 @@ public class TokenInterceptor implements HandlerInterceptor {
             response(response);
             return false;
         } else {
-            TokenInfo tokenInfo = loginService.authSuccess(request, jwt);
+            TokenInfo tokenInfo = userLoginService.authSuccess(request, jwt);
             log.info("当前用户：{}", tokenInfo.getUsername());
             return true;
         }

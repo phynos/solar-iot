@@ -4,7 +4,7 @@ import com.phynos.solar.auth.jwttoken.dto.LoginDTO;
 import com.phynos.solar.auth.jwttoken.util.Auth0JwtUtil;
 import com.phynos.solar.auth.jwttoken.vo.JwtAuthVO;
 import com.phynos.solar.auth.kaptcha.KaptchaService;
-import com.phynos.solar.auth.service.LoginService;
+import com.phynos.solar.auth.service.UserLoginService;
 import com.phynos.solar.auth.vo.LoginUserVO;
 import com.phynos.solar.util.json.R;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ public class LoginController {
     @Autowired
     KaptchaService kaptchaService;
     @Autowired
-    LoginService loginService;
+    UserLoginService userLoginService;
 
     @PostMapping("")
     public R<JwtAuthVO> tokenAuth(@RequestBody @Valid LoginDTO dto) throws AuthException {
@@ -42,7 +42,7 @@ public class LoginController {
     }
 
     private R<JwtAuthVO> login(LoginDTO dto) throws AuthException {
-        LoginUserVO loginUserVO = loginService.login(dto);
+        LoginUserVO loginUserVO = userLoginService.login(dto);
         //
         Map<String, String> map = new HashMap<>();//用来存放payload
         map.put("id", String.valueOf(loginUserVO.getUserId()));

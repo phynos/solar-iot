@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.phynos.solar.module.ten.mapper.TenRoleMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.phynos.solar.module.ten.entity.TenRole">
+        <id column="id" property="id" />
+        <result column="tenant_id" property="tenantId" />
+        <result column="create_at" property="createAt" />
+        <result column="create_user_id" property="createUserId" />
+        <result column="create_realname" property="createRealname" />
+        <result column="modify_at" property="modifyAt" />
+        <result column="role_name" property="roleName" />
+        <result column="role_code" property="roleCode" />
+        <result column="remark" property="remark" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, tenant_id, create_at, create_user_id, create_realname, modify_at, role_name, role_code, remark
+    </sql>
+
+</mapper>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.phynos.solar.module.ten.mapper.TenUserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.phynos.solar.module.ten.entity.TenUser">
+        <id column="id" property="id" />
+        <result column="tenant_id" property="tenantId" />
+        <result column="username" property="username" />
+        <result column="password" property="password" />
+        <result column="salt" property="salt" />
+        <result column="phone" property="phone" />
+        <result column="sex" property="sex" />
+        <result column="nickname" property="nickname" />
+        <result column="enabled" property="enabled" />
+        <result column="openid" property="openid" />
+        <result column="unionid" property="unionid" />
+        <result column="last_login_time" property="lastLoginTime" />
+        <result column="avatar" property="avatar" />
+        <result column="realname" property="realname" />
+        <result column="del_flag" property="delFlag" />
+        <result column="login_ip" property="loginIp" />
+        <result column="email" property="email" />
+        <result column="user_type" property="userType" />
+        <result column="create_by" property="createBy" />
+        <result column="create_time" property="createTime" />
+        <result column="update_by" property="updateBy" />
+        <result column="update_time" property="updateTime" />
+        <result column="remark" property="remark" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, tenant_id, username, password, salt, phone, sex, nickname, enabled, openid, unionid, last_login_time, avatar, realname, del_flag, login_ip, email, user_type, create_by, create_time, update_by, update_time, remark
+    </sql>
+
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.phynos.solar.module.sys.mapper.SysFileMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.phynos.solar.module.sys.entity.SysFile">
+        <id column="id" property="id" />
+        <result column="file_name" property="fileName" />
+        <result column="file_size" property="fileSize" />
+        <result column="file_extension" property="fileExtension" />
+        <result column="file_location" property="fileLocation" />
+        <result column="bucket_name" property="bucketName" />
+        <result column="object_name" property="objectName" />
+        <result column="content_type" property="contentType" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, file_name, file_size, file_extension, file_location, bucket_name, object_name, content_type
+    </sql>
+
+</mapper>

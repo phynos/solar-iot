@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.phynos.solar.module.sys.mapper.SysFileBizMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.phynos.solar.module.sys.entity.SysFileBiz">
+        <id column="id" property="id" />
+        <result column="biz_id" property="bizId" />
+        <result column="file_id" property="fileId" />
+        <result column="biz_table" property="bizTable" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, biz_id, file_id, biz_table
+    </sql>
+
+</mapper>

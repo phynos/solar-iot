@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.phynos.solar.module.sys.mapper.SysDictItemMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.phynos.solar.module.sys.entity.SysDictItem">
+        <id column="id" property="id" />
+        <result column="dict_code" property="dictCode" />
+        <result column="code" property="code" />
+        <result column="label" property="label" />
+        <result column="sort" property="sort" />
+        <result column="note" property="note" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, dict_code, code, label, sort, note
+    </sql>
+
+</mapper>

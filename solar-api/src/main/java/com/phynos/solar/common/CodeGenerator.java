@@ -28,26 +28,30 @@ public class CodeGenerator {
      **/
     private static final String AUTHOR = "lupc";
 
-    private static final String packageName = "com.phynos.solar.module";
-
-    private static final String[] tablePrefix = {"sys"};
-
-    private static final String moduleName = "sys";
-
-    //    private static final String[] tableNames = {
-//            "sys_tenant",
-//            "sys_user", "sys_role", "sys_menu", "sys_dept",
-//            "sys_user_role", "sys_role_menu", "sys_role_dept",
-//            "sys_dict", "sys_dict_item",
-//            "sys_parameter",
-//            "sys_log_login", "sys_log_audit",
-//            "sys_file", "sys_file_biz"};
-    private static final String[] tableNames = {
-            "sys_log_login"};
-
     public static final String dbURL = "jdbc:postgresql://www.daqishan.cn:7609/iotdb?useUnicode=true&characterEncoding=utf-8";
     private static final String dbUsername = "iot";
     private static final String schema = "iot";
+
+    private static final String packageName = "com.phynos.solar.module";
+
+    //private static final String[] tablePrefix = {"sys", "ten"};
+    private static final String[] tablePrefix = {};
+
+//    private static final String moduleName = "sys";
+//    private static final String[] tableNames = {
+//            "sys_tenant", "sys_tenant_config",
+//            "sys_config",
+//            "sys_dict", "sys_dict_item",
+//            "sys_log_login", "sys_log_audit",
+//            "sys_file", "sys_file_biz"
+//    };
+    private static final String moduleName = "ten";
+    private static final String[] tableNames = {
+            "ten_user", "ten_role", "ten_menu", "ten_dept", "ten_post",
+            "ten_user_role", "ten_user_post",
+            "ten_role_menu", "ten_role_dept",
+            "ten_dept_config"
+    };
 
     public static void main(String[] args) {
         //从命令行获取密码
@@ -111,9 +115,8 @@ public class CodeGenerator {
 //                .serviceImpl("templates/serviceImpl2.java")
 //                .controller("templates/controller2.java");
         builder.disable(
-                TemplateType.CONTROLLER,
-                TemplateType.SERVICE,
-                TemplateType.SERVICEIMPL);
+                TemplateType.CONTROLLER
+        );
     }
 
     // 策略配置
@@ -126,13 +129,18 @@ public class CodeGenerator {
                 .enableHyphenStyle()
                 .enableRestStyle()
                 .entityBuilder()
-                .fileOverride()
+                .enableFileOverride()
                 .enableLombok()
+                .enableTableFieldAnnotation()
                 .naming(NamingStrategy.underline_to_camel)
                 .columnNaming(NamingStrategy.underline_to_camel)
                 .mapperBuilder()
+                .enableFileOverride()
                 .enableBaseColumnList()
                 .enableBaseResultMap()
+                .serviceBuilder()
+                .formatServiceFileName("%sService")
+                .formatServiceImplFileName("%sServiceImp")
         ;
     }
 
