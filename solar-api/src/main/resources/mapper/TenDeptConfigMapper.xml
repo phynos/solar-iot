@@ -6,11 +6,15 @@
     <resultMap id="BaseResultMap" type="com.phynos.solar.module.ten.entity.TenDeptConfig">
         <id column="id" property="id" />
         <result column="dept_id" property="deptId" />
+        <result column="config_name" property="configName" />
+        <result column="config_key" property="configKey" />
+        <result column="config_value" property="configValue" />
+        <result column="config_type" property="configType" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, dept_id
+        id, dept_id, config_name, config_key, config_value, config_type
     </sql>
 
 </mapper>

@@ -37,21 +37,21 @@ public class CodeGenerator {
     //private static final String[] tablePrefix = {"sys", "ten"};
     private static final String[] tablePrefix = {};
 
-//    private static final String moduleName = "sys";
-//    private static final String[] tableNames = {
-//            "sys_tenant", "sys_tenant_config",
-//            "sys_config",
-//            "sys_dict", "sys_dict_item",
-//            "sys_log_login", "sys_log_audit",
-//            "sys_file", "sys_file_biz"
-//    };
-    private static final String moduleName = "ten";
+    private static final String moduleName = "sys";
     private static final String[] tableNames = {
-            "ten_user", "ten_role", "ten_menu", "ten_dept", "ten_post",
-            "ten_user_role", "ten_user_post",
-            "ten_role_menu", "ten_role_dept",
-            "ten_dept_config"
+            "sys_tenant", "sys_tenant_config",
+            "sys_config",
+            "sys_dict", "sys_dict_item",
+            "sys_log_login", "sys_log_audit",
+            "sys_file", "sys_file_biz"
     };
+//    private static final String moduleName = "ten";
+//    private static final String[] tableNames = {
+//            "ten_user", "ten_role", "ten_menu", "ten_dept", "ten_post",
+//            "ten_user_role", "ten_user_post",
+//            "ten_role_menu", "ten_role_dept",
+//            "ten_dept_config"
+//    };
 
     public static void main(String[] args) {
         //从命令行获取密码

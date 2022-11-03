@@ -33,4 +33,28 @@ public class SysTenantConfig implements Serializable {
      */
     @TableField("tenant_id")
     private Long tenantId;
+
+    /**
+     * 参数名称
+     */
+    @TableField("config_name")
+    private String configName;
+
+    /**
+     * 参数键名
+     */
+    @TableField("config_key")
+    private String configKey;
+
+    /**
+     * 参数键值
+     */
+    @TableField("config_value")
+    private String configValue;
+
+    /**
+     * 系统内置（Y是 N否）
+     */
+    @TableField("config_type")
+    private Integer configType;
 }
