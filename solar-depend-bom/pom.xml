@@ -19,7 +19,7 @@
         <!-- 各种版本 -->
         <phynos.version>1.0-SNAPSHOT</phynos.version>
         <spring-boot.version>2.7.5</spring-boot.version>
-        <postgresql.version>42.3.6</postgresql.version>
+        <postgresql.version>42.3.7</postgresql.version>
         <netty.version>4.1.77.Final</netty.version>
         <mqttv3.version>1.2.5</mqttv3.version>
         <swagger.version>3.0.0</swagger.version>
