@@ -17,8 +17,8 @@ public class EasyExcelExportUtil {
     public static void export(
             String fileName,
             HttpServletResponse httpServletResponse,
-            Class clazz,
-            List data) {
+            Class<?> clazz,
+            List<?> data) {
         try (OutputStream outputStream = httpServletResponse.getOutputStream()) {
             // 清空response
             httpServletResponse.reset();

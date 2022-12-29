@@ -15,6 +15,7 @@
         <module>solar-oss</module>
         <module>solar-util-base</module>
         <module>solar-util-web</module>
+        <module>solar-poi</module>
     </modules>
 
     <properties>
