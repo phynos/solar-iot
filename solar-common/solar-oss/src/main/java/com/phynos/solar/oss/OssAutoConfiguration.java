@@ -3,10 +3,10 @@ package com.phynos.solar.oss;
 import com.phynos.solar.oss.minio.MinioOssTemplate;
 import io.minio.MinioClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * 注释内容
@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
  * @author lupc
  * @date 2022/3/28 10:47
  */
-@Configuration
+@AutoConfiguration
 @ConditionalOnClass(OssTemplate.class)
 @EnableConfigurationProperties(OssProperties.class)
 public class OssAutoConfiguration {

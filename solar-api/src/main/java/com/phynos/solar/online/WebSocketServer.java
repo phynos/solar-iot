@@ -1,7 +1,6 @@
 package com.phynos.solar.online;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.stereotype.Component;
 
@@ -17,20 +16,19 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author Lupc
  * @Date: 2019/12/4 12:00
  **/
+@Slf4j
 @ConditionalOnWebApplication
 @ServerEndpoint(value = "/api/wsocket/{userId}")
 @Component
 public class WebSocketServer {
 
-    private static Logger logger = LoggerFactory.getLogger(WebSocketServer.class);
-
     private static final AtomicInteger OnlineCount = new AtomicInteger(0);
 
-    private static ConcurrentHashMap<String, ConcurrentHashMap<String, Session>> livingSession = new ConcurrentHashMap<>();
+    private static final ConcurrentHashMap<String, ConcurrentHashMap<String, Session>> livingSession = new ConcurrentHashMap<>();
 
     @PostConstruct
     public void init() {
-        logger.info("websocket 加载");
+        log.info("websocket 加载");
     }
 
     /**
@@ -38,7 +36,7 @@ public class WebSocketServer {
      */
     @OnOpen
     public void onOpen(Session session, @PathParam("userId") String userId) {
-        logger.debug("userId:" + userId + ",sessionId:" + session.getId());
+        log.debug("userId:" + userId + ",sessionId:" + session.getId());
         if (livingSession.containsKey(userId)) {
             livingSession.get(userId).put(session.getId(), session);
         } else {
@@ -47,7 +45,7 @@ public class WebSocketServer {
             livingSession.put(userId, t);
         }
         int cnt = OnlineCount.incrementAndGet(); // 在线数加1
-        logger.info("有连接加入，当前连接数为：{}", cnt);
+        log.info("有连接加入，当前连接数为：{}", cnt);
         //sendMessageBySession(session, "连接成功："+ session.getId());
     }
 
@@ -60,7 +58,7 @@ public class WebSocketServer {
             livingSession.get(userId).remove(session.getId());
         }
         int cnt = OnlineCount.decrementAndGet();
-        logger.info("有连接关闭，当前连接数为：{}", cnt);
+        log.info("有连接关闭，当前连接数为：{}", cnt);
     }
 
     /**
@@ -70,7 +68,7 @@ public class WebSocketServer {
      */
     @OnMessage
     public void onMessage(String message, Session session) {
-        logger.info("来自客户端的消息：{}", message);
+        log.info("来自客户端的消息：{}", message);
         //sendMessageBySession(session, "收到消息，消息内容：" + message);
     }
 
@@ -82,7 +80,7 @@ public class WebSocketServer {
      */
     @OnError
     public void onError(Session session, Throwable error) {
-        logger.error("发生错误：{}，Session ID： {}", error.getMessage(), session.getId());
+        log.error("发生错误：{}，Session ID： {}", error.getMessage(), session.getId());
     }
 
     /**
@@ -96,7 +94,7 @@ public class WebSocketServer {
             session.getBasicRemote().sendText(message);
             return true;
         } catch (Exception e) {
-            logger.error("发送消息出错：{}", e.getMessage());
+            log.error("发送消息出错：{}", e.getMessage());
             return false;
         }
     }
