@@ -1,17 +1,16 @@
 package com.phynos.solar.front.module.device.impl;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.solar.iot.codec.ProtoPostUl;
-import com.solar.iot.model.device.IotDevice;
 import com.phynos.solar.front.module.device.DeviceService;
 import com.phynos.solar.front.module.tenancy.IotTenancy;
 import com.phynos.solar.front.module.tenancy.service.TenancyService;
 import com.phynos.solar.util.json.JsonUtil;
+import com.solar.iot.codec.ProtoPostUl;
+import com.solar.iot.model.device.IotDevice;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.messaging.Message;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -30,14 +29,6 @@ public class DeviceServiceImpl implements DeviceService {
 
     @Autowired
     TenancyService tenancyService;
-
-    @Override
-    public void data(Message<?> message) {
-        String topic = message.getHeaders().get("mqtt_receivedTopic", String.class);
-        Integer qos = message.getHeaders().get("mqtt_receivedQos", Integer.class);
-        //message.getHeaders().keySet().forEach(key -> log.debug("{}", key));
-        data(topic, message.getPayload().toString(), qos);
-    }
 
     @Override
     public void data(String topic, String payload, Integer qos) {

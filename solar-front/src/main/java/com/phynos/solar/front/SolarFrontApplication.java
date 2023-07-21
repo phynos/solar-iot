@@ -1,17 +1,20 @@
 package com.phynos.solar.front;
 
 
-import com.solar.iot.rule.easyrules.rule.IotRuleBuild;
-import com.solar.iot.model.device.file.JsonDeviceBuild;
-import com.phynos.solar.front.mqtt.spring.MqttV3Template;
 import com.phynos.solar.front.module.tenancy.IotTenancy;
 import com.phynos.solar.front.module.tenancy.service.TenancyService;
+import com.phynos.solar.front.mqtt.MqttProperties;
+import com.phynos.solar.front.mqtt.simple.SimpleMqttClient;
+import com.solar.iot.model.device.file.JsonDeviceBuild;
+import com.solar.iot.rule.easyrules.rule.IotRuleBuild;
 import com.solar.iot.rule.easyrules.rule.IotRuleImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
@@ -21,14 +24,16 @@ import javax.annotation.PostConstruct;
  * @author by lupc
  * @date 2020-09-29 15:12
  */
+@EnableConfigurationProperties(MqttProperties.class)
 @Slf4j
 @EnableAsync
 @EnableScheduling
 @SpringBootApplication
 public class SolarFrontApplication implements CommandLineRunner {
 
+    SimpleMqttClient simpleMqttClient;
     @Autowired
-    MqttV3Template mqttV3Template;
+    MqttProperties mqttProperties;
 
     public static void main(String[] args) {
         SpringApplication.run(SolarFrontApplication.class, args);
@@ -36,7 +41,10 @@ public class SolarFrontApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        mqttV3Template.sendToMqtt("/test", "server 222");
+        simpleMqttClient = new SimpleMqttClient(mqttProperties);
+        simpleMqttClient.connect();
+        simpleMqttClient.subscriber();
+        simpleMqttClient.publisher();
         System.in.read();
     }
 

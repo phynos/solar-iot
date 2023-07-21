@@ -1,10 +1,6 @@
 package com.phynos.solar.front.module.device;
 
-import org.springframework.messaging.Message;
-
 public interface DeviceService {
-
-    void data(Message<?> message);
 
     void data(String topic, String payload, Integer qos);
 

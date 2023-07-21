@@ -25,6 +25,7 @@ public class AuthWebMvcConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/auth/token")
                 .excludePathPatterns("/file/**")
                 .excludePathPatterns("/debug/**")
+                .excludePathPatterns("/demo/**")
         ;
     }
 
