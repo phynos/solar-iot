@@ -1,14 +1,24 @@
 [Unit]
-Description=XXXX
+Description=APP描述
 After=network.target
 After=network-online.target
+After=docker.service
 Wants=network-online.target
 
 [Service]
 Type=simple
-ExecStart=/path/to/java -jar xxxx.jar
 Restart=on-failure
 LimitNOFILE=65536
+WorkingDirectory=/home/phynos/apps
+ExecStartPre=/bin/sleep 10
+ExecStart=/usr/bin/java -jar /home/phynos/apps/mp-matest.jar \
+ --spring.profiles.active=prod \
+ --spring.datasource.password=mp123456 \
+ --logging.file.name=/home/phynos/apps/logs/mptest.log \
+ --server.port=8001 \
+ --zentao.url=http://192.168.0.57/zentao \
+ --oss.fs-config.pathRoot=/home/phynos/apps
+RestartSec=2s
 
 [Install]
 WantedBy=multi-user.target
