@@ -28,7 +28,7 @@ public class CodeGenerator {
      **/
     private static final String AUTHOR = "lupc";
 
-    public static final String dbURL = "jdbc:postgresql://daqishan.cn:5432/iotdb?currentSchema=iotdb";
+    public static final String dbURL = "jdbc:postgresql://120.79.234.132:5432/iotdb?currentSchema=iot";
     private static final String dbUsername = "postgres";
     private static final String schema = "iot";
 
@@ -37,6 +37,7 @@ public class CodeGenerator {
     //private static final String[] tablePrefix = {"sys", "ten"};
     private static final String[] tablePrefix = {};
 
+    //ten sys
     private static final String moduleName = "sys";
     private static final String[] tableNames = {
             "sys_tenant", "sys_tenant_config",

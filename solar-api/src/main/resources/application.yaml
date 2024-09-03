@@ -48,7 +48,7 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgresql://daqishan.cn:5432/iotdb?currentSchema=iotdb
+    url: jdbc:postgresql://120.79.234.132:5432/iotdb?currentSchema=iot
     username: iot
     password: ${DB_PASSWORD}
   cache:
