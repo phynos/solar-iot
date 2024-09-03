@@ -17,7 +17,7 @@ import java.util.Map;
 /**
  * mybatis-plus 代码生成
  *
- * @author by lupc
+ * @author lupc
  * @date 2021-01-25 9:52
  */
 public class CodeGenerator {
@@ -63,8 +63,6 @@ public class CodeGenerator {
                 .packageConfig(CodeGenerator::setPackage)
                 // 策略配置
                 .strategyConfig(CodeGenerator::setStrategy)
-                // 模板配置
-                .templateConfig(CodeGenerator::setTemplate)
                 // 模板引擎
                 .templateEngine(new VelocityTemplateEngine()) // Velocity引擎模板
                 .execute();
@@ -107,18 +105,6 @@ public class CodeGenerator {
         ;
     }
 
-    // 配置模板
-    private static void setTemplate(TemplateConfig.Builder builder) {
-        // 配置自定义输出模板
-//        builder.entity("templates/entity2.java")
-//                .service("templates/service2.java")
-//                .serviceImpl("templates/serviceImpl2.java")
-//                .controller("templates/controller2.java");
-        builder.disable(
-                TemplateType.CONTROLLER
-        );
-    }
-
     // 策略配置
     private static void setStrategy(StrategyConfig.Builder builder) {
         // 策略配置
@@ -126,8 +112,9 @@ public class CodeGenerator {
                 .addTablePrefix(tablePrefix) // 设置过滤表前缀
                 //.enableSchema()
                 .controllerBuilder()
-                .enableHyphenStyle()
-                .enableRestStyle()
+                .disable()
+//                .enableHyphenStyle()
+//                .enableRestStyle()
                 .entityBuilder()
                 .enableFileOverride()
                 .enableLombok()
