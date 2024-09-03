@@ -28,8 +28,8 @@ public class CodeGenerator {
      **/
     private static final String AUTHOR = "lupc";
 
-    public static final String dbURL = "jdbc:postgresql://www.daqishan.cn:7609/iotdb?useUnicode=true&characterEncoding=utf-8";
-    private static final String dbUsername = "iot";
+    public static final String dbURL = "jdbc:postgresql://daqishan.cn:5432/iotdb?currentSchema=iotdb";
+    private static final String dbUsername = "postgres";
     private static final String schema = "iot";
 
     private static final String packageName = "com.phynos.solar.module";
