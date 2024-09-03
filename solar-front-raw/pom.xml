@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>solar-front-raw</artifactId>
-    <description>前置机-基于最原始的TCPIP设计</description>
+    <description>前置机</description>
 
     <properties>
         <curator.version>4.3.0</curator.version>
@@ -23,10 +23,11 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
-            <version>${netty.version}</version>
+            <version>4.1.112.Final</version>
         </dependency>
 
         <dependency>
@@ -55,7 +56,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
                 <configuration>
-                    <mainClass>com.phynos.framework.front.raw.FrontNettyApplication</mainClass>
+                    <mainClass>com.phynos.framework.front.raw.FrontApplication</mainClass>
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>
