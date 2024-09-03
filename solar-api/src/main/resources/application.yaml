@@ -48,7 +48,7 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgresql://daqishan.cn:7609/iotdb?useUnicode=true&characterEncoding=utf-8
+    url: jdbc:postgresql://daqishan.cn:5432/iotdb?currentSchema=iotdb
     username: iot
     password: ${DB_PASSWORD}
   cache:
@@ -63,7 +63,6 @@ mybatis-plus:
   global-config:
     db-config:
       schema: iot
-    banner: off
   mapper-locations: classpath*:/mapper/*Mapper.xml
 
 

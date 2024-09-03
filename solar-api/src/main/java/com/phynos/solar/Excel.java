@@ -23,7 +23,7 @@ import java.util.Scanner;
  * @date 2024/5/17 12:00
  */
 @Slf4j
-@Component
+//@Component
 public class Excel {
 
     @PostConstruct
