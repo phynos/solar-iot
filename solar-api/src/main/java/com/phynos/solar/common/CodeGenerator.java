@@ -140,7 +140,7 @@ public class CodeGenerator {
                 .enableBaseResultMap()
                 .serviceBuilder()
                 .formatServiceFileName("%sService")
-                .formatServiceImplFileName("%sServiceImp")
+                .formatServiceImplFileName("%sServiceImpl")
         ;
     }
 
