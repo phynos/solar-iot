@@ -1,9 +1,9 @@
 package com.phynos.solar.module.index.dto;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.NotNull;
 
 /**
  * @author lupc

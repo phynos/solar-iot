@@ -1,10 +1,9 @@
 package com.phynos.solar.module.demo.service.impl;
 
 import com.phynos.solar.module.demo.service.DemoService;
+import jakarta.annotation.PostConstruct;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.PostConstruct;
 
 /**
  * 注释内容

@@ -2,7 +2,7 @@ package com.phynos.solar.auth.kaptcha;
 
 import com.phynos.solar.util.json.ResultCodeEnum;
 
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponse;
 
 public interface KaptchaService {
 

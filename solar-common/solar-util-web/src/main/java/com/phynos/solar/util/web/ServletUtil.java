@@ -1,6 +1,7 @@
 package com.phynos.solar.util.web;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
+
 import java.io.File;
 
 /**
@@ -24,7 +25,7 @@ public class ServletUtil {
      * @param request 
      * @return 
      */  
-    public static String getIpAddress(HttpServletRequest request) {  
+    public static String getIpAddress(HttpServletRequest request) {
         String ip = request.getHeader("x-forwarded-for");  
         if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {  
             ip = request.getHeader("X-Forward-For");  

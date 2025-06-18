@@ -2,9 +2,9 @@ package com.phynos.solar.auth;
 
 import com.phynos.solar.auth.vo.TokenInfo;
 import com.phynos.solar.util.web.SpringWebUtil;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * 提供一些静态方法，用于获取当前用户信息

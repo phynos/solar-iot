@@ -8,11 +8,10 @@ import com.phynos.solar.auth.user.UserDetailService;
 import com.phynos.solar.auth.user.UserDetails;
 import com.phynos.solar.auth.vo.TokenInfo;
 import com.phynos.solar.util.json.ResultCodeEnum;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * 注释内容

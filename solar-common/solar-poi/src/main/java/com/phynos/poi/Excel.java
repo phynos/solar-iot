@@ -1,17 +1,9 @@
-package com.phynos.solar;
+package com.phynos.poi;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.poi.hssf.record.crypto.Biff8EncryptionKey;
-import org.apache.poi.poifs.crypt.Decryptor;
-import org.apache.poi.poifs.crypt.EncryptionInfo;
-import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import java.io.*;
 import java.math.BigDecimal;
 import java.util.Scanner;
@@ -26,7 +18,6 @@ import java.util.Scanner;
 //@Component
 public class Excel {
 
-    @PostConstruct
     public void test() throws IOException {
         if (filePath.length() == 0) {
             System.out.println("请输生成的字典位置:");
@@ -88,11 +79,6 @@ public class Excel {
             }
         }
         return "错误!";
-    }
-
-    @PreDestroy
-    public void destroy() {
-
     }
 
     public static File excelFile = null;

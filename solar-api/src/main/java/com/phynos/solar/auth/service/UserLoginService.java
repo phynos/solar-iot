@@ -4,8 +4,8 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.phynos.solar.auth.AuthException;
 import com.phynos.solar.auth.jwttoken.dto.LoginDTO;
 import com.phynos.solar.auth.vo.TokenInfo;
+import jakarta.servlet.http.HttpServletRequest;
 
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * 注释内容

@@ -1,8 +1,7 @@
 package com.phynos.solar.auth;
 
 import com.phynos.solar.util.web.SpringWebUtil;
-
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * 注释内容

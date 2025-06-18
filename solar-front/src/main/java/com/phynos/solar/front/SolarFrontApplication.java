@@ -8,6 +8,7 @@ import com.phynos.solar.front.mqtt.simple.SimpleMqttClient;
 import com.solar.iot.model.device.file.JsonDeviceBuild;
 import com.solar.iot.rule.easyrules.rule.IotRuleBuild;
 import com.solar.iot.rule.easyrules.rule.IotRuleImpl;
+import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -18,7 +19,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-import javax.annotation.PostConstruct;
+
 
 /**
  * @author by lupc
