@@ -53,11 +53,12 @@ spring:
     password: ${DB_PASSWORD}
   cache:
     type: redis
-  redis:
-    host: daqishan.cn
-    port: 7608
-    database: 0
-    password: ${DB_PASSWORD}
+  data:
+    redis:
+      host: daqishan.cn
+      port: 7608
+      database: 0
+      password: ${DB_PASSWORD}
 
 mybatis-plus:
   global-config:
