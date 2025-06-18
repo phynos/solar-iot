@@ -9,8 +9,13 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>solar-common</artifactId>
+    <artifactId>apps</artifactId>
     <packaging>pom</packaging>
+    <name>${project.artifactId}</name>
+    <modules>
+        <module>solar-api</module>
+        <module>test-ds</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -19,12 +24,5 @@
         <maven.deploy.skip>true</maven.deploy.skip>
         <maven.install.skip>true</maven.install.skip>
     </properties>
-
-    <modules>
-        <module>solar-oss</module>
-        <module>solar-util-base</module>
-        <module>solar-util-web</module>
-        <module>solar-poi</module>
-    </modules>
 
 </project>

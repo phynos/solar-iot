@@ -12,16 +12,18 @@
     <artifactId>tools</artifactId>
     <packaging>pom</packaging>
 
-    <modules>
-        <module>doc-tools</module>
-    </modules>
+    <name>${project.artifactId}</name>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.deploy.skip>true</maven.deploy.skip>
+        <maven.install.skip>true</maven.install.skip>
     </properties>
 
-
+    <modules>
+        <module>doc-tools</module>
+    </modules>
 
 </project>

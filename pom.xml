@@ -10,11 +10,11 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>solar-front-raw</module>
-        <module>solar-api</module>
         <module>solar-front</module>
         <module>solar-common</module>
         <module>tools</module>
         <module>iot</module>
+        <module>apps</module>
     </modules>
 
     <properties>
