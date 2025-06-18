@@ -50,10 +50,10 @@
             <version>2.14.0</version>
         </dependency>
 
-        <!-- mybatis坐标 -->
+        <!-- mybatis坐标；注意springboot3使用新坐标：mybatis-plus-spring-boot3-starter -->
         <dependency>
             <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
         </dependency>
         <dependency>
             <groupId>com.baomidou</groupId>
@@ -72,6 +72,11 @@
             <artifactId>velocity-engine-core</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>2.3.232</version>
+        </dependency>
     </dependencies>
 
 </project>

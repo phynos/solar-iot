@@ -81,10 +81,15 @@
                 <artifactId>postgresql</artifactId>
                 <version>42.7.7</version>
             </dependency>
-            <!-- mybatis坐标 -->
+            <!-- mybatis坐标；注意springboot3使用新坐标：mybatis-plus-spring-boot3-starter -->
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>3.5.12</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
                 <version>3.5.12</version>
             </dependency>
             <dependency>
