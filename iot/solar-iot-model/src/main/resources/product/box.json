@@ -1,0 +1,31 @@
+{
+  "code": "box",
+  "version": "1",
+  "attrs": {
+    "U": {
+      "name": "电压",
+      "type": "",
+      "format": "",
+      "unit": "V",
+      "expr": null
+    },
+    "I": {
+      "name": "电流",
+      "type": "",
+      "format": "",
+      "unit": "A",
+      "expr": null
+    },
+    "power": {
+      "name": "功率",
+      "type": "",
+      "format": "",
+      "unit": "W",
+      "expr": "U.value * I.value"
+    }
+  },
+  "events": {
+  },
+  "services": {
+  }
+}

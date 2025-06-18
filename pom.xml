@@ -12,8 +12,9 @@
         <module>solar-front-raw</module>
         <module>solar-api</module>
         <module>solar-front</module>
-        <module>solar-core</module>
         <module>solar-common</module>
+        <module>tools</module>
+        <module>iot</module>
     </modules>
 
     <properties>

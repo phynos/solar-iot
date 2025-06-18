@@ -1,0 +1,27 @@
+{
+  "name": "空调自动开启",
+  "description": "温度传感器数据小于15或大于25自动开启空调",
+  "ruleFireType": "数据驱动",
+  "deviceConditons": [
+    {
+      "deviceSn": "22R201512DB21188",
+      "signalKey": "temp",
+      "operType": "大于",
+      "limit": "25"
+    },
+    {
+      "deviceSn": "22R201512DB21188",
+      "signalKey": "temp",
+      "operType": "小于",
+      "limit": "15"
+    }
+  ],
+  "conditionType": "或",
+  "actions": [
+    {
+      "deviceSn": "0102",
+      "command": "open",
+      "parameter": ""
+    }
+  ]
+}
