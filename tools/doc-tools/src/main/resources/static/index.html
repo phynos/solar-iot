@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- import CSS -->
+	<link rel="stylesheet" href="https://unpkg.zhimg.com/element-ui/lib/theme-chalk/index.css">
+	<script src="lib/vue.js"></script>
+	<script src="lib/httpVueLoader.js"></script>
+	<script src="lib/axios.js"></script>
+	<style>
+		/* 全局样式 */
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: Arial, sans-serif;
+			background-color: #f5f7fa;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+			box-sizing: border-box;
+		}
+
+		/* #app 容器样式 */
+		#app {
+			width: 100%;
+			max-width: 500px;
+			padding: 20px;
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+			background-color: #fff;
+			border-radius: 8px;
+		}
+
+		/* 上传组件的自定义样式 */
+		.upload-demo {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		.upload-demo .el-upload {
+			width: 100%;
+		}
+
+		.upload-demo .el-button {
+			width: 100%;
+		}
+
+		/* 响应式调整 */
+		@media (max-width: 600px) {
+			#app {
+				padding: 15px;
+			}
+
+			.upload-demo .el-button {
+				font-size: 16px;
+			}
+		}
+
+		/* 对话框内的下载链接样式 */
+		.el-dialog__body {
+			text-align: center;
+		}
+
+		.el-dialog__body a {
+			display: inline-block;
+			margin-top: 10px;
+			color: #1890ff;
+			text-decoration: none;
+		}
+
+		.el-dialog__body a:hover {
+			text-decoration: underline;
+		}
+	</style>
+</head>
+<body>
+<div id="app">
+	<el-upload
+			class="upload-demo"
+			action="/tools/image/upload"
+			:on-success="handleUploadSuccess"
+			:before-upload="beforeUpload"
+			name="file"
+			:limit="1"
+			:on-exceed="handleExceed"
+			accept="image/jpeg, image/png"
+			:file-list="fileList">
+		<el-button type="primary">点击上传</el-button>
+		<div slot="tip" class="el-upload__tip">只能上传一个文件</div>
+	</el-upload>
+
+	<el-dialog
+			title="下载链接"
+			:visible.sync="dialogVisible"
+			width="30%">
+		<span v-if="downloadLink" style="word-wrap: break-word;">下载链接: <a :href="downloadLink" target="_blank">{{ downloadFileName }}</a></span>
+		<span v-else>上传成功，正在生成下载链接...</span>
+		<span slot="footer" class="dialog-footer">
+			 	<el-button class="close-button" @click="closeDialog">关闭</el-button>
+                <el-button type="primary" class="download-button" @click="handleDownload">下载</el-button>
+            </span>
+	</el-dialog>
+</div>
+</body>
+<!-- 引入组件库 -->
+<script src="https://unpkg.zhimg.com/element-ui/lib/index.js"></script>
+<script src="utils/request.js"></script>
+<script type="text/javascript">
+	var vm = new Vue({
+		el: '#app',
+		components: {
+			//'ca': httpVueLoader('./components/caConfiguration.vue'),
+		},
+		data: function() {
+			return {
+				fileList: [], // 上传的文件列表
+				dialogVisible: false, // 下载链接对话框是否显示
+				downloadLink: "" ,// 下载链接地址
+				downloadFileName: "", // 下载链接地址
+			}
+		},
+		mounted() {
+
+		},
+		methods: {
+			// 文件上传前的校验
+			beforeUpload(file) {
+				// 这里可以添加文件类型、大小等校验
+				const isImage = ['image/jpeg', 'image/png'].includes(file.type);
+				const isLt2M = file.size / 1024 / 1024 < 20;
+				if (!isImage) {
+					this.$message.error('只能上传 JPG/PNG 格式的图片!');
+				}
+				if (!isLt2M) {
+					this.$message.error('上传图片大小不能超过 2MB!');
+				}
+				// 只有当文件类型和大小都符合要求时，才允许上传
+				return isImage && isLt2M;
+			},
+			// 文件上传成功后的回调
+			handleUploadSuccess(response, file, fileList) {
+				this.fileList = fileList; // 更新文件列表
+				if (response && response.fileLocation) {
+					this.downloadLink = response.fileLocation;
+					this.downloadFileName = response.fileName;
+					this.dialogVisible = true; // 显示下载链接对话框
+				} else if(response && response.msg) {
+					this.$message.error(response.msg);
+				} else {
+					this.$message.error('上传成功，但未收到下载链接');
+				}
+			},
+			// 文件超出限制时的回调
+			handleExceed(files, fileList) {
+				this.$message.warning(`当前限制选择 1 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
+			},
+			// 可选：手动触发上传
+			submitUpload() {
+				this.$refs.upload.submit();
+			},
+			//
+			closeDialog() {
+				this.dialogVisible = false;
+				this.fileList = []; // 清空文件列表
+				// 如果需要重置整个 el-upload 组件，可以调用其内置的 clearFiles 方法
+				this.$refs.upload.clearFiles();
+			},
+			// 处理下载操作
+			handleDownload() {
+				if (this.downloadLink) {
+					// 方法一：在新标签页打开下载链接
+					// window.open(this.downloadLink, '_blank');
+
+					// 方法二：触发文件下载（需要后端支持 Content-Disposition 头）
+					const link = document.createElement('a');
+					link.href = this.downloadLink;
+					link.download = '下载的文件名.pdf'; // 可以根据实际情况设置文件名
+					document.body.appendChild(link);
+					link.click();
+					document.body.removeChild(link);
+				} else {
+					this.$message.warning('下载链接尚未生成');
+				}
+			}
+		}
+	})
+</script>
+</html>

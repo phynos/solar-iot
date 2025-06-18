@@ -1,0 +1,20 @@
+
+file:
+  path: ./files
+
+server:
+  port: 5858
+  servlet:
+    context-path: /tools
+
+
+spring:
+  application:
+    name: DocTools
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+logging:
+  file:
+    name: ./logs/doctools.log
