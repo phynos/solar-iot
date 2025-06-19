@@ -19,6 +19,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.transaction.TransactionFactory;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 
 import javax.sql.DataSource;
@@ -48,7 +49,7 @@ public class DsTestController {
     @PostConstruct
     public void init() {
         log.info("启动了");
-        test3();
+        test1();
     }
 
     private void test1() {
