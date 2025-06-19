@@ -6,13 +6,22 @@ import com.phynos.ds.mybatisplus.DynamicDataSource;
 import com.phynos.ds.mybatisplus.DynamicDataSourceContextHolder;
 import com.phynos.ds.provider.DataSourceProperties;
 import com.phynos.ds.provider.DataSourceProvider;
+import com.phynos.ds.provider.DataSourceUtil;
 import com.phynos.ds.provider.impl.DefaultDataSourceProvider;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.mapping.Environment;
+import org.apache.ibatis.session.Configuration;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.apache.ibatis.transaction.TransactionFactory;
+import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +44,10 @@ public class DsTestController {
     @PostConstruct
     public void init() {
         log.info("启动了");
+        test2();
+    }
+
+    private void test1() {
         addDataSource();
         DynamicDataSourceContextHolder.push("a");
         List<User> a = userMapper.listAll();
@@ -44,6 +57,16 @@ public class DsTestController {
         log.info(b.toString());
     }
 
+    private void test2() {
+        DataSourceProperties prop = new DataSourceProperties();
+        prop.setPoolName("db-a");
+        prop.setDriverClassName("org.sqlite.JDBC");
+        prop.setJdbcUrl("jdbc:sqlite:./files/a.db");
+        prop.setUsername("a");
+        prop.setPassword("123456");
+        DataSource dataSource = DataSourceUtil.createHikariDataSource(prop);
+        testDataSourceConfig(dataSource);
+    }
 
     private void addDataSource() {
         //基于本地h2数据库创建
@@ -68,6 +91,32 @@ public class DsTestController {
         }
         DataSourceProvider provider = new DefaultDataSourceProvider(dsMap);
         provider.loadDataSources().forEach((k, v) -> dynamicDataSource.addDataSource(k, v));
+    }
+
+    private void testDataSourceConfig(DataSource dataSource) {
+        SqlSessionFactory sqlSessionFactory = createSqlSessionFactory(dataSource);
+        try (SqlSession sqlSession = sqlSessionFactory.openSession();) {
+            UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+            List<User> a = userMapper.listAll();
+            log.info(a.toString());
+        }
+    }
+
+    public static SqlSessionFactory createSqlSessionFactory(DataSource dataSource) {
+        // 1. 创建事务工厂（JDBC 事务管理）
+        TransactionFactory transactionFactory = new JdbcTransactionFactory();
+
+        // 2. 创建 MyBatis 环境（绑定 DataSource 和 TransactionFactory）
+        Environment environment = new Environment("test", transactionFactory, dataSource);
+
+        // 3. 创建 MyBatis 配置（可在此添加 Mapper 扫描等配置）
+        Configuration configuration = new Configuration(environment);
+        // 可选：添加 Mapper 接口或 XML 映射文件
+        configuration.addMapper(UserMapper.class);
+        // configuration.addMappers("com.example.mapper");
+
+        // 4. 通过 SqlSessionFactoryBuilder 构建 SqlSessionFactory
+        return new SqlSessionFactoryBuilder().build(configuration);
     }
 
 }
