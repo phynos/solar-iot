@@ -22,6 +22,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,7 +48,7 @@ public class DsTestController {
     @PostConstruct
     public void init() {
         log.info("启动了");
-        test2();
+        test3();
     }
 
     private void test1() {
@@ -66,6 +70,27 @@ public class DsTestController {
         prop.setPassword("123456");
         DataSource dataSource = DataSourceUtil.createHikariDataSource(prop);
         testDataSourceConfig(dataSource);
+    }
+
+    private void test3() {
+        DataSourceProperties prop = new DataSourceProperties();
+        prop.setPoolName("db-a");
+        prop.setDriverClassName("org.sqlite.JDBC");
+        prop.setJdbcUrl("jdbc:sqlite:./files/a.db");
+        prop.setUsername("a");
+        prop.setPassword("123456");
+        DataSource dataSource = DataSourceUtil.createHikariDataSource(prop);
+        try (Connection conn = dataSource.getConnection()){
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from user");
+            while (rs.next()) {
+                Integer id = rs.getInt("id");
+                String name = rs.getString("name");
+                log.info("id={} name={}", id, name);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void addDataSource() {
