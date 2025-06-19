@@ -1,6 +1,7 @@
 package com.phynos.ds.provider.impl;
 
 import com.phynos.ds.provider.DataSourceProperties;
+import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 
 import javax.sql.DataSource;
@@ -26,18 +27,37 @@ public abstract class AbstractDataSourceProvider {
                 poolName = dsName;
             }
             dataSourceProperty.setPoolName(poolName);
-            dataSourceMap.put(dsName, createDataSource(dataSourceProperty));
+            dataSourceMap.put(dsName, createHikariDataSource(dataSourceProperty));
         }
         return dataSourceMap;
     }
 
     private DataSource createDataSource(DataSourceProperties prop) {
-        DataSourceBuilder<?> builder = DataSourceBuilder.create();
-        builder.driverClassName(prop.getDriverClassName());
-        builder.username(prop.getUsername());
-        builder.password(prop.getPassword());
-        builder.url(prop.getJdbcUrl());
-        return builder.build();
+        return DataSourceBuilder.create()
+                .driverClassName(prop.getDriverClassName())
+                .username(prop.getUsername())
+                .password(prop.getPassword())
+                .url(prop.getJdbcUrl())
+                .type(HikariDataSource.class)
+                .build();
+    }
+
+    private HikariDataSource createHikariDataSource(DataSourceProperties prop) {
+        HikariDataSource dataSource = new HikariDataSource();
+        dataSource.setDriverClassName(prop.getDriverClassName());
+        dataSource.setUsername(prop.getUsername());
+        dataSource.setPassword(prop.getPassword());
+        dataSource.setJdbcUrl(prop.getJdbcUrl());
+
+        // 手动配置 HikariCP 参数
+        dataSource.setConnectionTimeout(30000);
+        dataSource.setMaximumPoolSize(20);
+        dataSource.setMinimumIdle(5);
+        dataSource.setIdleTimeout(600000);
+        dataSource.setMaxLifetime(1800000);
+        dataSource.setPoolName(prop.getPoolName());
+
+        return dataSource;
     }
 
 }
