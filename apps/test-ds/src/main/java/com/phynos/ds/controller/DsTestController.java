@@ -19,7 +19,6 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.transaction.TransactionFactory;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 
 import javax.sql.DataSource;
@@ -49,7 +48,7 @@ public class DsTestController {
     @PostConstruct
     public void init() {
         log.info("启动了");
-        test1();
+        test4();
     }
 
     private void test1() {
@@ -81,7 +80,7 @@ public class DsTestController {
         prop.setUsername("a");
         prop.setPassword("123456");
         DataSource dataSource = DataSourceUtil.createHikariDataSource(prop);
-        try (Connection conn = dataSource.getConnection()){
+        try (Connection conn = dataSource.getConnection()) {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("select * from user");
             while (rs.next()) {
@@ -91,6 +90,27 @@ public class DsTestController {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    private void test4() {
+        DataSourceProperties prop = new DataSourceProperties();
+        prop.setPoolName("db-q");
+        prop.setDriverClassName("org.postgresql.Driver");
+        prop.setJdbcUrl("jdbc:postgresql://124.221.51.95:39002/postgres?currentSchema=public");
+        prop.setUsername("postgres");
+        prop.setPassword("123456");
+        DataSource dataSource = DataSourceUtil.createHikariDataSource(prop);
+        try (Connection conn = dataSource.getConnection()) {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from user");
+            while (rs.next()) {
+                Integer id = rs.getInt("id");
+                String name = rs.getString("name");
+                log.info("id={} name={}", id, name);
+            }
+        } catch (SQLException e) {
+            log.error(e.getMessage(), e);
         }
     }
 
